@@ -1,0 +1,12 @@
+
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.item-box{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
+    width: 100%;
+}
