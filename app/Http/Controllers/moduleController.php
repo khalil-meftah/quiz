@@ -1,17 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+use app\Models\Module;
+
 
 class moduleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
     {
-        //
+        //Module is the model class of modules
+        $module = Module::all();
     }
 
     /**

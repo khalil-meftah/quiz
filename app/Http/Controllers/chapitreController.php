@@ -3,15 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Chapitre;
 
 class chapitreController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
     {
-        //
+        //Chapitre is the model class of chapitre
+        $chapitre = Chapitre::all();
     }
 
     /**
