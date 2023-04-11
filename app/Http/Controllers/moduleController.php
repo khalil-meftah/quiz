@@ -3,15 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\module;
 class moduleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $mod = module::all();
+        //module is the view module.blade
+        //compact is the auto table that contains the variables of modules
+        return view('module' , compact('mod'));
     }
 
     /**
