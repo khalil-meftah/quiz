@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\questionController;
+use App\Http\Controllers\reponseController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +19,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::resources([
+    'question' => questionController::class,
+    'reponse' => reponseController::class,
+]);

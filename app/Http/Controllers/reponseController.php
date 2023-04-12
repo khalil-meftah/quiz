@@ -3,15 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Reponse;
 
-class moduleController extends Controller
+
+class reponseController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $reponse = Reponse::all();
+        return view('reponse\index')->with('reponse', $reponse);
     }
 
     /**
@@ -19,7 +22,7 @@ class moduleController extends Controller
      */
     public function create()
     {
-        //
+        return view('reponse\create');
     }
 
     /**
@@ -27,7 +30,10 @@ class moduleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $reponse = new Reponse();
+        $reponse->descriptionReponse = $request->descriptionReponse;
+        $reponse->save();
+        return $this->index();
     }
 
     /**
@@ -43,7 +49,8 @@ class moduleController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $reponse = Reponse::find($id);
+        return view('Reponse\edit',compact('reponse'));
     }
 
     /**
@@ -51,7 +58,10 @@ class moduleController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $reponse = Reponse::find($id);
+        $reponse->descriptionReponse = $request->descriptionReponse;
+        $reponse->save();
+        return redirect()->route('reponse.index', ['reponse' => $id]);
     }
 
     /**
@@ -59,6 +69,7 @@ class moduleController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Reponse::destroy($id);
+        return redirect(route('reponse.index'));
     }
 }
