@@ -17,12 +17,9 @@ class chapitreController extends Controller
       return view('chapitre' , compact('chap'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('createCh'); 
     }
 
     /**
@@ -30,23 +27,44 @@ class chapitreController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $chap = new chapitre();
+
+        $request->validate([
+            'descriptionChapitre'=>['min:08'],
+            'nombreHeuresChapitre' => ['filled',],
+            'dateDebutChapitre' =>['required_with:dateCreationChapitre'],
+             'dateCreationChapitre' => ['before:dateDebutChapitre']
+        ],[
+            // desription const
+            'descriptionChapitre'=>'Le champ description chapitre doit comporter au moins 08 caractères.',
+            // nombre heures const 
+            'nombreHeuresChapitre.filled'=>'Le champ nombre heures chapitre doit avoir une valeur.',
+            
+            // date creation const
+            'dateCreationChapitre'=>'Le champ date creation chapitre doit être une date avant date debut chapitre.'
+        ]);
+       $chap->descriptionChapitre = $request->descriptionChapitre;
+       $chap->nombreHeuresChapitre = $request->nombreHeuresChapitre;
+       $chap->dateDebutChapitre = $request->dateDebutChapitre;
+       $chap->dateCreationChapitre = $request->dateCreationChapitre;
+       
+       $chap -> save();
+        return redirect('chapitre');
     }
 
-    /**
-     * Display the specified resource.
-     */
+    
     public function show(string $id)
     {
-        //
+        
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $f=Chapitre::find($id);
+        return view ('editCh',['chap'=>$f]);
     }
 
     /**
@@ -54,14 +72,23 @@ class chapitreController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $f=Chapitre::find($id);
+        $f->descriptionChapitre = $request->descriptionChapitre;
+        $f->nombreHeuresChapitre = $request->nombreHeuresChapitre;
+        $f->dateDebutChapitre = $request->dateDebutChapitre;
+        $f->dateCreationChapitre = $request->dateCreationChapitre; 
+        
+       $f -> save();
+        return redirect ('/chapitre');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy( $id)
     {
-        //
+        $f=Chapitre::find($id);
+        $f->delete();
+return redirect('/chapitre');
     }
 }

@@ -14,12 +14,9 @@ class moduleController extends Controller
         return view('module' , compact('mod'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('createCh');
     }
 
     /**
