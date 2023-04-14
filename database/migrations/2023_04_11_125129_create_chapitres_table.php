@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('chapitres', function (Blueprint $table) {
             $table->id();
+            $table->text('nomChapitre')->nullable();
             $table->text('descriptionChapitre')->nullable();
             $table->integer('nombreHeuresChapitre');
             $table->date('dateDebutChapitre');

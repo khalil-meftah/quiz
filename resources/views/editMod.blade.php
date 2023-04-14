@@ -36,32 +36,32 @@
 <body>
   
 {{-- la page de creation de formulaire d'insertion --}}
-<form  method="POST" action="{{route('chapitre.update',$chap->id)}}">
+<form  method="POST" action="{{route('module.update',$mod ->id)}}">
     @csrf
     @method('patch')
-    {{-- ----------------------NOM DU CHAPITRE-------------------------- --}}
-<label for="nomChapitre">nom du Chapitre</label>
-<input type="text" name="nomChapitre" id="nomChapitre"><br>
-{{------------- DESCRIPTION CHAPITRE ---------------------}}
-    <label for="descriptionChapitre">description Chapitre</label>
-        <input type="text" name="descriptionChapitre"  value ="{{$chap->descriptionChapitre}}" id="descriptionChapitre"><br>
-{{-- --------NOMBRE HEURES CHAPITRE -----------------------}}
-    <label for="nbh">nombre Heures Chapitre</label>
-        <input type="integer" name="nombreHeuresChapitre"  value ="{{$chap->nombreHeuresChapitre}}" id="nombreHeuresChapitre"><br>
-{{-- -------------DATE CREATION CHAPITRE--------------- --}}
-    <label for="dateCreationChapitre">date Creation Chapitre</label>
-    <input type="date" name="dateCreationChapitre"  value ="{{$chap->dateDebutChapitre}}" id="dateCreationChapitre"><br>
-{{------------ DATE DEBUT CHAPITRE -----------------------}}
-    <label for="dateDebutChapitre">date Debut Chapitre</label>
-        <input type="date" name="dateDebutChapitre" value =" {{$chap->dateCreationChapitre}}" id="dateDebutChapitre"><br>
+    {{-- ----------------------NOM DU Module-------------------------- --}}
+<label for="nomModule">nom du Module</label>
+<input type="text" name="nomModule" id="nomModule"><br>
+{{------------- DESCRIPTION Module ---------------------}}
+    <label for="descriptionModule">description Module</label>
+        <input type="text" name="descriptionModule"  value ="{{$mod ->descriptionModule}}" id="descriptionModule"><br>
+{{-- --------NOMBRE HEURES Module -----------------------}}
+    <label for="nbh">nombre Heures Module</label>
+        <input type="integer" name="nombreHeuresModule"  value ="{{$mod ->nombreHeuresModule}}" id="nombreHeuresModule"><br>
+{{-- -------------DATE CREATION Module--------------- --}}
+    <label for="dateCreationModule">date Creation Module</label>
+    <input type="date" name="dateCreationModule"  value ="{{$mod ->dateDebutModule}}" id="dateCreationModule"><br>
+{{------------ DATE DEBUT Module-----------------------}}
+    <label for="dateDebutModule">date Debut Module</label>
+        <input type="date" name="dateDebutModule" value =" {{$mod ->dateCreationModule}}" id="dateDebutModule"><br>
 
 {{-- ------------------SUBMIT--------------------------- --}}
     <button type="submit">enregistrer modifications</button>
 {{-- ---------------------RESET------------------------- --}}
     <button type="reset">annuler</button>
     </form>
-       {{-- --------------------------REVENIR A LA PAGE CHAPITRE----------------------------- --}}
-{{-- <a href="{{}}">revenir au tableau  de chapitres</a> --}}
+       {{-- --------------------------REVENIR A LA PAGE Module----------------------------- --}}
+{{-- <a href="{{}}">revenir au tableau  de Modules</a> --}}
 </div>
 {{-- -------------------------VALIDATION------------------------ --}}
 @if ($errors->any() )

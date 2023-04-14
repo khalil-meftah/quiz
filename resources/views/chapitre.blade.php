@@ -7,31 +7,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <style>
+        th, td {
+            border: 1px solid black;
+}
+    </style>
 </head>
 <body>
     <a href="{{route('chapitre.create')}}">Ajoutez chapitre</a>
 
  
-<table>
+<table >
         <tr  >
-            <td >desc chap</td>
-            <td>nbr Heures</td>
-            <td>debut chap</td>
-            <td>creation chap</td>
+             <td>nom de chapitre</td>
+            <td >description du chapitre</td>
+            <td>nombres d'heures</td>
+            <td>date début de chapitre</td>
+            <td>date de création du chapitre</td>
         </tr>
         <tr>
             @foreach ($chap as $chapp)
+            <td>{{$chapp->nomChapitre}}</td>
             <td>{{$chapp->descriptionChapitre}}</td>
             <td>{{$chapp->nombreHeuresChapitre}}</td>
             <td>{{$chapp->dateDebutChapitre}}</td>
             <td>{{$chapp->dateCreationChapitre}}</td>
-            <td><a href="{{route("chapitre.edit", $chapp->id)}}">modifier</a></td>
             
-        <td><form action="{{route("chapitre.destroy", $chapp->id)}}" method ="post">   
-        @csrf
-            @method('delete')
-            <button type="submit">DELETE</button></td>
-        </form> </tr> 
+        <td>
+            <form action="{{route("chapitre.edit", $chapp->id)}}">
+                @csrf
+                @method('PUT')
+                <button type="submit">modifier</button>
+            </form>
+        </td>
+            
+        <td>
+            <form action="{{route("chapitre.destroy", $chapp->id)}}" method ="post">   
+                @csrf
+                @method('delete')
+            <button type="submit">supprimer</button>
+        </td>
+        </form>
+    </tr> 
 @endforeach
 
 
