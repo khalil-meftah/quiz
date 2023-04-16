@@ -34,6 +34,9 @@
     
 </head>
 <body>
+        {{-- ---------------------------REVENIR A LA PAGE CHAPITRE---------------------------}}
+
+    <a href="{{route('chapitre.index')}}">retourner au tableau de bord</a>
   
 {{-- la page de creation de formulaire d'insertion --}}
 <form  method="POST" action="{{route('chapitre.update',$chap->id)}}">
@@ -41,7 +44,7 @@
     @method('patch')
     {{-- ----------------------NOM DU CHAPITRE-------------------------- --}}
 <label for="nomChapitre">nom du Chapitre</label>
-<input type="text" name="nomChapitre" id="nomChapitre"><br>
+<input type="text" name="nomChapitre" id="nomChapitre" value='{{$chap->nomChapitre}}'><br>
 {{------------- DESCRIPTION CHAPITRE ---------------------}}
     <label for="descriptionChapitre">description Chapitre</label>
         <input type="text" name="descriptionChapitre"  value ="{{$chap->descriptionChapitre}}" id="descriptionChapitre"><br>
@@ -50,10 +53,10 @@
         <input type="integer" name="nombreHeuresChapitre"  value ="{{$chap->nombreHeuresChapitre}}" id="nombreHeuresChapitre"><br>
 {{-- -------------DATE CREATION CHAPITRE--------------- --}}
     <label for="dateCreationChapitre">date Creation Chapitre</label>
-    <input type="date" name="dateCreationChapitre"  value ="{{$chap->dateDebutChapitre}}" id="dateCreationChapitre"><br>
+    <input type="date" name="dateCreationChapitre"  value ="{{$chap->dateCreationChapitre}}" id="dateCreationChapitre"><br>
 {{------------ DATE DEBUT CHAPITRE -----------------------}}
     <label for="dateDebutChapitre">date Debut Chapitre</label>
-        <input type="date" name="dateDebutChapitre" value =" {{$chap->dateCreationChapitre}}" id="dateDebutChapitre"><br>
+        <input type="date" name="dateDebutChapitre" value ="{{$chap->dateDebutChapitre}}" id="dateDebutChapitre"><br>
 
 {{-- ------------------SUBMIT--------------------------- --}}
     <button type="submit">enregistrer modifications</button>

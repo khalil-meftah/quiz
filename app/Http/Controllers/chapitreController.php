@@ -14,12 +14,12 @@ class chapitreController extends Controller
       $chap = chapitre::all();
       //chapitre is the view chapitre.blade
     //compact is the auto table that contains the variables of chapitres
-      return view('chapitre' , compact('chap'));
+      return view('chapitre.chapitre' , compact('chap'));
     }
 
     public function create()
     {
-        return view('createCh'); 
+        return view('chapitre.createCh'); 
     }
 
     /**
@@ -47,14 +47,14 @@ class chapitreController extends Controller
             //date debut const
             'dateDebutChap.required_with' =>'Le champ date debut chapitre est obligatoire lorsque date creation chapitre est présent.'
         ]);
-        $chap->nomChapitre = $request->nomChapitre;
+       $chap->nomChapitre = $request->nomChapitre;
        $chap->descriptionChapitre = $request->descriptionChapitre;
        $chap->nombreHeuresChapitre = $request->nombreHeuresChapitre;
        $chap->dateDebutChapitre = $request->dateDebutChapitre;
        $chap->dateCreationChapitre = $request->dateCreationChapitre;
        
        $chap -> save();
-        return redirect('chapitre');
+        return redirect('chapitre.chapitre');
     }
 
     
@@ -69,7 +69,7 @@ class chapitreController extends Controller
     public function edit($id)
     {
         $f=Chapitre::find($id);
-        return view ('editCh',['chap'=>$f]);
+        return view ('chapitre.editCh',['chap'=>$f]);
     }
 
     /**
@@ -83,7 +83,7 @@ class chapitreController extends Controller
             'descriptionChapitre'=>['min:08'],
             'nombreHeuresChapitre' => ['filled',],
             'dateDebutChapitre' =>['required_with:dateCreationChapitre'],
-             'dateCreationChapitre' => ['before:dateDebutChapitre']
+            'dateCreationChapitre' => ['before:dateDebutChapitre']
         ],[
             // desription const
             'descriptionChapitre'=>'Le champ description chapitre doit comporter au moins 08 caractères.',

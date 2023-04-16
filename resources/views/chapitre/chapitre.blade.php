@@ -15,6 +15,7 @@
     </style>
 </head>
 <body>
+    {{--------------------------RETOUR A LA PAGE DE CREATION--------------------------------------}}
     <a href="{{route('chapitre.create')}}">Ajoutez chapitre</a>
 
  

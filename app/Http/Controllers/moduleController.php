@@ -11,12 +11,12 @@ class moduleController extends Controller
         $mod = module::all();
         //module is the view module.blade
         //compact is the auto table that contains the variables of modules
-        return view('module' , compact('mod'));
+        return view('module/module' , compact('mod'));
     }
 
     public function create()
     {
-        return view('createMod');
+        return view('module.createMod');
     }
 
     /**
@@ -65,7 +65,7 @@ return redirect('module');}
     public function edit(string $id)
     {
         $mod=Module::find($id);
-        return view ('editMod',['mod'=>$mod]);
+        return view ('module.editMod',['mod'=>$mod]);
     }
 
     /**
@@ -98,7 +98,7 @@ return redirect('module');}
         $mod->dateDebutModule = $request->dateDebutModule;
         $mod->dateCreationModule = $request->dateCreationModule;
         $mod -> save();
-        return redirect ('/module');
+        return redirect ('module');
         }
 
     /**

@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
     <style>
+        
         th, td {
             border: 1px solid black;
 }
@@ -13,6 +16,8 @@
 
 </head>
 <body>
+      {{-- ---------------------------REVENIR A LA PAGE DE CREATION---------------------------}}
+      <a href="{{route('module.create')}}">Ajoutez module</a>
     <table>
     <tr>
         <td>nom du module</td>
@@ -22,6 +27,7 @@
         <td>date de céation du module</td>
     </tr>
 <tr>
+    
      {{-------------showing the modules-----------------------}}
 @foreach ($mod as $mod)
     <td> {{$mod->nomModule}}</td>
