@@ -16,19 +16,15 @@
     <title>afficherQuestion</title>
 </head>
 <body>
-<div>
+    <p>id: {{ $question->id }}</p>
+    <p>decriptionQuestion: {{ $question->descriptionQuestion }}</p>
+    <a href="{{route('question.edit',$question->id )}}">edit</a>
 
-               
-                <p>id: {{ $question->id }}</p>
-                <p>decriptionQuestion: {{ $question->descriptionQuestion }}</p>
-                <a href="{{route('question.edit',$question->id )}}">edit</a>
-
-                <form action="{{route('question.destroy',$question->id )}}" method="post">
-                @csrf    
-                @method('delete')
-                    <button type="submit">Delete</button>
-                </form>
-
+    <form action="{{route('question.destroy',$question->id )}}" method="post">
+    @csrf    
+    @method('delete')
+        <button type="submit">Delete</button>
+    </form>
 </body>
 </html>
 </body>
