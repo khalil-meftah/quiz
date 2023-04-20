@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->text('descriptionReponse');
             $table->boolean('valeurReponse');
+            $table->bigInteger('question_id')->unsigned();
             $table->timestamps();
+            $table->foreign('question_id')->references('id')->on('questions');
         });
     }
 

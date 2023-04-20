@@ -32,6 +32,8 @@ class reponseController extends Controller
     {
         $reponse = new Reponse();
         $reponse->descriptionReponse = $request->descriptionReponse;
+        $reponse->valeurReponse = $request->valeurReponse;
+        $reponse->id_question = $request->id_question;
         $reponse->save();
         return $this->index();
     }
