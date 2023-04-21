@@ -18,7 +18,6 @@ return new class extends Migration
             $table->integer('nombreHeuresModule');
             $table->date('dateDebutModule');
             $table->date('dateCreationModule');
-            
             $table->timestamps();
         });
     }

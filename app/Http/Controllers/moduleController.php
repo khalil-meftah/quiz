@@ -8,7 +8,7 @@ class moduleController extends Controller
 {
     public function index()
     {
-        $mod = module::all();
+        $mod = Module::all();
         //module is the view module.blade
         //compact is the auto table that contains the variables of modules
         return view('module/module' , compact('mod'));
@@ -24,21 +24,24 @@ class moduleController extends Controller
      */
     public function store(Request $request)
     {
-        $mod = new module ();
+        $mod = new Module ();
         $request->validate([
-            'nomModule'=>['filled','min:3'],
+            'nomModule'=>['filled','min:3','unique:modules'],
             'descriptionModule'=>['min:08'],
-            'nombreHeuresModule' => ['filled',],
+            'nombreHeuresModule' => ['filled'],
             'dateDebutModule' =>['required_with:dateCreationModule'],
             'dateCreationModule' => ['before:dateDebutModule']
         ],[
+        //nom module
+        'nomModule.unique'=>'le nom de module a déja été pris',
+        'nomModule.filled'=>'Le champ nom module doit avoir une valeur.',
+        'nomModule.min'=>'le nombre d\'heures est invalide',
         // desription const
         'descriptionModule'=>'Le champ description Module doit comporter au moins 08 caractères.',
         // nombre heures const 
-        'nombreHeuresModule.filled'=>'Le champ nombre heures Module doit avoir une valeur.',
-        
+        'nombreHeuresModule.filled'=>'Le champ nombre heures module doit avoir une valeur.',
         // date creation const
-        'dateCreationModule'=>'Le champ date creation Module doit être une date avant date debut Module.',
+        'dateCreationModule'=>'Le champ date creation module doit être une date avant date debut module.',
         
         //date debut const
         'dateDebutMod.required_with' =>'Le champ date debut Module est obligatoire lorsque date creation Module est présent.']
@@ -82,6 +85,8 @@ return redirect('module');}
             'dateDebutModule' =>['required_with:dateCreationModule'],
             'dateCreationModule' => ['before:dateDebutModule']
         ],[
+        //     //unicité du nom 
+        //  'nomModule.unique'=>'le nom du module doit être unique',
         // desription const
         'descriptionModule'=>'Le champ description Module doit comporter au moins 08 caractères.',
         // nombre heures const 
@@ -106,7 +111,7 @@ return redirect('module');}
      */
     public function destroy($id)
     {
-        $mod=module::find($id);
+        $mod=Module::find($id);
         $mod->delete();
 return redirect('/module');
     }

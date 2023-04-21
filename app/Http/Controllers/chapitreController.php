@@ -27,7 +27,7 @@ class chapitreController extends Controller
      */
     public function store(Request $request)
     {
-        $chap = new chapitre();
+        $chap = new Chapitre();
 
         $request->validate([
             'nomChapitre'=>['filled','min:3'],
@@ -36,6 +36,7 @@ class chapitreController extends Controller
             'dateDebutChapitre' =>['required_with:dateCreationChapitre'],
              'dateCreationChapitre' => ['before:dateDebutChapitre']
         ],[
+            //
             // desription const
             'descriptionChapitre'=>'Le champ description chapitre doit comporter au moins 08 caractères.',
             // nombre heures const 
@@ -52,7 +53,6 @@ class chapitreController extends Controller
        $chap->nombreHeuresChapitre = $request->nombreHeuresChapitre;
        $chap->dateDebutChapitre = $request->dateDebutChapitre;
        $chap->dateCreationChapitre = $request->dateCreationChapitre;
-       
        $chap -> save();
         return redirect('chapitre.chapitre');
     }

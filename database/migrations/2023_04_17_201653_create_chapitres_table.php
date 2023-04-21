@@ -18,6 +18,10 @@ return new class extends Migration
             $table->integer('nombreHeuresChapitre');
             $table->date('dateDebutChapitre');
             $table->date('dateCreationChapitre');
+            $table->unsignedBigInteger('module_id');
+            $table->foreign('module_id')
+                  ->references('id')
+                  ->on('modules');
             $table->timestamps();
         });
     }
