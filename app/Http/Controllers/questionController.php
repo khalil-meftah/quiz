@@ -38,11 +38,11 @@ class questionController extends Controller
     /**
      * Display the specified resource.
      */
-    // public function show(string $id)
-    // {
-    //     $question = Question::find($id);
-    //     return view('Question\show',compact('question'));
-    // }
+    public function show(string $id)
+    {
+        $questionWithResponses = Question::with('responses')->find($id);
+        return view('questions.show', compact('questionWithResponses'));
+    }
 
     /**
      * Show the form for editing the specified resource.

@@ -62,6 +62,8 @@ class reponseController extends Controller
     {
         $reponse = Reponse::find($id);
         $reponse->descriptionReponse = $request->descriptionReponse;
+        $reponse->valeurReponse = $request->valeurReponse;
+        $reponse->question_id = $request->question_id;
         $reponse->save();
         return redirect()->route('reponse.index', ['reponse' => $id]);
     }

@@ -7,17 +7,35 @@
     <title>afficherReponse</title>
 </head>
 <body>
+    <style>
+        .green{
+            background-color: green;
+            color: white;
+        }
+        .red{
+            background-color: red;
+            color: white;
+        }
+    </style>
 <div>
         <table>
             <tr>
                 <th>id</th>
                 <th>descriptionReponse</th>
+                <th>valeurReponse</th>
+                <th>question_id</th>
             </tr>
             @foreach($reponse as $r)
             <tr>
                
                 <td>{{ $r->id }}</td>
                 <td>{{ $r->descriptionReponse }}</td>
+                @if($r->valeurReponse == "1")
+                <td class="green">Vrai</td>
+                @elseif($r->valeurReponse == "0")
+                <td class="red">Faux</td>
+                @endif
+                <td>{{ $r->question_id }}</td>
                 <td>
                     <a href="{{route('reponse.edit',$r->id )}}">edit</a>
                 </td>

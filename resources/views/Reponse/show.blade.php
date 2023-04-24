@@ -13,15 +13,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>afficherQuestion</title>
+    <title>afficherReponse</title>
 </head>
 <body>
                
-    <p>id: {{ $question->id }}</p>
-    <p>decriptionQuestion: {{ $question->descriptionQuestion }}</p>
-    <a href="{{route('question.edit',$question->id )}}">edit</a>
+    <p>id: {{ $reponse->id }}</p>
+    <p>decriptionReponse: {{ $reponse->descriptionReponse}}</p>
+    <p>valeurReponse: {{ $reponse->valeurReponse }}</p>
+    <a href="{{route('reponse.edit',$reponse->id )}}">edit</a>
 
-    <form action="{{route('question.destroy',$question->id )}}" method="post">
+    <form action="{{route('reponse.destroy',$reponse->id )}}" method="post">
     @csrf    
     @method('delete')
         <button type="submit">Delete</button>

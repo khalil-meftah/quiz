@@ -29,9 +29,9 @@
                         <button type="submit">Delete</button>
                     </form>
                 </td>
-                <!-- <td>
+                <td>
                     <a href="{{route('question.show',$q->id )}}">show more</a>
-                </td> -->
+                </td>
 
             </tr>
             @endforeach
