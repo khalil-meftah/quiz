@@ -15,8 +15,18 @@
             @csrf
             @method('PUT')
             <label for="descriptionReponse">descriptionReponse</label>
-            <textarea name="descriptionReponse">{{ $reponse->descriptionReponse }}</textarea><br><br>
+            <textarea name="descriptionReponse"></textarea><br><br>
+
+            <label for="valeurReponse">Valeur reponse</label><br>
+            <input type="radio" name="valeurReponse" value="1">
+            <label>Vrai</label>
+            <input type="radio" name="valeurReponse" value="0">
+            <label>Faux</label>
+            
             <br><br>
+            <label>Question id</label>
+            <input type="number" name="question_id">
+
             <input type="submit" class="btn btn-success" value="submit">
             <input type="reset" class="btn btn-danger" value="reset">
         </form>
