@@ -4,24 +4,21 @@ use App\Http\Controllers\questionController;
 use App\Http\Controllers\reponseController;
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\chapitreController;
+use App\Http\Controllers\moduleController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-
 Route::resources([
     'question' => questionController::class,
     'reponse' => reponseController::class,
 ]);
+
+//route that shows chapiters list
+    Route::resource('chapitre' ,chapitreController::class);
+//route that shows modules liste
+    Route::resource('module' ,moduleController::class);
+

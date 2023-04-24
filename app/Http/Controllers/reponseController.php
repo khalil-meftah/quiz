@@ -8,18 +8,12 @@ use App\Models\Reponse;
 
 class reponseController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $reponse = Reponse::all();
         return view('reponse\index')->with('reponse', $reponse);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('reponse\create');
@@ -43,7 +37,7 @@ class reponseController extends Controller
      */
     public function show(string $id)
     {
-        //
+     
     }
 
     /**
@@ -69,7 +63,7 @@ class reponseController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
         Reponse::destroy($id);
         return redirect(route('reponse.index'));
