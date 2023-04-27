@@ -43,7 +43,7 @@ class moduleController extends Controller
         // date creation const
         'dateCreationModule'=>'Le champ date creation module doit être une date avant date debut module.',
         
-        //date debut const
+        //date debut constphp 
         'dateDebutMod.required_with' =>'Le champ date debut Module est obligatoire lorsque date creation Module est présent.']
     ); 
         $mod->nomModule = $request->nomModule;
