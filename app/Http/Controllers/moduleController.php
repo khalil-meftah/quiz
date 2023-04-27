@@ -11,12 +11,12 @@ class moduleController extends Controller
         $mod = Module::all();
         //module is the view module.blade
         //compact is the auto table that contains the variables of modules
-        return view('module/module' , compact('mod'));
+        return view('module/index' , compact('mod'));
     }
 
     public function create()
     {
-        return view('module.createMod');
+        return view('module.create');
     }
 
     /**
@@ -68,7 +68,7 @@ return redirect('module');}
     public function edit(string $id)
     {
         $mod=Module::find($id);
-        return view ('module.editMod',['mod'=>$mod]);
+        return view ('module.edit',['mod'=>$mod]);
     }
 
     /**
@@ -85,7 +85,7 @@ return redirect('module');}
             'dateDebutModule' =>['required_with:dateCreationModule'],
             'dateCreationModule' => ['before:dateDebutModule']
         ],[
-        //     //unicité du nom 
+            //unicité du nom 
         //  'nomModule.unique'=>'le nom du module doit être unique',
         // desription const
         'descriptionModule'=>'Le champ description Module doit comporter au moins 08 caractères.',
@@ -113,6 +113,6 @@ return redirect('module');}
     {
         $mod=Module::find($id);
         $mod->delete();
-return redirect('/module');
+        return redirect('/module');
     }
 }

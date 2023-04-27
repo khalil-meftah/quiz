@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\chapitre;
+use App\Models\Chapitre;
+use App\Models\Module;
+
 class chapitreController extends Controller
 {
     /**
@@ -11,15 +13,16 @@ class chapitreController extends Controller
      */
     public function index()
     {
-      $chap = chapitre::all();
+      $chapitres = Chapitre::all();
       //chapitre is the view chapitre.blade
     //compact is the auto table that contains the variables of chapitres
-      return view('chapitre.chapitre' , compact('chap'));
+      return view('Chapitre\index' , compact('chapitres'));
     }
 
     public function create()
     {
-        return view('chapitre.createCh'); 
+        $modules = Module::all();
+        return view('Chapitre\create', compact('modules')); 
     }
 
     /**
@@ -53,8 +56,9 @@ class chapitreController extends Controller
        $chap->nombreHeuresChapitre = $request->nombreHeuresChapitre;
        $chap->dateDebutChapitre = $request->dateDebutChapitre;
        $chap->dateCreationChapitre = $request->dateCreationChapitre;
+       $chap->module_id = $request->module_id;
        $chap -> save();
-        return redirect('chapitre.chapitre');
+        return redirect('/chapitre');
     }
 
     
@@ -69,7 +73,7 @@ class chapitreController extends Controller
     public function edit($id)
     {
         $f=Chapitre::find($id);
-        return view ('chapitre.editCh',['chap'=>$f]);
+        return view ('Chapitre\edit',['chap'=>$f]);
     }
 
     /**
@@ -89,7 +93,6 @@ class chapitreController extends Controller
             'descriptionChapitre'=>'Le champ description chapitre doit comporter au moins 08 caractères.',
             // nombre heures const 
             'nombreHeuresChapitre.filled'=>'Le champ nombre heures chapitre doit avoir une valeur.',
-            
             // date creation const
             'dateCreationChapitre'=>'Le champ date creation chapitre doit être une date avant date debut chapitre.',
             //date debut const
@@ -100,8 +103,8 @@ class chapitreController extends Controller
         $f->nombreHeuresChapitre = $request->nombreHeuresChapitre;
         $f->dateDebutChapitre = $request->dateDebutChapitre;
         $f->dateCreationChapitre = $request->dateCreationChapitre; 
-        
-       $f -> save();
+        $f->module_id = $request->module_id;
+        $f -> save();
         return redirect ('/chapitre');
     }
 
@@ -112,6 +115,6 @@ class chapitreController extends Controller
     {
         $f=Chapitre::find($id);
         $f->delete();
-return redirect('/chapitre');
+        return redirect('/chapitre');
     }
 }

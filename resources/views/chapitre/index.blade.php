@@ -26,17 +26,22 @@
             <td>nombres d'heures</td>
             <td>date début de chapitre</td>
             <td>date de création du chapitre</td>
+            <td>module id</td>
+
         </tr>
         <tr>
-            @foreach ($chap as $chapp)
-            <td>{{$chapp->nomChapitre}}</td>
-            <td>{{$chapp->descriptionChapitre}}</td>
-            <td>{{$chapp->nombreHeuresChapitre}}</td>
-            <td>{{$chapp->dateDebutChapitre}}</td>
-            <td>{{$chapp->dateCreationChapitre}}</td>
+            @foreach ($chapitres as $chapitre)
+            <td>{{$chapitre->nomChapitre}}</td>
+            <td>{{$chapitre->descriptionChapitre}}</td>
+            <td>{{$chapitre->nombreHeuresChapitre}}</td>
+            <td>{{$chapitre->dateDebutChapitre}}</td>
+            <td>{{$chapitre->dateCreationChapitre}}</td>
+            <td>{{$chapitre->module_id}}</td>
+
             
         <td>
-            <form action="{{route("chapitre.edit", $chapp->id)}}">
+            <form action="{{route('chapitre.edit', $chapitre->id)}}">
+            
                 @csrf
                 @method('PUT')
                 <button type="submit">modifier</button>
@@ -44,7 +49,7 @@
         </td>
             
         <td>
-            <form action="{{route("chapitre.destroy", $chapp->id)}}" method ="post">   
+            <form action="{{route("chapitre.destroy", $chapitre->id)}}" method ="post">   
                 @csrf
                 @method('delete')
             <button type="submit">supprimer</button>

@@ -1,6 +1,12 @@
 <?php
 
+<<<<<<< HEAD
 use App\Http\Controllers\ProfileController;
+=======
+use App\Http\Controllers\questionController;
+use App\Http\Controllers\reponseController;
+
+>>>>>>> b7f153e4adc74e622dd2e386dcc75f226ee441b5
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\chapitreController;
 use App\Http\Controllers\moduleController;
@@ -19,6 +25,7 @@ use App\Http\Controllers\moduleController;
 Route::get('/', function () {
     return view('welcome');
 });
+<<<<<<< HEAD
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -36,3 +43,12 @@ require __DIR__.'/auth.php';
 Route::resource('chapitre' ,chapitreController::class);
 //route that shows modules liste
 Route::resource('module' ,moduleController::class);
+=======
+
+Route::resources([
+    'question' => questionController::class,
+    'reponse' => reponseController::class,
+    'chapitre' => chapitreController::class,
+    'module' =>moduleController::class
+]);
+>>>>>>> b7f153e4adc74e622dd2e386dcc75f226ee441b5

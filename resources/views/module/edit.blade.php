@@ -27,9 +27,6 @@
         input{
             padding-left:2px;
         }
-        body{
-            
-        }
     </style>
     
 </head>

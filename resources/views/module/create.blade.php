@@ -16,10 +16,10 @@
             margin-top: 15%;
             border: 2px blueviolet solid;
            
-            }
-            label,input{
-                margin-bottom:10px ;
-            }
+        }
+        label,input{
+            margin-bottom:10px ;
+        }
         label{
             padding-right:5px;
         }
