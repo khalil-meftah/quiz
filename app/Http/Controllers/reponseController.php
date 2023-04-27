@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Reponse;
+use App\Models\Question;
+
 
 
 class reponseController extends Controller
@@ -16,7 +18,8 @@ class reponseController extends Controller
 
     public function create()
     {
-        return view('reponse\create');
+        $questions = Question::all();
+        return view('reponse\create', compact('questions'));
     }
 
     /**

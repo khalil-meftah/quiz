@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Question;
+use App\Models\Chapitre;
 
 class questionController extends Controller
 {
@@ -21,7 +22,8 @@ class questionController extends Controller
      */
     public function create()
     {
-        return view('Question\create');
+        $chapitres = Chapitre::all();
+        return view('Question\create', compact(('chapitres')));
     }
 
     /**
@@ -41,7 +43,7 @@ class questionController extends Controller
      */
     public function show(string $id)
     {
-        $questionWithResponses = Question::with('responses')->find($id);
+        $questionWithResponses = Question::with('reponses')->find($id);
         return view('Question\show', compact('questionWithResponses'));
     }
 

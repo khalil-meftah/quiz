@@ -17,7 +17,7 @@ return new class extends Migration
             $table->boolean('valeurReponse');
             $table->timestamps();
             $table->bigInteger('question_id')->unsigned();
-            $table->foreign('question_id')->references('id')->on('questions');
+            $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
         });
     }
 

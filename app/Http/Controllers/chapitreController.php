@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\chapitre;
+use App\Models\Chapitre;
+use App\Models\Module;
+
 class chapitreController extends Controller
 {
     /**
@@ -11,15 +13,16 @@ class chapitreController extends Controller
      */
     public function index()
     {
-      $chap = chapitre::all();
+      $chapitres = Chapitre::all();
       //chapitre is the view chapitre.blade
     //compact is the auto table that contains the variables of chapitres
-      return view('Chapitre\index' , compact('chap'));
+      return view('Chapitre\index' , compact('chapitres'));
     }
 
     public function create()
     {
-        return view('Chapitre\create'); 
+        $modules = Module::all();
+        return view('Chapitre\create', compact('modules')); 
     }
 
     /**

@@ -15,10 +15,6 @@ Route::get('/', function () {
 Route::resources([
     'question' => questionController::class,
     'reponse' => reponseController::class,
+    'chapitre' => chapitreController::class,
+    'module' =>moduleController::class
 ]);
-
-//route that shows chapiters list
-    Route::resource('chapitre' ,chapitreController::class);
-//route that shows modules liste
-    Route::resource('module' ,moduleController::class);
-

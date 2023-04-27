@@ -31,50 +31,38 @@
     
 </head>
 <body>
- {{-- la page de creation de formulaire d'insertion --}}
 <form  method="POST" action="{{route('chapitre.store')}}">
     @csrf
-{{-- ----------------------NOM DU CHAPITRE-------------------------- --}}
 
     <label for="nomChapitre">nom du Chapitre</label>
     <input type="text" name="nomChapitre" id="nomChapitre"><br>
 
-{{------------- DESCRIPTION CHAPITRE ---------------------}}
-
     <label for="descriptionChapitre">description Chapitre</label>
     <input type="text" name="descriptionChapitre" id="descriptionChapitre"><br>
-
-{{-- --------NOMBRE HEURES CHAPITRE -----------------------}}
 
     <label for="nbh">nombre Heures Chapitre</label>
     <input type="integer" name="nombreHeuresChapitre" id="nombreHeuresChapitre"><br>
 
-{{-- -------------DATE CREATION CHAPITRE--------------- --}}
-
     <label for="dateCreationChapitre">date Creation Chapitre</label>
     <input type="date" name="dateCreationChapitre" id="dateCreationChapitre"><br>
-
-{{------------ DATE DEBUT CHAPITRE -----------------------}}
 
     <label for="dateDebutChapitre">date Debut Chapitre</label>
     <input type="date" name="dateDebutChapitre"id="dateDebutChapitre"><br>
 
-    {{------------ Module ID -----------------------}}
-
     <label for="module_id">Module ID</label>
-    <input type="number" name="module_id"id="module_id"><br>
-
-{{-- ------------------SUBMIT--------------------------- --}}
+    <select name="module_id" id="module_id">
+        <option>-- Selectionner Module --</option>
+        @foreach($modules as $module)
+        <option value="{{$module->id}}">{{$module->nomModule}}</option>
+        @endforeach
+    </select><br>
+    <!-- <input type="number" name="module_id"id="module_id"><br> -->
 
     <button type="submit">envoyer</button>
-
-{{-- ---------------------RESET------------------------- --}}
-
     <button type="reset">annuler</button>
-
 </form>
 
-{{-- -------------------------VALIDATION------------------------ --}}
+{{----VALIDATION-------}}
 @if ($errors->any() )
 <div >
     @foreach(

@@ -21,10 +21,17 @@
             <label>Vrai</label>
             <input type="radio" name="valeurReponse" value="0">
             <label>Faux</label>
-            
-            <br><br>
-            <label>Question id</label>
-            <input type="number" name="question_id">
+            <br>
+            <br>
+            <label for="question_id">question ID</label>
+            <select name="question_id" id="question_id">
+                <option>-- Selectionner question --</option>
+                @foreach($questions as $question)
+                <option value="{{$question->id}}">{{$question->descriptionQuestion}}</option>
+                @endforeach
+            </select>
+            <br>
+            <br>
 
             <br><br>
             <input type="submit" class="btn btn-success" value="submit">
