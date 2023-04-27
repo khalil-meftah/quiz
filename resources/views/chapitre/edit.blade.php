@@ -17,26 +17,24 @@
             
             border: 2px blueviolet solid;
            
-            }
-            label,input{
-                margin-bottom:10px ;
-            }
+        }
+        label,input{
+            margin-bottom:10px ;
+        }
         label{
             padding-right:5px;
         }
         input{
             padding-left:2px;
         }
-        body{
-            
-        }
+
     </style>
     
 </head>
 <body>
-        {{-- ---------------------------REVENIR A LA PAGE CHAPITRE---------------------------}}
+{{-- ---------------------------REVENIR A LA PAGE CHAPITRE---------------------------}}
 
-    <a href="{{route('chapitre.index')}}">retourner au tableau de bord</a>
+<a href="{{route('chapitre.index')}}">retourner au tableau de bord</a>
   
 {{-- la page de creation de formulaire d'insertion --}}
 <form  method="POST" action="{{route('chapitre.update',$chap->id)}}">

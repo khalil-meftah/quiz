@@ -19,7 +19,6 @@ return new class extends Migration
             $table->date('dateDebutModule');
             $table->date('dateCreationModule');
             $table->timestamps();
-            $table->foreign('question_id')->references('id')->on('questions');
         });
     }
 

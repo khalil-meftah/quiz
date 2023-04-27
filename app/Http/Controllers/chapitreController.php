@@ -14,12 +14,12 @@ class chapitreController extends Controller
       $chap = chapitre::all();
       //chapitre is the view chapitre.blade
     //compact is the auto table that contains the variables of chapitres
-      return view('chapitre.chapitre' , compact('chap'));
+      return view('chapitre.index' , compact('chap'));
     }
 
     public function create()
     {
-        return view('chapitre.createCh'); 
+        return view('chapitre.create'); 
     }
 
     /**
@@ -54,7 +54,7 @@ class chapitreController extends Controller
        $chap->dateDebutChapitre = $request->dateDebutChapitre;
        $chap->dateCreationChapitre = $request->dateCreationChapitre;
        $chap -> save();
-        return redirect('chapitre.chapitre');
+        return redirect('chapitre.index');
     }
 
     
@@ -69,7 +69,7 @@ class chapitreController extends Controller
     public function edit($id)
     {
         $f=Chapitre::find($id);
-        return view ('chapitre.editCh',['chap'=>$f]);
+        return view ('chapitre.edit',['chap'=>$f]);
     }
 
     /**
@@ -112,6 +112,6 @@ class chapitreController extends Controller
     {
         $f=Chapitre::find($id);
         $f->delete();
-return redirect('/chapitre');
+        return redirect('/chapitre');
     }
 }
