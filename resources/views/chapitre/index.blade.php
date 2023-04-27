@@ -26,6 +26,8 @@
             <td>nombres d'heures</td>
             <td>date début de chapitre</td>
             <td>date de création du chapitre</td>
+            <td>module id</td>
+
         </tr>
         <tr>
             @foreach ($chap as $chapp)
@@ -34,6 +36,8 @@
             <td>{{$chapp->nombreHeuresChapitre}}</td>
             <td>{{$chapp->dateDebutChapitre}}</td>
             <td>{{$chapp->dateCreationChapitre}}</td>
+            <td>{{$chapp->module_id}}</td>
+
             
         <td>
             <form action="{{route("chapitre.edit", $chapp->id)}}">

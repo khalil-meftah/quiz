@@ -14,12 +14,12 @@ class chapitreController extends Controller
       $chap = chapitre::all();
       //chapitre is the view chapitre.blade
     //compact is the auto table that contains the variables of chapitres
-      return view('chapitre.index' , compact('chap'));
+      return view('Chapitre\index' , compact('chap'));
     }
 
     public function create()
     {
-        return view('chapitre.create'); 
+        return view('Chapitre\create'); 
     }
 
     /**
@@ -53,8 +53,9 @@ class chapitreController extends Controller
        $chap->nombreHeuresChapitre = $request->nombreHeuresChapitre;
        $chap->dateDebutChapitre = $request->dateDebutChapitre;
        $chap->dateCreationChapitre = $request->dateCreationChapitre;
+       $chap->module_id = $request->module_id;
        $chap -> save();
-        return redirect('chapitre.index');
+        return redirect('/chapitre');
     }
 
     
@@ -69,7 +70,7 @@ class chapitreController extends Controller
     public function edit($id)
     {
         $f=Chapitre::find($id);
-        return view ('chapitre.edit',['chap'=>$f]);
+        return view ('Chapitre\edit',['chap'=>$f]);
     }
 
     /**
@@ -89,7 +90,6 @@ class chapitreController extends Controller
             'descriptionChapitre'=>'Le champ description chapitre doit comporter au moins 08 caractères.',
             // nombre heures const 
             'nombreHeuresChapitre.filled'=>'Le champ nombre heures chapitre doit avoir une valeur.',
-            
             // date creation const
             'dateCreationChapitre'=>'Le champ date creation chapitre doit être une date avant date debut chapitre.',
             //date debut const
@@ -100,8 +100,8 @@ class chapitreController extends Controller
         $f->nombreHeuresChapitre = $request->nombreHeuresChapitre;
         $f->dateDebutChapitre = $request->dateDebutChapitre;
         $f->dateCreationChapitre = $request->dateCreationChapitre; 
-        
-       $f -> save();
+        $f->module_id = $request->module_id;
+        $f -> save();
         return redirect ('/chapitre');
     }
 

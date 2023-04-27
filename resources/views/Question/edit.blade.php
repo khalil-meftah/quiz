@@ -17,6 +17,9 @@
             <label for="descriptionQuestion">descriptionQuestion</label>
             <textarea name="descriptionQuestion">{{ $question->descriptionQuestion }}</textarea><br><br>
             <br><br>
+            <label for="chapitre_id">chapitre_id</label>
+            <input type="number" name="chapitre_id">
+            <br><br>
             <input type="submit" class="btn btn-success" value="submit">
             <input type="reset" class="btn btn-danger" value="reset">
         </form>

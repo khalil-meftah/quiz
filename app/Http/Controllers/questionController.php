@@ -31,6 +31,7 @@ class questionController extends Controller
     {
         $question = new Question();
         $question->descriptionQuestion = $request->descriptionQuestion;
+        $question->chapitre_id = $request->chapitre_id;
         $question->save();
         return $this->index();
     }
@@ -41,7 +42,7 @@ class questionController extends Controller
     public function show(string $id)
     {
         $questionWithResponses = Question::with('responses')->find($id);
-        return view('questions.show', compact('questionWithResponses'));
+        return view('Question\show', compact('questionWithResponses'));
     }
 
     /**
@@ -60,6 +61,7 @@ class questionController extends Controller
     {
         $question = Question::find($id);
         $question->descriptionQuestion = $request->descriptionQuestion;
+        $question->chapitre_id = $request->chapitre_id;
         $question->save();
         return redirect()->route('question.index');
     }

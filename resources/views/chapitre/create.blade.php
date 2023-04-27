@@ -59,6 +59,11 @@
     <label for="dateDebutChapitre">date Debut Chapitre</label>
     <input type="date" name="dateDebutChapitre"id="dateDebutChapitre"><br>
 
+    {{------------ Module ID -----------------------}}
+
+    <label for="module_id">Module ID</label>
+    <input type="number" name="module_id"id="module_id"><br>
+
 {{-- ------------------SUBMIT--------------------------- --}}
 
     <button type="submit">envoyer</button>
@@ -85,6 +90,3 @@
    
 </body>
 </html>
-
-const DEEN = "The way of Allah";
-var modernLife = "Radila";

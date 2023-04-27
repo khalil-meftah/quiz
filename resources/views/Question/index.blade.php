@@ -12,12 +12,16 @@
             <tr>
                 <th>id</th>
                 <th>descriptionQuestion</th>
+                <th>chapitre_id</th>
+
             </tr>
             @foreach($question as $q)
             <tr>
                
                 <td>{{ $q->id }}</td>
                 <td>{{ $q->descriptionQuestion }}</td>
+                <td>{{ $q->chapitre_id }}</td>
+
                 <td>
                     <a href="{{route('question.edit',$q->id )}}">edit</a>
                 </td>
