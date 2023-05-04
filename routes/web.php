@@ -6,6 +6,7 @@ use App\Http\Controllers\chapitreController;
 use App\Http\Controllers\moduleController;
 use App\Http\Controllers\questionController;
 use App\Http\Controllers\reponseController;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,3 +39,8 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
