@@ -4,21 +4,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>afficherReponse</title>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/dashboard.css') }}" >
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/table.css') }}" >
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/reponse.css') }}" >
+
+
+
+    <title>Dashboard</title>
 </head>
 <body>
-    <style>
-        .green{
-            background-color: green;
-            color: white;
-        }
-        .red{
-            background-color: red;
-            color: white;
-        }
-    </style>
-<div>
-        <table>
+
+<div class="sidenav">
+  <a href="{{route('question.index')}}">Question</a>
+  <a href="{{route('reponse.index')}}">Reponse</a>
+  <a href="{{route('chapitre.index')}}">Chapitre</a>
+  <a href="{{route('module.index')}}">Module</a>
+  <a href="">Users</a>
+  <a href="{{route('quiz-generator')}}">Generate Quiz</a>
+</div>
+
+  <div class="main-nav">
+    <a href="">Consulter</a>
+    <a href="{{route('reponse.create')}}">Ajouter</a>
+    <a href="">Confirmer</a>
+  </div>
+
+<div class="main-content">
+<table class="main-table">
+
             <tr>
                 <th>id</th>
                 <th>descriptionReponse</th>
@@ -30,16 +43,22 @@
                
                 <td>{{ $r->id }}</td>
                 <td>{{ $r->descriptionReponse }}</td>
+
                 @if($r->valeurReponse == "1")
                 <td class="green">Vrai</td>
                 @elseif($r->valeurReponse == "0")
                 <td class="red">Faux</td>
                 @endif
+
                 <td>{{ $r->question_id }}</td>
+
                 <td>
-                    <a href="{{route('reponse.edit',$r->id )}}">edit</a>
-                </td>
-                
+                  <form action="{{route('reponse.edit',$r->id )}}" method="post">
+                      @csrf    
+                      @method('put')
+                      <button type="submit">Edit</button>
+                  </form>
+              </td>
                 <td>
                     <form action="{{route('reponse.destroy',$r->id )}}" method="post">
                     @csrf    
@@ -54,5 +73,8 @@
             </tr>
             @endforeach
         </table>
+</div>
+
+
 </body>
 </html>
