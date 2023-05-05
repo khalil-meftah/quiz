@@ -13,7 +13,7 @@ class chapitreController extends Controller
      */
     public function index()
     {
-      $chapitres = Chapitre::all();
+      $chapitres = Chapitre::paginate(10);
       //chapitre is the view chapitre.blade
     //compact is the auto table that contains the variables of chapitres
       return view('Chapitre\index' , compact('chapitres'));
@@ -30,7 +30,7 @@ class chapitreController extends Controller
      */
     public function store(Request $request)
     {
-        $chap = new Chapitre();
+        $chapitre = new Chapitre();
 
         $request->validate([
             'nomChapitre'=>['filled','min:3'],
@@ -51,13 +51,13 @@ class chapitreController extends Controller
             //date debut const
             'dateDebutChap.required_with' =>'Le champ date debut chapitre est obligatoire lorsque date creation chapitre est présent.'
         ]);
-       $chap->nomChapitre = $request->nomChapitre;
-       $chap->descriptionChapitre = $request->descriptionChapitre;
-       $chap->nombreHeuresChapitre = $request->nombreHeuresChapitre;
-       $chap->dateDebutChapitre = $request->dateDebutChapitre;
-       $chap->dateCreationChapitre = $request->dateCreationChapitre;
-       $chap->module_id = $request->module_id;
-       $chap -> save();
+       $chapitre->nomChapitre = $request->nomChapitre;
+       $chapitre->descriptionChapitre = $request->descriptionChapitre;
+       $chapitre->nombreHeuresChapitre = $request->nombreHeuresChapitre;
+       $chapitre->dateDebutChapitre = $request->dateDebutChapitre;
+       $chapitre->dateCreationChapitre = $request->dateCreationChapitre;
+       $chapitre->module_id = $request->module_id;
+       $chapitre -> save();
         return redirect('/chapitre');
     }
 
@@ -72,8 +72,10 @@ class chapitreController extends Controller
      */
     public function edit($id)
     {
-        $f=Chapitre::find($id);
-        return view ('Chapitre\edit',['chap'=>$f]);
+        $chapitre=Chapitre::find($id);
+        $modules = Module::all();
+        
+        return view ('Chapitre\edit', compact('chapitre','modules'));
     }
 
     /**

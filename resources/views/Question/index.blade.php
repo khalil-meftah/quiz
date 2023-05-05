@@ -4,41 +4,49 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>afficherQuestion</title>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/dashboard.css') }}" >
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/table.css') }}" >
+
+    <title>Dashboard</title>
 </head>
 <body>
-<div>
-        <table>
-            <tr>
-                <th>id</th>
-                <th>descriptionQuestion</th>
-                <th>chapitre_id</th>
 
-            </tr>
-            @foreach($question as $q)
-            <tr>
-               
-                <td>{{ $q->id }}</td>
-                <td>{{ $q->descriptionQuestion }}</td>
-                <td>{{ $q->chapitre_id }}</td>
+<x-side-nav />
+<x-main-nav :title="'question'" />
 
-                <td>
-                    <a href="{{route('question.edit',$q->id )}}">edit</a>
-                </td>
-                
-                <td>
-                    <form action="{{route('question.destroy',$q->id )}}" method="post">
-                    @csrf    
-                    @method('delete')
-                        <button type="submit">Delete</button>
-                    </form>
-                </td>
-                <td>
-                    <a href="{{route('question.show',$q->id )}}">show more</a>
-                </td>
+<div class="main-content">
 
-            </tr>
-            @endforeach
-        </table>
+<table class="main-table">
+          <tr>
+              <th>id</th>
+              <th>descriptionQuestion</th>
+              <th>chapitre_id</th>
+          </tr>
+          @foreach($questions as $question)
+          <tr>
+              <td>{{ $question->id }}</td>
+              <td>{{ $question->descriptionQuestion }}</td>
+              <td>{{ $question->chapitre_id }}</td>
+              <td>
+                  <form action="{{route('question.edit',$question->id )}}" method="get">
+                      <button type="submit">Edit</button>
+                  </form>
+              </td>
+              <td>
+                  <form action="{{route('question.destroy',$question->id )}}" method="post">
+                      @csrf    
+                      @method('delete')
+                      <button type="submit">Delete</button>
+                  </form>
+              </td>
+
+          </tr>
+          @endforeach
+      </table>
+      
+      <div class="pagination-links">{{ $questions->onEachSide(1)->links() }}</div>
+
+</div>
+
 </body>
 </html>

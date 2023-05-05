@@ -1,61 +1,61 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/dashboard.css') }}" >
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/table.css') }}" >
 
-    <style>
-        
-        th, td {
-            border: 1px solid black;
-}
-    </style>
 
+
+    <title>Dashboard</title>
 </head>
 <body>
-      {{-- ---------------------------REVENIR A LA PAGE DE CREATION---------------------------}}
-      <a href="{{route('module.create')}}">Ajoutez module</a>
-    <table>
+<x-side-nav />
+<x-main-nav :title="'module'" />
+ 
+  <div class="main-content">
+
+  <table class="main-table">
+
     <tr>
-        <td>nom du module</td>
-        <td>description du module</td>
-        <td>nombre d'heures du module</td>
-        <td>date de début du module </td>
-        <td>date de céation du module</td>
+        <th>nom du module</th>
+        <th>description du module</th>
+        <th>nombre d'heures du module</th>
+        <th>date de début du module </th>
+        <th>date de céation du module</th>
     </tr>
-<tr>
-    
-     {{-------------showing the modules-----------------------}}
-@foreach ($mod as $mod)
-    <td> {{$mod->nomModule}}</td>
 
-   <td> {{$mod->descriptionModule}}</td>
+    @foreach ($modules as $module)
+    <tr>
+        <td> {{$module->nomModule}}</td>
+        <td> {{$module->descriptionModule}}</td>
+        <td> {{$module->nombreHeuresModule}}</td>
+        <td> {{$module->dateDebutModule}}</td>
+        <td> {{$module->dateCreationModule}}</td>
+        <td> 
+            <form action="{{route('module.edit', $module->id)}}">
+                @csrf
+                @method('PUT')
+                <button type="submit">modifier</button>
+            </form>
+        </td>
 
-   <td> {{$mod->nombreHeuresModule}}</td>
-
-   <td> {{$mod->dateDebutModule}}</td>
-
-   <td> {{$mod->dateCreationModule}}</td>
-   <td> <form action="{{route("module.edit", $mod->id)}}">
-    @csrf
-    @method('PUT')
-    <button type="submit">modifier</button>
-    </form>
-
-    <td>
-    <form action="{{route("module.destroy", $mod->id)}}" method ="post">   
-            @csrf
-            @method('delete')
-    <button type="submit">supprimer</button>
-</form>
-</td>
-    
- </tr> 
-@endforeach
-
+        <td>
+            <form action="{{route('module.destroy', $module->id)}}" method ="post">   
+                @csrf
+                @method('delete')
+                <button type="submit">supprimer</button>
+            </form>
+        </td>  
+    </tr> 
+    @endforeach
     </table>
+  </div>
+
+  <div class="pagination-links">{{ $modules->onEachSide(1)->links() }}</div>
+
 </body>
 </html>

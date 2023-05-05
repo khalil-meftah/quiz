@@ -13,8 +13,8 @@ class questionController extends Controller
      */
     public function index()
     {
-        $question = Question::all();
-        return view('Question\index')->with('question', $question);
+        $questions = Question::paginate(10);
+        return view('Question\index')->with('questions', $questions);
     }
 
     /**
@@ -41,11 +41,11 @@ class questionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        $questionWithResponses = Question::with('reponses')->find($id);
-        return view('Question\show', compact('questionWithResponses'));
-    }
+    // public function show(string $id)
+    // {
+    //     $questionWithResponses = Question::with('reponses')->find($id);
+    //     return view('Question\show', compact('questionWithResponses'));
+    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -53,7 +53,8 @@ class questionController extends Controller
     public function edit(string $id)
     {
         $question = Question::find($id);
-        return view('Question\edit',compact('question'));
+        $chapitres = Chapitre::all();
+        return view('Question\edit',compact('question', 'chapitres'));
     }
 
     /**

@@ -18,10 +18,13 @@ use Illuminate\Support\Facades\Auth;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+use App\Http\Controllers\quizController;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+
 Route::resources([
     'question' => questionController::class,
     'reponse' => reponseController::class,
@@ -40,6 +43,12 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+// Route::get('/generatequiz', [quizController::class, 'index']);
+
+Route::get('/quiz-generator', [quizController::class, 'index'])->name('quiz-generator');
+Route::get('/quiz-generator/{module}/chapitres', [quizController::class, 'getChapitres'])->name('quiz-generator.chapitres');
+Route::post('/quiz-generator/generate', [quizController::class, 'generate'])->name('quiz-generator.generate');
+
 
 Auth::routes();
 
