@@ -31,3 +31,7 @@ Route::get('/quiz-generator/{module}/chapitres', [quizController::class, 'getCha
 
 Route::post('/quiz-generator/generate', [quizController::class, 'generate'])->name('quiz-generator.generate');
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
