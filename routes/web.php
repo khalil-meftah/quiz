@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\chapitreController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\moduleController;
 use App\Http\Controllers\questionController;
 use App\Http\Controllers\reponseController;
@@ -44,3 +45,15 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+// -------------------------------------PROFESSEUR---------------------------------------------
+Route::middleware(['auth','userAccess:professeur'])->group(function () {
+    Route::get("/professeur", [HomeController::class, 'professeurHome']);
+});
+
+// -----------------------------------------MAINTENEUR-----------------------------------------------------------
+Route::middleware(['auth','userAccess:mainteneur'])->group(function () {
+    Route::get("/mainteneur",[HomeController::class, 'mainteneur']);
+});
+// -----------------------------ADMINISTRATEUR-----------------------------------------------------------
+Route::middleware(['auth','userAccess:administrateur'])->group(function () {
+    Route::get("/administrateur",[HomeController::class, 'administrateur']);});

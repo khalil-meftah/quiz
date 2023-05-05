@@ -14,7 +14,8 @@
                         </div>
                     @endif
 
-                    {{ __('Félicitation ') }}{{ auth()->user()->name }} {{ __(', bienvenu parmis nous .') }}
+                    {{ __('Félicitation ') }}{{ auth()->user()->name }} {{ __(', bienvenu parmis nous . vous ête un admin') }}
+                    
                 </div>
             </div>
         </div>

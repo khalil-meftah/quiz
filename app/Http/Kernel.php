@@ -42,7 +42,7 @@ class Kernel extends HttpKernel
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-        ],
+        ], 
     ];
 
     /**
@@ -50,7 +50,7 @@ class Kernel extends HttpKernel
      *
      * Aliases may be used to conveniently assign middleware to routes and groups.
      *
-     * @var array<string, class-string|string>
+     * @var array<string, class-string|str ing>
      */
     protected $middlewareAliases = [
         'auth' => \App\Http\Middleware\Authenticate::class,
@@ -63,5 +63,7 @@ class Kernel extends HttpKernel
         'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'UserAcces' => \App\Http\Middleware\UserAcces::class,
+   
     ];
 }
