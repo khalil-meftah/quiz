@@ -13,66 +13,49 @@
     <title>Dashboard</title>
 </head>
 <body>
-
-<div class="sidenav">
-  <a href="{{route('question.index')}}">Question</a>
-  <a href="{{route('reponse.index')}}">Reponse</a>
-  <a href="{{route('chapitre.index')}}">Chapitre</a>
-  <a href="{{route('module.index')}}">Module</a>
-  <a href="">Users</a>
-  <a href="{{route('quiz-generator')}}">Generate Quiz</a>
-</div>
-
-  <div class="main-nav">
-    <a href="">Consulter</a>
-    <a href="{{route('reponse.create')}}">Ajouter</a>
-    <a href="">Confirmer</a>
-  </div>
+<x-side-nav />
+<x-main-nav :title="'reponse'" />
 
 <div class="main-content">
-<table class="main-table">
-
+    <table class="main-table">
             <tr>
                 <th>id</th>
                 <th>descriptionReponse</th>
                 <th>valeurReponse</th>
                 <th>question_id</th>
             </tr>
-            @foreach($reponse as $r)
+            @foreach($reponses as $reponse)
             <tr>
                
-                <td>{{ $r->id }}</td>
-                <td>{{ $r->descriptionReponse }}</td>
+                <td>{{ $reponse->id }}</td>
+                <td>{{ $reponse->descriptionReponse }}</td>
 
-                @if($r->valeurReponse == "1")
+                @if($reponse->valeurReponse == "1")
                 <td class="green">Vrai</td>
-                @elseif($r->valeurReponse == "0")
+                @elseif($reponse->valeurReponse == "0")
                 <td class="red">Faux</td>
                 @endif
 
-                <td>{{ $r->question_id }}</td>
+                <td>{{ $reponse->question_id }}</td>
 
                 <td>
-                  <form action="{{route('reponse.edit',$r->id )}}" method="post">
-                      @csrf    
-                      @method('put')
+                  <form action="{{route('reponse.edit',$reponse->id )}}" method="get">
                       <button type="submit">Edit</button>
                   </form>
               </td>
                 <td>
-                    <form action="{{route('reponse.destroy',$r->id )}}" method="post">
+                    <form action="{{route('reponse.destroy',$reponse->id )}}" method="post">
                     @csrf    
                     @method('delete')
                         <button type="submit">Delete</button>
                     </form>
                 </td>
-                <!-- <td>
-                    <a href="{{route('reponse.show',$r->id )}}">show more</a>
-                </td> -->
-
             </tr>
             @endforeach
         </table>
+
+        <div class="pagination-links">{{ $reponses->onEachSide(1)->links() }}</div>
+
 </div>
 
 

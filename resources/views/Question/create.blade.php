@@ -5,11 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/bootstrap.min.css">
-    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/style.css"> 
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/dashboard.css') }}" >
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/table.css') }}" >
     <title>ajouterQuestion</title>
 </head>
 <body>
-    <div class="container p-3">
+
+    <x-side-nav />
+    <x-main-nav :title="'question'" />
+    
+    <div class="container p-3 main-content">
         <h1 class="h1 mb-4">Question</h1>
         <form action="{{route('question.store')}}" method="post">
             @csrf

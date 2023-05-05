@@ -8,10 +8,10 @@ class moduleController extends Controller
 {
     public function index()
     {
-        $mod = Module::all();
+        $modules = Module::paginate(10);
         //module is the view module.blade
         //compact is the auto table that contains the variables of modules
-        return view('module/index' , compact('mod'));
+        return view('module/index' , compact('modules'));
     }
 
     public function create()

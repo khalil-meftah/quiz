@@ -6,68 +6,50 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ajoutez Module</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <style>
-        form{
-        
-           width:500px;
-            padding:20px;
-            box-sizing:border-box;  
-            margin-left: 35%;
-            margin-top: 15%;
-            border: 2px blueviolet solid;
-           
-        }
-        label,input{
-            margin-bottom:10px ;
-        }
-        label{
-            padding-right:5px;
-        }
-        input{
-            padding-left:2px;
-        }
-        
-    </style>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/dashboard.css') }}" >
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/table.css') }}" >
+
     
 </head>
 <body>
- {{-- la page de creation de formulaire d'insertion --}}
-<form  method="POST" action="{{route('module.store')}}">
-    @csrf
-{{-- ----------------------NOM DU MODULE-------------------------- --}}
-<label for="nomModule">nom du Module</label>
-<input type="text" name="nomModule" id="nomModule"><br>
-{{------------- DESCRIPTION Module ---------------------}}
-    <label for="descriptionModule">description Module</label>
-        <input type="text" name="descriptionModule" id="descriptionModule"><br>
-{{-- --------NOMBRE HEURES Module -----------------------}}
-    <label for="nbh">nombre Heures Module</label>
-        <input type="integer" name="nombreHeuresModule" id="nombreHeuresModule"><br>
-{{-- -------------DATE CREATION MODULE--------------- --}}
-    <label for="dateCreationModule">date Creation Module</label>
-    <input type="date" name="dateCreationModule" id="dateCreationModule"><br>
-{{------------ DATE DEBUT MODULE-----------------------}}
-    <label for="dateDebutModule">date Debut Module</label>
-        <input type="date" name="dateDebutModule"id="dateDebutModule"><br>
+    <x-side-nav />
+    <x-main-nav :title="'module'" />
+    <div class="main-content">
+        <form  method="POST" action="{{route('module.store')}}">
+            @csrf
 
-{{-- ------------------SUBMIT--------------------------- --}}
-    <button type="submit">envoyer</button>
-{{-- ---------------------RESET------------------------- --}}
-    <button type="reset">annuler</button>
-</form>
-{{-- -------------------------VALIDATION------------------------ --}}
-@if ($errors->any() )
-<div >
-    @foreach(
-        $errors->all() as $error
-        )
-        <li>
-            {{$error}}
-        </li>
-    @endforeach
-</div>
-    
-@endif
+            <label for="nomModule">nom du Module</label>
+            <input type="text" name="nomModule" id="nomModule"><br>
+
+            <label for="descriptionModule">description Module</label>
+            <input type="text" name="descriptionModule" id="descriptionModule"><br>
+
+            <label for="nbh">nombre Heures Module</label>
+            <input type="integer" name="nombreHeuresModule" id="nombreHeuresModule"><br>
+
+            <label for="dateCreationModule">date Creation Module</label>
+            <input type="date" name="dateCreationModule" id="dateCreationModule"><br>
+
+            <label for="dateDebutModule">date Debut Module</label>
+            <input type="date" name="dateDebutModule"id="dateDebutModule"><br>
+
+            <button type="submit">envoyer</button>
+            <button type="reset">annuler</button>
+
+        </form>
+
+        @if ($errors->any() )
+        <div >
+            @foreach(
+                $errors->all() as $error
+                )
+                <li>
+                    {{$error}}
+                </li>
+            @endforeach
+        </div>
+        @endif
+    </div>
    
 </body>
 </html>

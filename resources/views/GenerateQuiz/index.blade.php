@@ -15,23 +15,11 @@
     <title>Dashboard</title>
 </head>
 <body>
+<x-side-nav />
+<x-main-nav :title="'quiz-generator'" />
 
-<div class="sidenav">
-  <a href="{{route('question.index')}}">Question</a>
-  <a href="{{route('reponse.index')}}">Reponse</a>
-  <a href="{{route('chapitre.index')}}">Chapitre</a>
-  <a href="{{route('module.index')}}">Module</a>
-  <a href="">Users</a>
-  <a href="{{route('quiz-generator')}}">Generate Quiz</a>
-</div>
 
-  <div class="main-nav">
-    <a href="">Consulter</a>
-    <a href="">Ajouter</a>
-    <a href="">Confirmer</a>
-  </div>
-
-  <div class="main-content">
+<div class="main-content">
 
 <form action="/quiz-generator/generate" method="POST">
     @csrf

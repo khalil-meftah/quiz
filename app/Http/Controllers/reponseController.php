@@ -12,8 +12,8 @@ class reponseController extends Controller
 {
     public function index()
     {
-        $reponse = Reponse::all();
-        return view('reponse\index')->with('reponse', $reponse);
+        $reponses = Reponse::paginate(10);
+        return view('reponse\index')->with('reponses', $reponses);
     }
 
     public function create()
@@ -49,7 +49,8 @@ class reponseController extends Controller
     public function edit(string $id)
     {
         $reponse = Reponse::find($id);
-        return view('Reponse\edit',compact('reponse'));
+        $questions = Question::all();
+        return view('Reponse\edit',compact('reponse', 'questions'));
     }
 
     /**

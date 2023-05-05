@@ -31,8 +31,6 @@ class quizController extends Controller
     {
         $questions = Question::where('chapitre_id', $request->chapitre)->inRandomOrder()->limit(20)->get();
 
-        // $questions = $questions->inRandomOrder()->limit(20)->get();
-
         foreach ($questions as $question) {
             $reponses = Reponse::where('question_id', $question->id)->get()->toArray();
             $question->reponses = $reponses;

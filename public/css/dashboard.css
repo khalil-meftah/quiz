@@ -49,10 +49,13 @@ color: white;
 color: #f1f1f1;
 }
 
-
 .main-content {
     margin-left: 21%; 
     margin-top: 5px;
+}
+
+.pagination-links{
+align-self: center;
 }
 
 @media screen and (max-height: 450px) {

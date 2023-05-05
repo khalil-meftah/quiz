@@ -13,23 +13,8 @@
     <title>Dashboard</title>
 </head>
 <body>
-
-<div class="sidenav">
-  <a href="{{route('question.index')}}">Question</a>
-  <a href="{{route('reponse.index')}}">Reponse</a>
-  <a href="{{route('chapitre.index')}}">Chapitre</a>
-  <a href="{{route('module.index')}}">Module</a>
-  <a href="">Users</a>
-  <a href="{{route('quiz-generator')}}">Generate Quiz</a>
-</div>
-
-
-
-  <div class="main-nav">
-    <a href="">Consulter</a>
-    <a href="">Ajouter</a>
-    <a href="">Confirmer</a>
-  </div>
+<x-side-nav />
+<x-main-nav :title="'module'" />
  
   <div class="main-content">
 
@@ -43,15 +28,15 @@
         <th>date de céation du module</th>
     </tr>
 
-    @foreach ($mod as $mod)
+    @foreach ($modules as $module)
     <tr>
-        <td> {{$mod->nomModule}}</td>
-        <td> {{$mod->descriptionModule}}</td>
-        <td> {{$mod->nombreHeuresModule}}</td>
-        <td> {{$mod->dateDebutModule}}</td>
-        <td> {{$mod->dateCreationModule}}</td>
+        <td> {{$module->nomModule}}</td>
+        <td> {{$module->descriptionModule}}</td>
+        <td> {{$module->nombreHeuresModule}}</td>
+        <td> {{$module->dateDebutModule}}</td>
+        <td> {{$module->dateCreationModule}}</td>
         <td> 
-            <form action="{{route('module.edit', $mod->id)}}">
+            <form action="{{route('module.edit', $module->id)}}">
                 @csrf
                 @method('PUT')
                 <button type="submit">modifier</button>
@@ -59,7 +44,7 @@
         </td>
 
         <td>
-            <form action="{{route('module.destroy', $mod->id)}}" method ="post">   
+            <form action="{{route('module.destroy', $module->id)}}" method ="post">   
                 @csrf
                 @method('delete')
                 <button type="submit">supprimer</button>
@@ -69,6 +54,8 @@
     @endforeach
     </table>
   </div>
+
+  <div class="pagination-links">{{ $modules->onEachSide(1)->links() }}</div>
 
 </body>
 </html>

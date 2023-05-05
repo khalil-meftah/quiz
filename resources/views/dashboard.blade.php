@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/dashboard.css') }}" >
 
-
-    <title>Dashboard</title>
+    <title>{{ $title }}</title>
 </head>
 <body>
 
@@ -21,8 +20,8 @@
 </div>
 
   <div class="main-nav">
-    <a href="">Consulter</a>
-    <a href="">Ajouter</a>
+    <a href="{{ route($consulterRouteName) }}">Consulter</a>
+    <a href="{{ route($ajouterRouteName) }}">Ajouter</a>
     <a href="">Confirmer</a>
   </div>
 
