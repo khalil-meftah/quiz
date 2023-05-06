@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('role')->default('professeur');
             $table->string('password');
+            $table->string('role');
             $table->timestamps();
         });
     }
