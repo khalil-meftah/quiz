@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('prenom');
+            $table->string('email')->unique();
+            $table->string('role');
             $table->date('dateDeNaissance');
             $table->string('numeroDeTelephone');
             $table->string('adresse');
-            $table->string('email')->unique();
             $table->string('password');
-            $table->string('role');
             $table->timestamps();
         });
     }
