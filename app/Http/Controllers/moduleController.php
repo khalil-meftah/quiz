@@ -52,19 +52,8 @@ class moduleController extends Controller
         $mod->dateDebutModule = $request->dateDebutModule;
         $mod->dateCreationModule = $request->dateCreationModule;
     $mod->save();
-return redirect('module');}
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-     
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
+return redirect('module');
+}
     public function edit(string $id)
     {
         $mod=Module::find($id);

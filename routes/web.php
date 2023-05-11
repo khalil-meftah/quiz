@@ -7,6 +7,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\moduleController;
 use App\Http\Controllers\questionController;
 use App\Http\Controllers\reponseController;
+use App\Http\Controllers\PersonnalController;
+use App\Http\Controllers\manageUser;
+use App\Http\Middleware\UserAcces;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -16,12 +19,17 @@ use Illuminate\Support\Facades\Auth;
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
-|
+| 
 */
 
 Route::get('/', function () {
     return view('welcome');
 });
+Route::prefix('admin')->middleware('auth')->group(function() {
+    Route::get('/user', [manageUser::class, 'index']);
+    Route::post('/user', [manageUser::class, 'store'])->name('store');
+});
+
 Route::resources([
     'question' => questionController::class,
     'reponse' => reponseController::class,
@@ -34,9 +42,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profil', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profil', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profil', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 require __DIR__.'/auth.php';
@@ -57,3 +65,4 @@ Route::middleware(['auth','userAccess:mainteneur'])->group(function () {
 // -----------------------------ADMINISTRATEUR-----------------------------------------------------------
 Route::middleware(['auth','userAccess:administrateur'])->group(function () {
     Route::get("/administrateur",[HomeController::class, 'administrateur']);});
+    
