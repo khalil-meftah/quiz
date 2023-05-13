@@ -18,7 +18,7 @@ class UserAcces
         if(auth()->user()->role == $role){
         return $next($request);
     }
-    return Response()->json(['Vous n\'avez pas acces a cette page']);
+    abort(403 ,'oups!!! Vous n\'avez pas acces a cette page');
 }
 
 }

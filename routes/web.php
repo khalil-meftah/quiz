@@ -7,24 +7,28 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\moduleController;
 use App\Http\Controllers\questionController;
 use App\Http\Controllers\reponseController;
+use App\Http\Controllers\manageUser;
+use App\Http\Controllers\userController;
 use Illuminate\Support\Facades\Auth;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 use App\Http\Controllers\quizController;
 
 Route::get('/', function () {
     return view('welcome');
 });
-
-
+// -------------------------------------------GERER MEMBRES---------------------------------------------------
+Route::prefix('admin')->middleware('auth')->group(function() {
+    Route::resource('/user', manageUser::class);
+});
+// -----------------------------------------USER SETTINGS---------------------------------------------------
+Route::prefix('profile')->middleware('auth')->group(function() {
+    Route::get('/membre', [userController::class, 'index'])->name('profile.index');
+});
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile/{id}', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile/{id}', [ProfileController::class, 'destroy'])->name('user.destroy');
+});
+// -----------------------------------------CRUD ELEMENTS--------------------------------------------
 Route::resources([
     'question' => questionController::class,
     'reponse' => reponseController::class,
@@ -36,11 +40,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+
 
 require __DIR__.'/auth.php';
 // Route::get('/generatequiz', [quizController::class, 'index']);
