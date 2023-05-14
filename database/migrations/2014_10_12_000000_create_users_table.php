@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('numeroDeTelephone');
             $table->string('adresse');
             $table->string('password');
+            $table->boolean('status')->default(false);
             $table->timestamps();
         });
     }

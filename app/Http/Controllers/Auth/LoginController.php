@@ -41,25 +41,27 @@ class LoginController extends Controller
     }
 
     public function login(Request $request)
-    {
-        $input = $request->all();
-        $this->validate($request, [
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-        if (auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))) {
-            if (auth()->user()->role == 'professeur') {
-                  return view('professeurHome');
-            } else if (auth()->user()->role == 'mainteneur') {
-                return view('mainteneurHome');
-            } else if (auth()->user()->role == 'administrateur') {
-                return view('administrateurHome');
-            } else {
-                return redirect('/home');
-            }
+{
+    $input = $request->all();
+    $this->validate($request, [
+        'email' => 'required|email',
+        'password' => 'required',
+    ]);
+    if (auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))) {
+        if (auth()->user()->role == 'professeur') {
+              return view('professeurHome');
+        } else if (auth()->user()->role == 'mainteneur') {
+            return view('mainteneurHome');
+        } else if (auth()->user()->role == 'administrateur') {
+            return view('administrateurHome');
         } else {
-            return redirect('/login')
-                ->with('error', 'Email ou mot de passe incorrect');
+            return redirect('/')->with('status', 'Vous êtes connecté.');
         }
+    } else {
+        return redirect('/login')
+            ->with('error', 'Email ou mot de passe incorrect');
     }
+}
+
+    
 }
