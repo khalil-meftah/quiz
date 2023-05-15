@@ -7,6 +7,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\moduleController;
 use App\Http\Controllers\questionController;
 use App\Http\Controllers\reponseController;
+use App\Http\Controllers\questionReponseController;
+use App\Http\Controllers\quizController;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +20,6 @@ use Illuminate\Support\Facades\Auth;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-use App\Http\Controllers\quizController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -28,9 +29,15 @@ Route::get('/', function () {
 Route::resources([
     'question' => questionController::class,
     'reponse' => reponseController::class,
+    'question-reponse' => questionReponseController::class,
     'chapitre' => chapitreController::class,
-    'module' =>moduleController::class
+    'module' =>moduleController::class,
 ]);
+
+
+
+Route::get('/question-reponse/{module}/chapitres', [questionReponseController::class, 'getChapitres'])->name('question-reponse.chapitres');
+Route::post('/question-reponse/searchByChap', [questionReponseController::class, 'searchByChap'])->name('question-reponse.searchByChap');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -66,3 +73,7 @@ Route::middleware(['auth','userAccess:mainteneur'])->group(function () {
 // -----------------------------ADMINISTRATEUR-----------------------------------------------------------
 Route::middleware(['auth','userAccess:administrateur'])->group(function () {
     Route::get("/administrateur",[HomeController::class, 'administrateur']);});
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

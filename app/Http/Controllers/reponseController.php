@@ -12,14 +12,18 @@ class reponseController extends Controller
 {
     public function index()
     {
-        $reponses = Reponse::paginate(10);
-        return view('reponse\index')->with('reponses', $reponses);
+        return redirect()->route('question-reponse.index');
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        $questions = Question::all();
-        return view('reponse\create', compact('questions'));
+        $question_id = $request->query('question_id');
+        // Retrieve the question using the question ID
+        $question = Question::find($question_id);
+    
+        // Pass the question to the create view
+        return view('reponse.create', compact('question'));
+        // return $request;
     }
 
     /**
@@ -32,7 +36,8 @@ class reponseController extends Controller
         $reponse->valeurReponse = $request->valeurReponse;
         $reponse->question_id = $request->question_id;
         $reponse->save();
-        return $this->index();
+
+        return redirect()->route('question-reponse.index');
     }
 
     /**
@@ -46,11 +51,11 @@ class reponseController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Request $request, string $id)
     {
         $reponse = Reponse::find($id);
-        $questions = Question::all();
-        return view('Reponse\edit',compact('reponse', 'questions'));
+        $question = Question::find($request->question_id);
+        return view('Reponse\edit',compact('reponse', 'question'));
     }
 
     /**
@@ -63,7 +68,7 @@ class reponseController extends Controller
         $reponse->valeurReponse = $request->valeurReponse;
         $reponse->question_id = $request->question_id;
         $reponse->save();
-        return redirect()->route('reponse.index', ['reponse' => $id]);
+        return redirect()->route('question-reponse.index');
     }
 
     /**
@@ -72,6 +77,6 @@ class reponseController extends Controller
     public function destroy($id)
     {
         Reponse::destroy($id);
-        return redirect(route('reponse.index'));
+        return redirect()->route('question-reponse.index');
     }
 }

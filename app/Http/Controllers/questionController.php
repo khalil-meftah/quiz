@@ -13,8 +13,7 @@ class questionController extends Controller
      */
     public function index()
     {
-        $questions = Question::paginate(10);
-        return view('Question\index')->with('questions', $questions);
+        return redirect()->route('question-reponse.index');
     }
 
     /**
@@ -35,7 +34,7 @@ class questionController extends Controller
         $question->descriptionQuestion = $request->descriptionQuestion;
         $question->chapitre_id = $request->chapitre_id;
         $question->save();
-        return $this->index();
+        return redirect()->route('question-reponse.index');
     }
 
     /**
@@ -75,6 +74,6 @@ class questionController extends Controller
     public function destroy(string $id)
     {
         Question::destroy($id);
-        return redirect(route('question.index'));
+        return redirect()->route('question.index');
     }
 }
