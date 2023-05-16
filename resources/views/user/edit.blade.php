@@ -25,11 +25,13 @@
     
     <label for="role">Role</label>
     
-    <select id="role" name="role" value='{{$user->role}}'>
-        <option value="professeur">Professeur</option>
-        <option value="mainteneur">Mainteneur</option>
-        <option value="administrateur">Administrateur</option>
-    </select><br>
+    <label for="role">Role</label>
+            <select id="role" name="role">
+                <option value="professeur" {{$user->role == 'professeur' ? 'selected' : ''}}>Professeur</option>
+                <option value="mainteneur" {{$user->role == 'mainteneur' ? 'selected' : ''}}>Mainteneur</option>
+                <option value="administrateur" {{$user->role == 'administrateur' ? 'selected' : ''}}>Administrateur</option>
+            </select>
+            <br>
     <label for="dateDeNaissance">Date de Naissance</label>
     <input type="date" name="dateDeNaissance" id="dateDeNaissance" value='{{$user->dateDeNaissance}}'><br>
     

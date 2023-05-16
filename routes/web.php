@@ -10,6 +10,7 @@ use App\Http\Controllers\reponseController;
 use App\Http\Controllers\manageUser;
 use App\Http\Controllers\userController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Middleware\Activite;
 use App\Http\Controllers\quizController;
 
 Route::get('/', function () {
@@ -52,17 +53,26 @@ Route::post('/quiz-generator/generate', [quizController::class, 'generate'])->na
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
+->middleware('Activite')
+->name('home');
 
 // -------------------------------------PROFESSEUR---------------------------------------------
-Route::middleware(['auth','userAccess:professeur'])->group(function () {
-    Route::get("/professeur", [HomeController::class, 'professeurHome']);
+Route::middleware(['auth', 'UserAccess:professeur', 'Activite'])->group(function () {
+    Route::get("/professeur", [HomeController::class,'index']);
 });
 
 // -----------------------------------------MAINTENEUR-----------------------------------------------------------
-Route::middleware(['auth','userAccess:mainteneur'])->group(function () {
-    Route::get("/mainteneur",[HomeController::class, 'mainteneur']);
+Route::middleware(['auth', 'UserAccess:mainteneur', 'Activite'])->group(function () {
+    Route::get("/mainteneur", [HomeController::class,'index']);
 });
+
 // -----------------------------ADMINISTRATEUR-----------------------------------------------------------
-Route::middleware(['auth','userAccess:administrateur'])->group(function () {
-    Route::get("/administrateur",[HomeController::class, 'administrateur']);});
+Route::middleware(['auth', 'UserAccess:administrateur', 'Activite'])->group(function () {
+    Route::get("/administrateur", [HomeController::class,'index']);
+});
+// -----------------------------------PENDING------------------------------------------------------------
+
+Route::get('/pending', function () {
+    return view('pending');
+})->middleware('PendingRest')->name('pending');

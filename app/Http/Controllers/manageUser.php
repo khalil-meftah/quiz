@@ -12,6 +12,7 @@ class manageUser extends Controller
     {
         $this->middleware(['auth', 'UserAccess:administrateur']);
     }
+    
     public function index()
     {
          $user = User::all();
@@ -33,7 +34,8 @@ class manageUser extends Controller
             'dateDeNaissance' => ['required'],
             'numeroDeTelephone' => ['required', 'string', 'max:10'],
             'adresse'=>['required'],
-            'password' => ['required', 'confirmed']
+            'password' => ['required', 'confirmed'],
+            'status'=>'required'
         ]);
         $user->name=$request->name;
         $user->prenom=$request->prenom;
@@ -42,6 +44,7 @@ class manageUser extends Controller
         $user->dateDeNaissance=$request->dateDeNaissance;
         $user->numeroDeTelephone=$request->numeroDeTelephone;
         $user->adresse=$request->adresse;
+        $user->status=$request->status;
         $user->password = Hash::make($request->input('password')) ;
            $user->save();
     return redirect('admin/user');
@@ -62,12 +65,14 @@ class manageUser extends Controller
         
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class.',email,'.$user->id],
             'role' => ['required'],
-            'password' => ['required', 'confirmed']
+            'password' => ['required', 'confirmed'],
+            'status' => ['required']
         ]);
       
         $user->email=$request->email;
         $user->role=$request->role;
         $user->password=$request->password;
+        $user->status=$request->status;
         
         $user->save();
         $user = User::findOrFail($id);

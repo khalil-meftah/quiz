@@ -18,7 +18,7 @@ class ProfileController extends Controller
     public function __construct(Request  $request)
     {
         $this->middleware('auth');
-        // $this->middleware('UserAccess:professeur');
+        $this->middleware('Activite');
         
     }
  public function edit()
@@ -42,7 +42,8 @@ class ProfileController extends Controller
                 'dateDeNaissance' => ['required'],
                 'numeroDeTelephone' => ['required', 'string', ' max:10'],
                 'adresse'=>['required'],
-                'password' => ['required', 'confirmed']
+                'password' => ['required', 'confirmed'],
+                
             ]);
             $user->name=$request->name;
             $user->prenom=$request->prenom;

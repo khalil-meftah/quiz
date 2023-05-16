@@ -30,6 +30,7 @@ class User extends Authenticatable
         'numeroDeTelephone',
         'adresse',  
         'password',
+        'status'
     ];
 
     /**
