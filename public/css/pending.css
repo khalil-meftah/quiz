@@ -1,0 +1,38 @@
+body {
+    
+    background: rgb(55,59,97);
+    overflow:auto;
+}
+img{
+    height: 32rem;
+    width: 34rem;
+    margin-top: 4rem;
+    
+}
+#msg{
+    height: 746px;
+    padding: 5rem;
+    line-height: 2.8;
+    letter-spacing: 1.5px;
+    position: absolute;
+    display: inline;
+    color: #EDEFFE;
+    font-family: 'Nunito', sans-serif;
+    font-size: larger;
+    font-weight: bold;
+}
+a{
+    display: block;
+    padding: 0.8rem;
+    background-color: #EDEFFE;
+   border-color: #373B61;
+   color:#373B61;
+   border-radius: 9px;
+   text-align: center;
+   font-weight: bolder;
+   text-decoration: none;
+}
+a:hover{
+    background-color: #fcefe9;;
+    
+}

@@ -12,7 +12,9 @@ use App\Http\Controllers\userController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Middleware\Activite;
 use App\Http\Controllers\quizController;
+use App\Http\Controllers\Auth\LoginController;
 
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -58,17 +60,17 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
 ->name('home');
 
 // -------------------------------------PROFESSEUR---------------------------------------------
-Route::middleware(['auth', 'UserAccess:professeur', 'Activite'])->group(function () {
+Route::middleware(['auth', 'Activite', 'UserAccess:professeur'])->group(function () {
     Route::get("/professeur", [HomeController::class,'index']);
 });
 
 // -----------------------------------------MAINTENEUR-----------------------------------------------------------
-Route::middleware(['auth', 'UserAccess:mainteneur', 'Activite'])->group(function () {
+Route::middleware(['auth', 'Activite', 'UserAccess:mainteneur'])->group(function () {
     Route::get("/mainteneur", [HomeController::class,'index']);
 });
 
 // -----------------------------ADMINISTRATEUR-----------------------------------------------------------
-Route::middleware(['auth', 'UserAccess:administrateur', 'Activite'])->group(function () {
+Route::middleware(['auth', 'Activite','UserAccess:administrateur'])->group(function () {
     Route::get("/administrateur", [HomeController::class,'index']);
 });
 // -----------------------------------PENDING------------------------------------------------------------
@@ -76,3 +78,4 @@ Route::middleware(['auth', 'UserAccess:administrateur', 'Activite'])->group(func
 Route::get('/pending', function () {
     return view('pending');
 })->middleware('PendingRest')->name('pending');
+// // ----------------------------------------AUTHENTICATION RESTRICTION----------------------------------------

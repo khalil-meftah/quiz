@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'QUIZ') }}</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -17,6 +17,12 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
+    {{-- ----------------------------LOGO---------------------------------------- --}}
+    <a href="{{ route('home') }}">
+        <img src="{{ asset('logo/logo.png') }}" alt="Logo">
+    </a>
+    
+{{-- --------------------------------------------------------------------------------------- --}}
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
