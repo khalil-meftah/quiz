@@ -11,10 +11,11 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
-<div class="form-group">
+
 
 {{--------------------------------------------------------- NAME------------------------------------------ --}}
-                        <div class="row mb-3"  >
+<div class="form-group">
+            <div class="row mb-3">
                             {{-- <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Nom') }}</label> --}}
 
                             <div class="col-md-6">
