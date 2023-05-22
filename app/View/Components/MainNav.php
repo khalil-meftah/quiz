@@ -13,12 +13,12 @@ class MainNav extends Component
     public function __construct($r = null, $title = null)
     {
         switch ($title) {
-            case "question":
+            case "question-reponse":
                 $this->r = (object) [
-                    'title' => 'question',
-                    'index' => 'question.index',
-                    'create' => 'question.create',
-                    'confirm' => 'question.index',
+                    'title' => 'question-reponse',
+                    'index' => 'question-reponse.index',
+                    'create' => 'question-reponse.create',
+                    'confirm' => 'question-reponse.confirmation',
                 ];
                 break;
             case "reponse":
@@ -27,6 +27,13 @@ class MainNav extends Component
                     'index' => 'reponse.index',
                     'create' => 'reponse.create',
                     'confirm' => 'reponse.index',
+                ];
+                break;
+            case "question":
+                $this->r = (object) [
+                    'title' => 'question',
+                    'index' => 'question.index',
+                    'create' => 'question.create',
                 ];
                 break;
             case "chapitre":

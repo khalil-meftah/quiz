@@ -11,4 +11,11 @@ class Question extends Model
     public function reponses(){
         return $this->hasMany(Reponse::class);
     }
+    public function chapitre(){
+        return $this->belongsTo(Chapitre::class);
+    }
+    // public function isApproved()
+    // {
+    //     return $this->status === 'approved';
+    // }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Question;
 use App\Models\Chapitre;
+use Illuminate\Support\Facades\Auth;
 
 class questionController extends Controller
 {
@@ -13,8 +14,7 @@ class questionController extends Controller
      */
     public function index()
     {
-        $questions = Question::paginate(10);
-        return view('Question\index')->with('questions', $questions);
+        return redirect()->route('question-reponse.index');
     }
 
     /**
@@ -34,8 +34,9 @@ class questionController extends Controller
         $question = new Question();
         $question->descriptionQuestion = $request->descriptionQuestion;
         $question->chapitre_id = $request->chapitre_id;
+        $question->status = 'pending';
         $question->save();
-        return $this->index();
+        return redirect()->route('question-reponse.index');
     }
 
     /**
@@ -75,6 +76,28 @@ class questionController extends Controller
     public function destroy(string $id)
     {
         Question::destroy($id);
-        return redirect(route('question.index'));
+        return redirect()->route('question.index');
+    }
+
+    public function validateQuestion(Request $request)
+    {
+        
+        $question = Question::find($request->question_id);
+
+        $question->status = 'validated';
+        // $question->validated_by = Auth::user()->id;
+        $question->save();
+        
+        // foreach ($question->reponses as $reponse) {
+        //     $reponse->status = 'validated';
+        //     $reponse->validated_by = Auth::user()->id;
+        //     $reponse->save();
+        // }
+
+        // $question->isApproved();
+        // $question->save();
+            // return $request;
+    
+        return redirect()->route('question-reponse.confirmation');
     }
 }

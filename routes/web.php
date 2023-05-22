@@ -9,10 +9,21 @@ use App\Http\Controllers\questionController;
 use App\Http\Controllers\reponseController;
 use App\Http\Controllers\manageUser;
 use App\Http\Controllers\userController;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Middleware\Activite;
 use App\Http\Controllers\quizController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\questionReponseController;
+use Illuminate\Support\Facades\Auth;
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
+|
+*/
 
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/', function () {
@@ -35,9 +46,21 @@ Route::middleware('auth')->group(function () {
 Route::resources([
     'question' => questionController::class,
     'reponse' => reponseController::class,
+    'question-reponse' => questionReponseController::class,
     'chapitre' => chapitreController::class,
-    'module' =>moduleController::class
+    'module' =>moduleController::class,
 ]);
+
+Route::get('/question-reponse/{module}/chapitres', [questionReponseController::class, 'getChapitres'])->name('question-reponse.chapitres');
+Route::post('/question-reponse/searchByChap', [questionReponseController::class, 'searchByChap'])->name('question-reponse.searchByChap');
+
+
+Route::get('/question-reponse/confirmation', [questionReponseController::class, 'confirmationPage'])->name('question-reponse.confirmation');
+Route::post('/question-reponse/searchByChapForConfirmation', [questionReponseController::class, 'searchByChapForConfirmation'])->name('question-reponse.searchByChapForConfirmation');
+
+Route::patch('/reponse/{reponse}/validate', [ReponseController::class, 'validateReponse'])->name('reponse.validate');
+Route::patch('/question/{question}/validate', [QuestionController::class, 'validateQuestion'])->name('questions.validate');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

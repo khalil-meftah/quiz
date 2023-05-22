@@ -20,22 +20,25 @@
             @csrf
             @method('PUT')
             <label for="descriptionReponse">descriptionReponse</label>
-            <textarea name="descriptionReponse"></textarea><br><br>
+            <textarea name="descriptionReponse">{{ $reponse->descriptionReponse }}</textarea><br><br>
 
             <label for="valeurReponse">Valeur reponse</label><br>
-            <input type="radio" name="valeurReponse" value="1">
+            
+            <input type="radio" name="valeurReponse" value="1" @if($reponse->valeurReponse == "1") checked @endif>
             <label>Vrai</label>
-            <input type="radio" name="valeurReponse" value="0">
+
+            <input type="radio" name="valeurReponse" value="0" @if($reponse->valeurReponse == "0") checked @endif>
             <label>Faux</label>
             
             <br><br>
             <label>Question id</label>
+
             <select name="question_id" id="question_id">
-                <option>-- Selectionner question --</option>
-                @foreach($questions as $question)
-                <option value="{{$question->id}}">{{$question->descriptionQuestion}}</option>
-                @endforeach
-            </select><br><br>
+            <option value="{{$question->id}}" @if($question->id === $question->id) selected @endif>
+                {{$question->descriptionQuestion}}
+            </option>
+            </select>
+            <br><br>
 
             <input type="submit" class="btn btn-success" value="submit">
             <input type="reset" class="btn btn-danger" value="reset">

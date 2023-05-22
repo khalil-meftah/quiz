@@ -30,11 +30,11 @@
             <br>
             <label for="question_id">question ID</label>
             <select name="question_id" id="question_id">
-                <option>-- Selectionner question --</option>
-                @foreach($questions as $question)
-                <option value="{{$question->id}}">{{$question->descriptionQuestion}}</option>
-                @endforeach
+            <option value="{{$question->id}}" @if($question->id === $question->id) selected @endif>
+                {{$question->descriptionQuestion}}
+            </option>
             </select>
+
             <br>
             <br>
 

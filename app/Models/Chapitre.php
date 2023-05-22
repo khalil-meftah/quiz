@@ -14,4 +14,9 @@ class Chapitre extends Model
             Module::class
         );
     }
+    public function questions(){
+        return $this->hasMany(
+            Question::class
+        );
+    }
 }
