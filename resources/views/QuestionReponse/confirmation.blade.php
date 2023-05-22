@@ -20,7 +20,7 @@
 <x-main-nav :title="'question-reponse'" />
 <div class="main-content">
 @isset( $modules , $chapitres )
-<form action="{{route('question-reponse.searchByChap')}}" method="POST" class="search-form">
+<form action="{{route('question-reponse.searchByChapForConfirmation')}}" method="POST" class="search-form">
     @csrf
 
     <label for="module">Select a Module:</label>
@@ -35,15 +35,11 @@
     <select name="chapitre" id="chapitre" disabled>
         <option value="">--Select a chapitre--</option>
     </select>
+
     <br>
-    <label for="approval_status">Approval Status:</label>
-    <select name="approval_status" id="approval_status">
-        <option value="all">All</option>
-        <option value="validated">Approved</option>
-        <option value="pending">Pending</option>
-    </select>
-    <br>
-    <input type="hidden" name="page-name" value="index">
+    <input type="hidden" name="pageName" value="confirmation">
+
+
     <button type="submit">Search</button>
 </form>
 @endisset
@@ -60,11 +56,21 @@
           @csrf
           <button type="submit">Edit</button>
       </form>
+      @if($question->status == "pending")
+      <form action="{{route('questions.validate',$question->id )}}" method="post">
+          @csrf    
+          @method('patch')
+          <input type="hidden" name="question_id" value="{{ $question->id }}">
+          <button type="submit">Validate</button>
+      </form>
+      @endif
       <form action="{{route('question.destroy',$question->id )}}" method="post">
           @csrf    
           @method('delete')
           <button type="submit">Delete</button>
       </form>
+      <!-- create form to call the function validateQuestion -->
+      
   </div>
     
       <table class="main-table" id="reponse">
@@ -85,6 +91,14 @@
                 @csrf
                   <input type="hidden" name="question_id" value="{{ $question->id }}">
                   <button type="submit">Edit</button>
+              </form>
+            </td>
+            <td>
+              <form action="{{route('reponse.validate',$reponse['id'] )}}" method="post">
+              @csrf    
+              @method('patch')
+                  <input type="hidden" name="reponse_id" value="{{ $reponse['id'] }}">
+                  <button type="submit">Validate</button>
               </form>
             </td>
             <td>
@@ -174,8 +188,6 @@ displayAll.addEventListener('click', function() {
     displayAll.textContent = "Display all";
   }
 }); 
-
-
 
 
 </script>

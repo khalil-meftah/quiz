@@ -22,7 +22,7 @@ class questionReponseController extends Controller
         foreach ($questions as $question) {
             $reponses = Reponse::where('question_id', $question->id)->get()->toArray();
             $question->reponses = $reponses;
-        }
+        } 
 
         return view('QuestionReponse\index', compact('questions', 'modules', 'chapitres'));
 
@@ -44,24 +44,103 @@ class questionReponseController extends Controller
 
     public function searchByChap(Request $request){
 
+        // $modules = Module::all();
+        // $chapitres = Chapitre::all();
+
+        // if($request->chapitre == null){
+        //     $questions = Question::paginate(9);
+        // }else{
+        //     $questions = Question::where('chapitre_id', $request->chapitre)->paginate(9);
+        // }
+
+        // foreach ($questions as $question) {
+        //     $reponses = Reponse::where('question_id', $question->id)->get()->toArray();
+        //     $question->reponses = $reponses;
+        // }
+
+        // return view('QuestionReponse\index', compact('questions', 'modules', 'chapitres'));
+
+    $modules = Module::all();
+    $chapitres = Chapitre::all();
+
+    $approvalStatus = $request->input('approval_status', 'all'); // Get the selected approval status from the form
+
+    $module = $request->input('module');
+    $chapitre = $request->input('chapitre');
+
+    $query = Question::query();
+
+    if (!empty($chapitre)) {
+        $query->where('chapitre_id', $chapitre);
+    } elseif (!empty($module)) {
+        $query->whereHas('chapitre', function ($query) use ($module) {
+            $query->where('module_id', $module);
+        });
+    }
+
+    if ($approvalStatus === 'validated') {
+        $query->where('status', 'validated')
+            ->whereHas('reponses', function ($q) {
+                $q->where('status', 'validated');
+            });
+    } elseif ($approvalStatus === 'pending') {
+        $query->where(function ($q) {
+            $q->where('status', 'pending')
+                ->orWhereHas('reponses', function ($q2) {
+                    $q2->where('status', 'pending');
+                });
+        });
+    }    
+
+    $questions = $query->paginate(9);
+
+    foreach ($questions as $question) {
+        $reponses = Reponse::where('question_id', $question->id)->get()->toArray();
+        $question->reponses = $reponses;
+    }
+
+    // if($request->pageName == 'confirmation'){
+    //     return view('QuestionReponse\confirmation', compact('questions', 'modules', 'chapitres'));
+    // }
+    // else{
+        return view('QuestionReponse\index', compact('questions', 'modules', 'chapitres'));
+    // }
+    
+    }
+
+    public function searchByChapForConfirmation(Request $request){
         $modules = Module::all();
         $chapitres = Chapitre::all();
-
-        if($request->chapitre == null){
-            $questions = Question::paginate(9);
-        }else{
-            $questions = Question::where('chapitre_id', $request->chapitre)->paginate(9);
+    
+        $module = $request->input('module');
+        $chapitre = $request->input('chapitre');
+    
+        $query = Question::query();
+    
+        if (!empty($chapitre)) {
+            $query->where('chapitre_id', $chapitre);
+        } elseif (!empty($module)) {
+            $query->whereHas('chapitre', function ($query) use ($module) {
+                $query->where('module_id', $module);
+            });
         }
+        
+        $query->where(function ($query) {
+            $query->where('status', 'pending')
+                ->orWhereHas('reponses', function ($query) {
+                    $query->where('status', 'pending');
+                });
+        });
 
+        $questions = $query->paginate(9);
+    
         foreach ($questions as $question) {
             $reponses = Reponse::where('question_id', $question->id)->get()->toArray();
             $question->reponses = $reponses;
         }
 
-        return view('QuestionReponse\index', compact('questions', 'modules', 'chapitres'));
-
+        return view('QuestionReponse\confirmation', compact('questions', 'modules', 'chapitres'));
     }
-
     /**
      * Show the form for creating a new resource.
      */
@@ -79,11 +158,32 @@ class questionReponseController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * used for confirmation.
      */
-    public function show(string $id)
+    
+    public function show()
     {
-        //
+        $modules = Module::all();
+        $chapitres = Chapitre::all();
+        $questions = Question::where('status', 'pending')
+            ->orWhere(function ($query) {
+                $query->where('status', '!=', 'pending')
+                    ->whereHas('reponses', function ($query) {
+                        $query->where('status', 'pending');
+                    });
+            })
+            ->paginate(9);
+        
+        foreach ($questions as $question) {
+            $reponses = Reponse::where('question_id', $question->id)
+                ->where('status', 'pending')
+                ->get()
+                ->toArray();
+            $question->reponses = $reponses;
+        }
+        
+        return view('QuestionReponse\confirmation', compact('questions', 'modules', 'chapitres'));
+        
     }
 
     /**
@@ -109,4 +209,14 @@ class questionReponseController extends Controller
     {
         return redirect()->route('question.destroy', $id);
     }
+
+    function confirmationPage(Request $request){
+        $questions = Question::where('status', 'pending')->paginate(9);
+        foreach ($questions as $question) {
+            $reponses = Reponse::where('question_id', $question->id)->where('status', 'pending')->get()->toArray();
+            $question->reponses = $reponses;
+        }
+        return view('QuestionReponse\confirmation', compact('questions'));
+    }
+
 }

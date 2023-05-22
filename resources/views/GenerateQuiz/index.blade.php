@@ -38,7 +38,7 @@
     </select>
 
     <br>
-    <button type="submit">Generate Quiz</button>
+    <button type="submit" target="_blank">Generate Quiz</button>
 </form>
 
 @isset( $questions )
@@ -82,7 +82,7 @@
               if (xhr.readyState === 4 && xhr.status === 200) {
                   document.getElementById("chapitre").disabled = false;
                   let chapitres = JSON.parse(xhr.responseText);
-                  chapitreSelect.innerHTML = '';
+                  chapitreSelect.innerHTML = '<option value="">--Select a chapitre--</option>';
                   chapitres.forEach(function(chapitre) {
                       let option = document.createElement('option');
                       option.value = chapitre.id;

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Reponse;
 use App\Models\Question;
+use Illuminate\Support\Facades\Auth;
 
 
 
@@ -35,6 +36,7 @@ class reponseController extends Controller
         $reponse->descriptionReponse = $request->descriptionReponse;
         $reponse->valeurReponse = $request->valeurReponse;
         $reponse->question_id = $request->question_id;
+        $reponse->status = 'pending';
         $reponse->save();
 
         return redirect()->route('question-reponse.index');
@@ -78,5 +80,18 @@ class reponseController extends Controller
     {
         Reponse::destroy($id);
         return redirect()->route('question-reponse.index');
+    }
+
+    public function validateReponse(Request $request)
+    {
+        
+        // $this->authorize('validate-reponse');
+        
+        $reponse = Reponse::find($request->reponse_id);
+        $reponse->status = 'validated';
+        // $reponse->validated_by = Auth::user()->id;
+        $reponse->save();
+    
+        return redirect()->route('question-reponse.confirmation');
     }
 }

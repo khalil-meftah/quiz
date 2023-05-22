@@ -34,10 +34,16 @@ Route::resources([
     'module' =>moduleController::class,
 ]);
 
-
-
 Route::get('/question-reponse/{module}/chapitres', [questionReponseController::class, 'getChapitres'])->name('question-reponse.chapitres');
 Route::post('/question-reponse/searchByChap', [questionReponseController::class, 'searchByChap'])->name('question-reponse.searchByChap');
+
+
+Route::get('/question-reponse/confirmation', [questionReponseController::class, 'confirmationPage'])->name('question-reponse.confirmation');
+Route::post('/question-reponse/searchByChapForConfirmation', [questionReponseController::class, 'searchByChapForConfirmation'])->name('question-reponse.searchByChapForConfirmation');
+
+Route::patch('/reponse/{reponse}/validate', [ReponseController::class, 'validateReponse'])->name('reponse.validate');
+Route::patch('/question/{question}/validate', [QuestionController::class, 'validateQuestion'])->name('questions.validate');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

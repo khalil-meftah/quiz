@@ -18,7 +18,7 @@ class MainNav extends Component
                     'title' => 'question-reponse',
                     'index' => 'question-reponse.index',
                     'create' => 'question-reponse.create',
-                    'confirm' => 'question-reponse.index',
+                    'confirm' => 'question-reponse.confirmation',
                 ];
                 break;
             case "reponse":

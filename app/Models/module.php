@@ -14,5 +14,5 @@ class Module extends Model
             Chapitre::class
         );
     }
-
+    
 }
