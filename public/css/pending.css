@@ -1,15 +1,46 @@
 body {
-    
-    background: rgb(55,59,97);
-    overflow:auto;
+    background: rgb(55, 59, 97);
+    overflow: hidden;
+  }
+  
+ /* Add your custom styles here */
+
+/* Navbar logo */
+.navbar-brand img {
+  height: 40px;
 }
-img{
-    height: 32rem;
-    width: 34rem;
-    margin-top: 4rem;
-    
+
+/* Navbar links */
+.navbar-nav .nav-link {
+  margin-left: 10px;
+  color: #333;
+  text-decoration: none;
 }
-#msg{
+
+/* Navbar active link */
+.navbar-nav .nav-link.active {
+  color: #007bff;
+}
+
+/* Dropdown menu */
+.dropdown-menu {
+  min-width: 150px;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 8px 16px;
+  color: #333;
+  text-decoration: none;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f8f9fa;
+  color: #007bff;
+}
+
+  
+  #msg {
     height: 746px;
     padding: 5rem;
     line-height: 2.8;
@@ -20,19 +51,41 @@ img{
     font-family: 'Nunito', sans-serif;
     font-size: larger;
     font-weight: bold;
-}
-a{
-    display: block;
+    overflow: auto; 
+  }
+  
+  button{
+    display: inline;
     padding: 0.8rem;
     background-color: #EDEFFE;
-   border-color: #373B61;
-   color:#373B61;
-   border-radius: 9px;
-   text-align: center;
-   font-weight: bolder;
-   text-decoration: none;
-}
-a:hover{
-    background-color: #fcefe9;;
-    
-}
+    margin-left: 38%;
+    color: #373B61;
+    border-radius: 9px;
+    text-align: center;
+    font-weight: bolder;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    background-color: #fcefe9;
+  }
+  /* @media screen and (max-width: 768px) {
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    img {
+      display: inline;
+      height: 26rem;
+      width: 28rem;
+      padding: 0;
+      margin: 0;
+      position: relative;
+    }
+    #msg{
+      float: left;
+      font-weight: normal;
+      letter-spacing: 1px;
+    }
+
+  } */

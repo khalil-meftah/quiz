@@ -1,0 +1,135 @@
+body, html {
+  background-color: #EDEFFE;
+}
+
+img {
+  height: 7rem;
+  width: 21rem;
+  position: static;
+  top: 0px;
+  margin-left: 35%;
+}
+
+a.nav-link {
+  color: #373B61;
+  font-family: 'Nunito', sans-serif;
+  font-weight: bolder;
+  text-decoration: none;
+}
+
+.btn {
+  width: 100%;
+  height: 50px;
+  border: #373B61 1px solid;
+  border-radius: 25px;
+  font-size: 18px;
+  color: #EDEFFE;
+  font-weight: 700;
+  cursor: pointer;
+  outline: none;
+  background: linear-gradient(120deg, #373B61, #EDEFFE);
+}
+
+.btn:nth-child(2) {
+  right: 210px;
+  top: 580px;
+  text-decoration: none;
+  color: #EDEFFE;
+  font-family: 'Nunito', sans-serif;
+  border: none;
+  background-color: none;
+}
+
+.card-header {
+  color: #373B61;
+  font-size: larger;
+  font-family: 'Nunito';
+  font-weight: bold;
+}
+
+.gradient-bg {
+  text-align: center;
+  width: 400px;
+  border-radius: 10px;
+}
+
+form .col-md-6 {
+  position: relative;
+  border-bottom: 1.5px #373B61 inset;
+  margin-top: 30px 0;
+}
+
+.col-md-6 input {
+  width: 100%;
+  padding: 05px;
+  height: 40px;
+  font-size: 16px;
+  border: none;
+  background: none;
+  outline: none;
+}
+
+::placeholder {
+  position: relative;
+  color: #373B61;
+  opacity: 0.5;
+  left: 1px;
+  padding-left: 2rem;
+  font-family: 'Nunito', sans-serif;
+  font-weight: medium;
+  font-size: 16px;
+  pointer-events: none;
+}
+.input-wrapper select {
+  width: 100%;
+  background-color: #EDEFFE;
+  height: 50px;
+}
+
+.row.mb-0 {
+  margin-top: 2rem;
+  
+}
+
+ /* .row.mb-3 {
+  display: flex;
+  align-items: center;
+} */
+
+.form-group{
+  display: flex;
+}
+.col-md-6{
+  margin-left: 2rem;
+}
+span{
+  color: #373B61;
+  font-family: "Nunito";
+}
+.form-select{
+  margin:1rem 0rem 1rem 0rem;
+  
+  }
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    background-color: #EDEFFE;
+  }
+  
+.input-wrapper select {
+    flex: 1;
+    background-color: #EDEFFE;
+    height: 100%;
+    border: none;
+    outline: none;
+    color: #373B61;
+    opacity: 0.5;
+    left: 1px;
+    padding-left: 2rem;
+    font-family: 'Nunito', sans-serif;
+    font-weight: medium;
+    font-size: 16px;
+    /* pointer-events: none; */
+  }

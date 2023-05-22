@@ -26,7 +26,10 @@ Nous vous remercions de votre compréhension et de votre patience.
 
 Cordialement,
 L'équipe de support
-<a href="{{ route('logout') }}">Retourner a la page d'accueil</a>
+<form action="{{ route('logout') }}" method="POST">
+    @csrf
+    <button type="submit">Logout</button>
+</form>
     </div>
 </body>
 </html> 

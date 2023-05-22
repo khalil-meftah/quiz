@@ -36,6 +36,15 @@ blockquote {
 a {
   margin-left: 5rem;
   text-decoration: none;
+  color: #373B61;
+}
+a:nth-child(1):hover{
+  background-color: #fcefe9;
+  color: #373B61;
+  padding: 12px;
+  border-radius: 10px;
+  border: 2px transparent solid;
+  transition: border-color 0.3s ease;
 }
 a:nth-child(2) {
   background-color: #373B61;
@@ -65,7 +74,7 @@ hr {
   height: 7rem;
   width: 21rem;
   position: absolute;
-  left: 28px;
+  left: 2px;
   top: 0px;
 }
 .second-image {
@@ -78,4 +87,67 @@ hr {
 #container {
   min-height: 100%;
   position: relative;
+}
+@media screen and (max-width: 768px) {
+  blockquote {
+    position: static;
+    width: auto;
+    height: auto;
+    padding-bottom: 0;
+    margin: 2rem;
+    text-align: center;
+  }
+.first-image{
+  position: relative;
+  margin-left: 23%;
+}
+  .second-image {
+    position: static;
+    margin-top: 4rem;
+    width: 100%;
+    height: auto;
+    left: 0;
+    transform: none;
+    bottom: auto;
+  }
+  #authLinks{
+    /* display: hidden; */
+    margin-top: 8rem;
+  }
+  hr{
+    margin-top: 10rem;
+  }
+}
+@media screen and (max-width: 600px) {
+  blockquote {
+    position: static;
+    width: auto;
+    height: auto;
+    padding-bottom: 0;
+    margin: 2rem;
+    text-align: center;
+  }
+.first-image{
+  position: relative;
+  margin-left: 10%;
+}
+  .second-image {
+    position: static;
+    margin-top: 4rem;
+    width: 100%;
+    height: auto;
+    left: 0;
+    transform: none;
+    bottom: auto;
+  }
+  #authLinks{
+    /* display: hidden; */
+    margin-top: 8rem;
+    font-size: medium;
+    margin-left: 3px;
+    position: static;
+  }
+  hr{
+    margin-top: 10rem;
+  }
 }
