@@ -9,9 +9,12 @@ use Illuminate\Support\Facades\Auth;
 
 class questionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct(Request  $request)
+    {
+        $this->middleware('auth');
+        $this->middleware('Activite');
+        
+    }
     public function index()
     {
         return redirect()->route('question-reponse.index');
