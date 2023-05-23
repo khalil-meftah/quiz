@@ -1,7 +1,9 @@
 body, html {
   background-color: #EDEFFE;
 }
-
+/* body{
+  margin-left: 50%;
+} */
 img {
   height: 7rem;
   width: 21rem;
@@ -116,6 +118,7 @@ span{
     width: 100%;
     height: 50px;
     background-color: #EDEFFE;
+   
   }
   
 .input-wrapper select {
