@@ -32,7 +32,7 @@ Route::get('/', function () {
 // -------------------------------------------GERER MEMBRES---------------------------------------------------
 Route::prefix('admin')->middleware('auth')->group(function() {
     Route::resource('/user', manageUser::class);
-});
+})->name('user');
 // -----------------------------------------USER SETTINGS---------------------------------------------------
 Route::prefix('profile')->middleware('auth')->group(function() {
     Route::get('/membre', [userController::class, 'index'])->name('profile.index');

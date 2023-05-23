@@ -64,6 +64,13 @@ class MainNav extends Component
                     'create' => '',
                 ];
                 break;
+            case "user":
+                $this->r = (object) [
+                    'title' => 'user',
+                    'index' => 'user.index',
+                    'create' => 'user.create',
+                ];
+                break;
             default:
                 $this->r = (object) [
                     'title' => '',
