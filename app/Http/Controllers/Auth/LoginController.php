@@ -40,11 +40,11 @@ class LoginController extends Controller
     ]);
     if (auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))) {
         if (auth()->user()->role == 'professeur') {
-              return view('professeurHome');
+            return view('home');
         } else if (auth()->user()->role == 'mainteneur') {
-            return view('mainteneurHome');
+            return view('home');
         } else if (auth()->user()->role == 'administrateur') {
-            return view('administrateurHome');
+            return view('home');
         } else {
             return redirect('/')->with('status', 'Vous êtes connecté.');
         }

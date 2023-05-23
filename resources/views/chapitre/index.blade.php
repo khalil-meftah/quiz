@@ -12,8 +12,11 @@
     <title>Dashboard</title>
 </head>
 <body>
+    @php
+        $userRole = auth()->user()->role;
+    @endphp
     <x-side-nav />
-    <x-main-nav :title="'chapitre'" />
+    <x-main-nav :title="'chapitre'" :user-role="$userRole"/>
     <div class="main-content">
         <table class="main-table">
                 <tr>

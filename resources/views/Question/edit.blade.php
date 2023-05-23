@@ -11,8 +11,11 @@
     <title>ajouterQuestion</title>
 </head>
 <body>
+@php
+    $userRole = auth()->user()->role;
+@endphp
     <x-side-nav />
-    <x-main-nav :title="'question'" />
+    <x-main-nav :title="'question'" :user-role="$userRole"/>
 
     <div class="container p-3 main-content">
     <h1 class="h1 mb-4">Question</h1>

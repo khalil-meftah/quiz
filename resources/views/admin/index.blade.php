@@ -16,8 +16,11 @@
     @vite('resources/js/app.js')
 </head>
 <body>
+@php
+    $userRole = auth()->user()->role;
+@endphp
 <x-side-nav />
-<x-main-nav :title="'user'" />
+<x-main-nav :title="'user'" :user-role="$userRole"/>
 
 <div class="main-content">
 <table class="main-table">

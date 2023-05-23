@@ -16,8 +16,11 @@
     @vite('resources/js/app.js')
 </head>
 <body>
+@php
+    $userRole = auth()->user()->role;
+@endphp
 <x-side-nav />
-<x-main-nav :title="'question-reponse'" />
+<x-main-nav :title="'question-reponse'" :user-role="$userRole"/>
 <div class="main-content">
 @isset( $modules , $chapitres )
 <form action="{{route('question-reponse.searchByChap')}}" method="POST" class="search-form">

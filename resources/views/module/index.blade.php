@@ -13,8 +13,11 @@
     <title>Dashboard</title>
 </head>
 <body>
+@php
+    $userRole = auth()->user()->role;
+@endphp
 <x-side-nav />
-<x-main-nav :title="'module'" />
+<x-main-nav :title="'module'" :user-role="$userRole" />
  
   <div class="main-content">
 

@@ -8,9 +8,24 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/dashboard.css') }}" >
     <script src="{{ asset('js/app.js') }}"></script>
    
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/dashboard.css') }}" >
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/table.css') }}" >
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/reponse.css') }}" >
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/question-reponse.css') }}" >
+
     <title>INSERER UTILISATEUR</title>
+    @viteReactRefresh
+    @vite('resources/js/app.js')
 </head>
 <body>
+@php
+    $userRole = auth()->user()->role;
+@endphp
+<x-side-nav />
+<x-main-nav :title="'user'" :user-role="$userRole"/>
+
+<div class="main-content">
+
     <h1 style="text-align: center">
         <b>
             INSERER UN UTILISATEUR
@@ -69,6 +84,6 @@
             </li>
         @endforeach
     @endif
-   
+    </div>
 </body>
 </html>

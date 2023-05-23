@@ -1,23 +1,29 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/dashboard.css') }}" >
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/table.css') }}" >
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/reponse.css') }}" >
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/question-reponse.css') }}" >
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+    <title>home</title>
+    @viteReactRefresh
+    @vite('resources/js/app.js')
+</head>
+<body>
+@php
+    $userRole = auth()->user()->role;
+@endphp
+<x-side-nav />
+<x-main-nav :title="'home'" :user-role="$userRole" />
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+<div class="main-content">
 
-                    {{ __('Félicitation ') }}{{ auth()->user()->name }} {{ __(', bienvenu parmis nous .') }}
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
-@endsection
+
+
+</body>
+</html>

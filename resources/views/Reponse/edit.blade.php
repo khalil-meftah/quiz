@@ -12,8 +12,11 @@
     <title>ajouterReponse</title>
 </head>
 <body>
+@php
+    $userRole = auth()->user()->role;
+@endphp
     <x-side-nav />
-    <x-main-nav :title="'reponse'" />
+    <x-main-nav :title="'reponse'" :user-role="$userRole"/>
     <div class="container p-3 main-content">
         <h1 class="h1 mb-4">Reponse</h1>
         <form action="{{ route('reponse.update', $reponse->id) }}" method="post">

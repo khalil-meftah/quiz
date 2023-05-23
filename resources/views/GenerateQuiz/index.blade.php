@@ -15,8 +15,11 @@
     <title>Dashboard</title>
 </head>
 <body>
+@php
+    $userRole = auth()->user()->role;
+@endphp
 <x-side-nav />
-<x-main-nav :title="'quiz-generator'" />
+<x-main-nav :title="'quiz-generator'" :user-role="$userRole"/>
 
 
 <div class="main-content">

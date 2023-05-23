@@ -8,10 +8,13 @@ use Illuminate\View\Component;
 
 class MainNav extends Component
 {
-    public $r, $title;
+    public $r, $title, $userRole;
 
-    public function __construct($r = null, $title = null)
+    public function __construct($r = null, $title = null, $userRole = null)
     {
+        $this->title = $title;
+        $this->userRole = $userRole;
+
         switch ($title) {
             case "question-reponse":
                 $this->r = (object) [
@@ -26,7 +29,7 @@ class MainNav extends Component
                     'title' => 'reponse',
                     'index' => 'reponse.index',
                     'create' => 'reponse.create',
-                    'confirm' => 'reponse.index',
+                    'confirm' => 'question-reponse.confirmation',
                 ];
                 break;
             case "question":
@@ -34,6 +37,7 @@ class MainNav extends Component
                     'title' => 'question',
                     'index' => 'question.index',
                     'create' => 'question.create',
+                    'confirm' => 'question-reponse.confirmation',
                 ];
                 break;
             case "chapitre":
@@ -50,20 +54,6 @@ class MainNav extends Component
                     'create' => 'module.create',
                 ];
                 break;
-            case "users":
-                $this->r = (object) [
-                    'title' => 'users',
-                    'index' => 'users.index',
-                    'create' => 'users.create',
-                ];
-                break;
-            case "quiz-generator":
-                $this->r = (object) [
-                    'title' => 'quiz-generator',
-                    'index' => '',
-                    'create' => '',
-                ];
-                break;
             case "user":
                 $this->r = (object) [
                     'title' => 'user',
@@ -71,12 +61,19 @@ class MainNav extends Component
                     'create' => 'user.create',
                 ];
                 break;
+            case "quiz-generator":
+                $this->r = (object) [
+                    'title' => 'quiz-generator',
+                    'index' => null,
+                    'create' => null,
+                ];
+                break;
             default:
                 $this->r = (object) [
-                    'title' => '',
-                    'index' => '',
-                    'create' => '',
-                    'confirm' => '',
+                    'title' => null,
+                    'index' => null,
+                    'create' => null,
+                    'confirm' => null,
                 ];
         }
     }
@@ -89,6 +86,8 @@ class MainNav extends Component
     {
         return view('components.main-nav', [
             'r' => $this->r,
+            'userRole' => $this->userRole,
+            'title' => $this->title,
         ]);
     }
     
