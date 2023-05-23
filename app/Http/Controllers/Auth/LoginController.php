@@ -48,7 +48,7 @@ class LoginController extends Controller
         if ($user->status == 0) {
             return redirect('/pending');
         } else {
-            return redirect('/home');
+            return redirect('/question-reponse');
         }
     } else {
         return redirect('/login')

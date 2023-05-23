@@ -6,6 +6,17 @@ body, html {
   background-color: #EDEFFE;
   height: 746;
 }
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 #lg {
   display: inline;
 }
