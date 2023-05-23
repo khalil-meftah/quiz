@@ -85,4 +85,21 @@ class manageUser extends Controller
         $user->delete();
         return redirect('admin/user');
     }
+
+    public function show(){
+        return $this->confirmationPage();
+    }
+    public function confirmationPage(){
+        $user=User::where('status',0)->get();
+        return view('admin.confirmation',compact('user'));
+
+    }
+
+    public function validateUser($id)
+    {
+        $user=User::find($id);
+        $user->status=1;
+        $user->save();
+        return redirect()->route('user.confirmation');
+    }
 }

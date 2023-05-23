@@ -21,7 +21,7 @@ class MainNav extends Component
                     'title' => 'question-reponse',
                     'index' => 'question-reponse.index',
                     'create' => 'question-reponse.create',
-                    'confirm' => 'question-reponse.confirmation',
+                    'confirm' => 'question-reponse.validation',
                 ];
                 break;
             case "reponse":
@@ -29,7 +29,7 @@ class MainNav extends Component
                     'title' => 'reponse',
                     'index' => 'reponse.index',
                     'create' => 'reponse.create',
-                    'confirm' => 'question-reponse.confirmation',
+                    'confirm' => 'question-reponse.validation',
                 ];
                 break;
             case "question":
@@ -37,7 +37,7 @@ class MainNav extends Component
                     'title' => 'question',
                     'index' => 'question.index',
                     'create' => 'question.create',
-                    'confirm' => 'question-reponse.confirmation',
+                    'confirm' => 'question-reponse.validation',
                 ];
                 break;
             case "chapitre":
@@ -59,6 +59,7 @@ class MainNav extends Component
                     'title' => 'user',
                     'index' => 'user.index',
                     'create' => 'user.create',
+                    'confirm' => 'user.confirmation',
                 ];
                 break;
             case "quiz-generator":

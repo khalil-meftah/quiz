@@ -50,6 +50,13 @@
 
             
             <td>
+                <form action="{{route('user.validate', $user->id)}}" method ="post">   
+                    @csrf
+                    @method('PATCH')
+                <button type="submit">valider</button>
+                </form>
+            </td>
+            <td>
                 <form action="{{route('user.edit', $user->id)}}" >
                     @csrf
                     @method('PATCH')

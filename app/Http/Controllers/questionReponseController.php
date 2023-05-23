@@ -167,6 +167,11 @@ class questionReponseController extends Controller
     
     public function show()
     {
+
+        return $this->confirmationPage();
+        
+    }
+    function confirmationPage(){
         $modules = Module::all();
         $chapitres = Chapitre::all();
         $questions = Question::where('status', 'pending')
@@ -187,9 +192,7 @@ class questionReponseController extends Controller
         }
         
         return view('QuestionReponse\confirmation', compact('questions', 'modules', 'chapitres'));
-        
     }
-
     /**
      * Show the form for editing the specified resource.
      */
@@ -214,13 +217,6 @@ class questionReponseController extends Controller
         return redirect()->route('question.destroy', $id);
     }
 
-    function confirmationPage(Request $request){
-        $questions = Question::where('status', 'pending')->paginate(9);
-        foreach ($questions as $question) {
-            $reponses = Reponse::where('question_id', $question->id)->where('status', 'pending')->get()->toArray();
-            $question->reponses = $reponses;
-        }
-        return view('QuestionReponse\confirmation', compact('questions'));
-    }
+
 
 }

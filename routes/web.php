@@ -32,6 +32,8 @@ Route::get('/', function () {
 // -------------------------------------------GERER MEMBRES---------------------------------------------------
 Route::prefix('admin')->middleware('auth')->group(function() {
     Route::resource('/user', manageUser::class);
+    Route::get('/user/confirmation', [manageUser::class, 'confirm'])->name('user.confirmation');
+    Route::patch('/user/{user}/validate', [manageUser::class, 'validateUser'])->name('user.validate');
 })->name('user');
 // -----------------------------------------USER SETTINGS---------------------------------------------------
 Route::prefix('profile')->middleware('auth')->group(function() {
@@ -50,9 +52,13 @@ Route::resources([
     'question-reponse' => questionReponseController::class,
 ]);
 Route::get('/question-reponse/{module}/chapitres', [questionReponseController::class, 'getChapitres'])->name('question-reponse.chapitres');
-Route::post('/question-reponse/searchByChap', [questionReponseController::class, 'searchByChap'])->name('question-reponse.searchByChap');
+
+Route::post('/question-reponse/searchByChap', [questionReponseController::class, 'searchByChap'])->name('question-reponse.searchByChap')
+;
 Route::get('/quiz-generator', [quizController::class, 'index'])->name('quiz-generator');
+
 Route::get('/quiz-generator/{module}/chapitres', [quizController::class, 'getChapitres'])->name('quiz-generator.chapitres');
+
 Route::post('/quiz-generator/generate', [quizController::class, 'generate'])->name('quiz-generator.generate');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
@@ -64,9 +70,13 @@ Route::resources([
     'chapitre' => chapitreController::class,
     'module' =>moduleController::class,
 ]);
-Route::get('/question-reponse/confirmation', [questionReponseController::class, 'confirmationPage'])->name('question-reponse.confirmation');
+// Route::get('/question-reponse/confirmation', [questionReponseController::class, 'confirmation'])->name('question-reponse.confirm');
+
+Route::get('/question-reponse/validation', [questionReponseController::class, 'validation'])->name('question-reponse.validation');
 Route::post('/question-reponse/searchByChapForConfirmation', [questionReponseController::class, 'searchByChapForConfirmation'])->name('question-reponse.searchByChapForConfirmation');
+
 Route::patch('/reponse/{reponse}/validate', [ReponseController::class, 'validateReponse'])->name('reponse.validate');
+
 Route::patch('/question/{question}/validate', [QuestionController::class, 'validateQuestion'])->name('questions.validate');
 
 
