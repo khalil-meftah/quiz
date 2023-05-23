@@ -12,7 +12,13 @@ use PDF;
 use Illuminate\Http\Request;
 
 class quizController extends Controller
-{
+{   
+    public function __construct(Request  $request)
+    {
+        $this->middleware('auth');
+        $this->middleware('Activite');
+        
+    }
     public function index()
     {
         $modules = Module::all();

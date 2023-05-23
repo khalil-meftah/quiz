@@ -5,7 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\module;
 class moduleController extends Controller
-{
+{   
+    public function __construct(Request  $request)
+    {
+        $this->middleware('auth');
+        $this->middleware('Activite');
+        
+    }
     public function index()
     {
         $modules = Module::paginate(10);

@@ -10,9 +10,13 @@ use App\Models\Module;
 
 class questionReponseController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
+    public function __construct(Request  $request)
+    {
+        $this->middleware('auth');
+        $this->middleware('Activite');
+        
+    }
     public function index()
     {
         $modules = Module::all();
