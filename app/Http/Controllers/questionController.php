@@ -101,6 +101,6 @@ class questionController extends Controller
         // $question->save();
             // return $request;
     
-        return redirect()->route('question-reponse.confirmation');
+        return redirect()->route('question-reponse.validation');
     }
 }

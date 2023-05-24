@@ -98,6 +98,6 @@ class reponseController extends Controller
         // $reponse->validated_by = Auth::user()->id;
         $reponse->save();
     
-        return redirect()->route('question-reponse.confirmation');
+        return redirect()->route('question-reponse.validation');
     }
 }

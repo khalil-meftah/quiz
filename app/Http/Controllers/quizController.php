@@ -46,7 +46,7 @@ class quizController extends Controller
         
         // return quizController::index()->with('questions', $questions);
         // return $questions;
-
+        $data = $request;
         $module = $request->input('module');
         $chapitre = $request->input('chapitre');
         
@@ -80,11 +80,11 @@ class quizController extends Controller
         
         if (!empty($chapitre)) {
             $chapitre = Chapitre::findOrFail($chapitre);
-            $chapitreTitle = $chapitre->title;
-            $moduleTitle = $chapitre->module->title;
+            $chapitreTitle = $chapitre->nomChapitre;
+            $moduleTitle = $chapitre->module->nomModule;
         } elseif (!empty($module)) {
             $module = Module::findOrFail($module);
-            $moduleTitle = $module->title;
+            $moduleTitle = $module->nomModule;
         }
         
         $fileName = '';
@@ -97,9 +97,11 @@ class quizController extends Controller
             $fileName = 'quiz.pdf';
         }
         
-        $pdf = PDF::loadView('GenerateQuiz\quizPdf', compact('questions'));
+        $pdf = PDF::loadView('GenerateQuiz\quizPdf', compact('questions', 'data'));
         // return $pdf->download($fileName);
         return $pdf->stream($fileName);
+        // return $data;
+        // return view('GenerateQuiz\quizPdf', compact('questions', 'data'));
 
 
 

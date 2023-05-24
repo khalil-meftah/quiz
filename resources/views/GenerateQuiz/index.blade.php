@@ -27,21 +27,71 @@
 <form action="/quiz-generator/generate" method="POST">
     @csrf
 
-    <label for="module">Select a Module:</label>
+    <label for="module">Sélectionner le Module : </label>
     <select name="module" id="module">
-        <option value="">--Select a Module--</option>
+        <option value="">--Sélectionner le Module--</option>
         @foreach($modules as $module)
             <option value="{{ $module->id }}">{{ $module->nomModule }}</option>
         @endforeach
     </select>
     <br>
-    <label for="chapitre">Select a chapitre:</label>
+    <label for="chapitre">Sélectionner le chapitre : </label>
     <select name="chapitre" id="chapitre" disabled>
-        <option value="">--Select a chapitre--</option>
+        <option value="">--Sélectionner le chapitre--</option>
     </select>
-
     <br>
-    <button type="submit" target="_blank">Generate Quiz</button>
+    <label for="type">Type : </label>
+    <select name="type" id="type" onchange="toggleNControle()">
+        <option value="">--Sélectionner le type--</option>
+        <option value="Examen de fin de module">Examen de fin de module</option>
+        <option value="Contrôle">Contrôle</option>
+    </select>
+    <br>
+    <div id="nControleFields">
+    <label for="nControle">N° du Contrôle : </label>
+    <input type="number" name="nControle" id="nControle">
+    </div>
+    <label for="titreDanne">Titre de L'année : </label>
+    <input type="number" name="titreDanne1" min="1900" max="2099" id="titreDanne">
+    <input type="number" name="titreDanne2" min="1900" max="2099" id="titreDanne">
+    <br>
+    <label for="filiere">Filière : </label>
+    <input type="text" name="filiere" id="filiere">
+    <br>
+    <label for="niveau">Niveau</label>
+    <select name="niveau" id="niveau">
+      <option value="">--Sélectionner le niveau--</option>
+      <option value="TS">TS</option>
+      <option value="T">T</option>
+      <option value="Q">Q</option>
+      <option value="S">S</option>
+    </select>
+    <br>
+    <label for="numModule">Numéro de module : </label>
+    <input type="text" name="numModule" id="numModule">
+    <br>
+    <label for="intituleModule">Intitulé du module : </label>
+    <input type="text" name="intituleModule" id="intituleModule">
+    <br>
+    <label for="dateEvaluation">Date d'évaluation : </label>
+    <input type="date" name="dateEvaluation" id="dateEvaluation">
+    <br>
+    <label for="anneDeFormation">Année de formation : </label>
+    <input type="number" name="anneDeFormation" id="anneDeFormation">
+    <br>
+    <!-- <label for="epreuve">epreuve</label>
+    <input type="text" name="epreuve" id="epreuve">
+    <br> -->
+    <label for="duree">Durée : </label>
+    <input type="number" name="duree" id="duree" step="1">
+    <br>
+    <label for="variante">Variante : </label>
+    <input type="number" name="variante" id="variante">
+    <br>
+    <label for="bareme">Bareme : </label>
+    <input type="number" name="bareme" id="bareme">
+    <br>
+    <button type="submit">Générer un questionnaire</button>
 </form>
 
 @isset( $questions )
@@ -101,6 +151,17 @@
       }
   });
 
+  let nControleFields = document.getElementById("nControleFields");
+  nControleFields.style.display = "none";
+  function toggleNControle() {
+    let typeSelect = document.getElementById("type");
+
+    if (typeSelect.value === "Contrôle") {
+        nControleFields.style.display = "block";
+    } else {
+        nControleFields.style.display = "none";
+    }
+}
   </script>
 
 
