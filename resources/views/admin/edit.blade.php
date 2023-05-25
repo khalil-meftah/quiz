@@ -33,10 +33,10 @@
       
             <label for="role">Role</label>
             <select id="role" name="role">
-    <option value="professeur" {{$user->role == 'professeur' ? 'selected' : ''}}>Professeur</option>
-    <option value="mainteneur" {{$user->role == 'mainteneur' ? 'selected' : ''}}>Mainteneur</option>
-    <option value="administrateur" {{$user->role == 'administrateur' ? 'selected' : ''}}>Administrateur</option>
-</select>
+                <option value="professeur" {{$user->role == 'professeur' ? 'selected' : ''}}>Professeur</option>
+                <option value="mainteneur" {{$user->role == 'mainteneur' ? 'selected' : ''}}>Mainteneur</option>
+                <option value="administrateur" {{$user->role == 'administrateur' ? 'selected' : ''}}>Administrateur</option>
+            </select>
 <br>
            
             <label for="email">Email</label>
@@ -44,8 +44,15 @@
     
             <input type="hidden" name="status" id="status" value="0">
             <label for="status">Status:</label>
-            <button type="button" onclick="updateStatus(1)">Actif</button>
-            <button type="button" onclick="updateStatus(0)">Inactif</button><br>      
+            <!-- <button type="button" onclick="updateStatus(1)">Actif</button>
+            <button type="button" onclick="updateStatus(0)">Inactif</button> -->
+            <input type="radio" name="status" id="status" value="0" {{$user->status == 0 ? 'checked' : null}}>
+            <label for="status">Inactif</label>
+            <input type="radio" name="status" id="status" value="1" {{$user->status == 1 ? 'checked' : null}}>
+            <label for="status">Actif</label>
+
+
+            <br>      
             
             <label for="password">Mot de passe</label>
             <input type="password" name="password" id="password" value="{{$user->password}}"><br>

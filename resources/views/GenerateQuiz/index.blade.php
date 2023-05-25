@@ -13,6 +13,8 @@
 
 
     <title>Dashboard</title>
+    @viteReactRefresh
+    @vite('resources/js/app.js')
 </head>
 <body>
 @php

@@ -9,6 +9,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/dashboard.css') }}" >
     <link rel="stylesheet" type="text/css" href="{{ asset('css/table.css') }}" >
     <title>ajouterQuestion</title>
+    @viteReactRefresh
+    @vite('resources/js/app.js')
 </head>
 <body>
 @php
@@ -17,7 +19,7 @@
     <x-side-nav />
     <x-main-nav :title="'question'" :user-role="$userRole"/>
 
-    <div class="container p-3 main-content">
+    <div class="main-content">
     <h1 class="h1 mb-4">Question</h1>
         <form action="{{ route('question.update', $question->id) }}" method="post">
             @csrf

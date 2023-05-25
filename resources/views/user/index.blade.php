@@ -9,6 +9,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/table.css') }}" >
 
     <title>liste utilisateurs</title>
+    @viteReactRefresh
+    @vite('resources/js/app.js')
 </head>
 <body>
     

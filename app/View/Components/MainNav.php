@@ -28,7 +28,7 @@ class MainNav extends Component
                 $this->r = (object) [
                     'title' => 'reponse',
                     'index' => 'reponse.index',
-                    'create' => 'reponse.create',
+                    'create' => 'question.create',
                     'confirm' => 'question-reponse.validation',
                 ];
                 break;

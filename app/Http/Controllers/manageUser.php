@@ -15,7 +15,7 @@ class manageUser extends Controller
     
     public function index()
     {
-         $user = User::all();
+        $user = User::all();
         return view('admin/index', compact('user'));
     }
     
