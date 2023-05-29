@@ -26,10 +26,10 @@ class reponseController extends Controller
     {
         $question_id = $request->query('question_id');
         // Retrieve the question using the question ID
-        $question = Question::find($question_id);
+        // $question = Question::find($question_id);
     
         // Pass the question to the create view
-        return view('reponse.create', compact('question'));
+        return view('reponse.create', compact('question_id'));
         // return $request;
     }
 
@@ -62,8 +62,8 @@ class reponseController extends Controller
     public function edit(Request $request, string $id)
     {
         $reponse = Reponse::find($id);
-        $question = Question::find($request->question_id);
-        return view('Reponse\edit',compact('reponse', 'question'));
+        $questions = Question::all();
+        return view('Reponse\edit',compact('reponse', 'questions'));
     }
 
     /**

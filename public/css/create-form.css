@@ -1,0 +1,99 @@
+.create{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2em;
+
+    background-color: white;
+    padding: 2em 3em;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+}
+.create h1{
+    font-size: 1.5em;
+    font-weight: 600;
+    color: var(--main);
+}
+.create form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap : 1em;
+    margin-top: 2em;
+    width: 100%;
+}
+.create form textarea,.create form select,.create form input{
+    width: 100%;
+    padding: 0.5em;
+    border: 1px solid var(--tertiary);
+    border-radius: 5px;
+    font-size: 1em;
+    font-weight: 500;
+    color: var(--main);
+    outline: none;
+}
+.create form .submit-reset{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+}
+.create form .submit-reset button{
+    width: 100%;
+    padding: 0.5em;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    font-weight: 500;
+    color: var(--main);
+    outline: none;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+.create form .submit-reset button img{
+    width: 1.3em;
+    height: 1.3em;
+    filter: var(--icon-main);
+}
+.create form .submit-reset button:hover img{
+    filter: var(--icon-white);
+}
+.create form .submit-reset button:nth-child(1):hover{
+    cursor: pointer;
+    background-color: var(--green);
+    color: white;
+}
+.create form .submit-reset button:nth-child(2):hover{
+    cursor: pointer;
+    background-color: var(--red);
+    color: white;
+}
+.create form textarea{
+    resize: vertical;
+}
+
+.label{
+    align-self: flex-start;
+    font-weight: 600;
+    font-size: 1.2em;
+}
+
+/* specific to reponse */
+.valeur-reponse{
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+    width: 100%;
+
+    margin-bottom: .5em;
+}
+.valeur-reponse div{
+    display: flex;
+    gap: 5px;
+}

@@ -1,0 +1,52 @@
+@import url('assets.css');
+body {
+    display: block;
+    height: 120vh;
+}
+
+.logo {
+    width: 100%;
+    margin: auto;
+}
+.form {
+    margin: auto;
+}
+.name {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+#name, #prenom{
+    /* width: 10.73em; */
+    display: inline;
+  }
+  #name{
+    margin-right: 1%;
+  }
+  #role{
+    padding: 1em 0.7em;
+  }
+
+.link{
+    margin: 1em;
+}
+.link span{
+    font-size: 1em; 
+    font-weight: 400;
+    color: var(--main);
+    display: inline;
+}
+.link a{
+    font-weight: 600;
+}
+.link a:hover{
+    color: #0bb3d1;
+}
+.link a:active{
+    color: var(--senary);
+}
+/* .link a:visited{
+    color: var(--septenary);
+} */
+

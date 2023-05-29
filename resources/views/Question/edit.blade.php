@@ -8,37 +8,55 @@
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/dashboard.css') }}" >
     <link rel="stylesheet" type="text/css" href="{{ asset('css/table.css') }}" >
-    <title>ajouterQuestion</title>
-    @viteReactRefresh
-    @vite('resources/js/app.js')
+    <link rel="icon" href="{{asset('logo\quiz.svg')}}" type="image/png" sizes="16x16">
+
+    <title>Modifier question</title>
+    <!-- @viteReactRefresh
+    @vite('resources/js/app.js') -->
 </head>
 <body>
 @php
     $userRole = auth()->user()->role;
 @endphp
     <x-side-nav />
+    <div id="fake"></div>
+    <main class="main">  
     <x-main-nav :title="'question'" :user-role="$userRole"/>
 
-    <div class="main-content">
-    <h1 class="h1 mb-4">Question</h1>
-        <form action="{{ route('question.update', $question->id) }}" method="post">
+    <div class="main-content create">
+    <h1 class="h1 mb-4">Modifier votre question</h1>
+        <form action="{{ route('question.update', $question->id) }}" method="post" class="create-form"> 
             @csrf
             @method('PUT')
-            <label for="descriptionQuestion">descriptionQuestion</label>
-            <textarea name="descriptionQuestion">{{ $question->descriptionQuestion }}</textarea><br><br>
-            <br><br>
-            <label for="chapitre_id">chapitre_id</label>
-            <select name="chapitre_id" id="chapitre_id">
-                <option>-- Selectionnerchapitre --</option>
-                @foreach($chapitres as $chapitre)
-                <option value="{{$chapitre->id}}">{{$chapitre->nomChapitre}}</option>
-                @endforeach
-            </select>
-            <br><br>
-            <input type="submit" class="btn btn-success" value="submit">
-            <input type="reset" class="btn btn-danger" value="reset">
+            <textarea name="descriptionQuestion" id="question-input-update" placeholder="Question">{{ $question->descriptionQuestion }}</textarea>
+
+            @isset( $chapitres )
+                <select name="chapitre_id" id="chapitre_id">
+                    <option value="">Sélectionnez le chapitre</option>
+
+                    @foreach($chapitres as $chapitre)
+                        @if($chapitre->id == $question->chapitre_id)
+                            <option value="{{ $chapitre->id }}" selected>{{ $chapitre->nomChapitre }}</option>
+                        @else
+                            <option value="{{ $chapitre->id }}">{{ $chapitre->nomChapitre }}</option>
+                        @endif
+                    @endforeach
+                </select>
+            @endisset
+
+            <div class="submit-reset">
+                <button type="submit" class="btn btn-success" value="submit">
+                    <img src="{{asset('logo\enregistrer.svg')}}" alt="" />
+                    <span>Enregistrer</span>
+                </button>
+                <button type="reset" class="btn btn-danger" value="reset">
+                    <img src="{{asset('logo\annuler.svg')}}" alt="" />
+                    <span>Annuler</span>
+                </button>
+            </div>
         </form>
-        <br><br>
+        
     </div>
+    </main>
 </body>
 </html>

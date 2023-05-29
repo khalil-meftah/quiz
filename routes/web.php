@@ -52,6 +52,7 @@ Route::resources([
     'question-reponse' => questionReponseController::class,
 ]);
 Route::get('/question-reponse/{module}/chapitres', [questionReponseController::class, 'getChapitres'])->name('question-reponse.chapitres');
+Route::get('/question/{module}/chapitres', [questionReponseController::class, 'getChapitres'])->name('question.chapitres');
 
 Route::post('/question-reponse/searchByChap', [questionReponseController::class, 'searchByChap'])->name('question-reponse.searchByChap')
 ;

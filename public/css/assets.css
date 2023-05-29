@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+:root{
+  --main: #373B61;
+  --secondary: #EDEFFE;
+  --secondary-op: #edeffec2;
+  --tertiary: #e0e1ee;
+  --quaternary: #2e3250;
+  --quinary: #0CC0DF;
+  --senary: #0bb3d1;
+  --green: #00b894;
+  --red: #b81c00;
+
+  --font: 'Inter', sans-serif;
+
+  --icon-main: brightness(0) saturate(100%) invert(23%) sepia(21%) saturate(1042%) hue-rotate(195deg) brightness(95%) contrast(94%);
+  --icon-quinary: brightness(0) saturate(100%) invert(60%) sepia(84%) saturate(2824%) hue-rotate(149deg) brightness(103%) contrast(91%);
+  --icon-white: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(101%);
+  --icon-red: brightness(0) saturate(100%) invert(28%) sepia(91%) saturate(7485%) hue-rotate(356deg) brightness(105%) contrast(124%);
+  --icon-green: brightness(0) invert(47%) sepia(75%) saturate(2554%) hue-rotate(138deg) brightness(99%) contrast(101%);;
+
+}

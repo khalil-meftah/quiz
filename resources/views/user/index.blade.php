@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/dashboard.css') }}" >
     <link rel="stylesheet" type="text/css" href="{{ asset('css/table.css') }}" >
+    <link rel="icon" href="{{asset('logo\quiz.svg')}}" type="image/png" sizes="16x16">
 
     <title>liste utilisateurs</title>
     @viteReactRefresh

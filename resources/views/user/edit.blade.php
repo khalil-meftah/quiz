@@ -7,6 +7,8 @@
     <title>ajoutez membre</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/dashboard.css') }}" >
     <link rel="stylesheet" type="text/css" href="{{ asset('css/table.css') }}" > 
+    <link rel="icon" href="logo\quiz.svg" type="image/png" sizes="16x16">
+
     @viteReactRefresh
     @vite('resources/js/app.js')
 </head>

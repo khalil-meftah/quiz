@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/table.css') }}" >
     <link rel="stylesheet" type="text/css" href="{{ asset('css/reponse.css') }}" >
     <link rel="stylesheet" type="text/css" href="{{ asset('css/question-reponse.css') }}" >
+    <link rel="icon" href="logo\quiz.png" type="image/png" sizes="16x16">
 
     <title>home</title>
     @viteReactRefresh

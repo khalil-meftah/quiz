@@ -7,23 +7,24 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/dashboard.css') }}" >
     <link rel="stylesheet" type="text/css" href="{{ asset('css/table.css') }}" >
     <link rel="stylesheet" type="text/css" href="{{ asset('css/reponse.css') }}" >
+    <link rel="icon" href="{{asset('logo\quiz.svg')}}" type="image/png" sizes="16x16">
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
-    <title>Dashboard</title>
-    @viteReactRefresh
-    @vite('resources/js/app.js')
+    <title>Générer un questionnaire</title>
+    <!-- @viteReactRefresh
+    @vite('resources/js/app.js') -->
 </head>
 <body>
 @php
     $userRole = auth()->user()->role;
 @endphp
 <x-side-nav />
+<div id="fake"></div>
+<main class="main">
 <x-main-nav :title="'quiz-generator'" :user-role="$userRole"/>
-
-
 <div class="main-content">
 
 <form action="/quiz-generator/generate" method="POST">
@@ -121,6 +122,8 @@
 @endisset
 
   </div>
+</main>
+
 
 
 

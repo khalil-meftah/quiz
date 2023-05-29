@@ -12,13 +12,19 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+
     <link rel="stylesheet" type="text/css" href="{{ asset('css/custom.css') }}">
+    @if (Route::has('register'))
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/register.css') }}">
+    @endif
+
+    <link rel="icon" href="logo\quiz.svg" type="image/png" sizes="16x16">
 
     <!-- Scripts -->
 </head>
 <body>
 
-        <img src="{{ asset('logo/logobg.png') }}" alt="Logo">
+        <img src="{{ asset('logo/logo.svg') }}" alt="Logo" class="logo">
  
                         {{-- @guest
                             @if (Route::has('login'))

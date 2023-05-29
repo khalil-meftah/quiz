@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Question;
 use App\Models\Chapitre;
+use App\Models\Module;
 use Illuminate\Support\Facades\Auth;
 
 class questionController extends Controller
@@ -26,7 +27,8 @@ class questionController extends Controller
     public function create()
     {
         $chapitres = Chapitre::all();
-        return view('Question\create', compact(('chapitres')));
+        $modules = Module::all();
+        return view('Question\create', compact('chapitres', 'modules'));
     }
 
     /**
@@ -34,9 +36,13 @@ class questionController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'descriptionQuestion' => 'required',
+            'chapitre' => 'required',
+        ]);
         $question = new Question();
         $question->descriptionQuestion = $request->descriptionQuestion;
-        $question->chapitre_id = $request->chapitre_id;
+        $question->chapitre_id = $request->chapitre;
         $question->status = 'pending';
         $question->save();
         return redirect()->route('question-reponse.index');
@@ -58,7 +64,11 @@ class questionController extends Controller
     {
         $question = Question::find($id);
         $chapitres = Chapitre::all();
-        return view('Question\edit',compact('question', 'chapitres'));
+        // $modules = Module::all();
+
+        $oldChapitre = Chapitre::find($question->chapitre_id);
+        // $oldModule = Module::find($oldChapitre->module_id);
+        return view('Question\edit',compact('question', 'chapitres', 'oldChapitre'));
     }
 
     /**

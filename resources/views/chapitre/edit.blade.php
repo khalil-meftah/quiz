@@ -8,14 +8,18 @@
 
     <link rel="stylesheet" type="text/css" href="{{ asset('css/dashboard.css') }}" >
     <link rel="stylesheet" type="text/css" href="{{ asset('css/table.css') }}" >
-    @viteReactRefresh
-    @vite('resources/js/app.js')
+    <link rel="icon" href="{{asset('logo\quiz.svg')}}" type="image/png" sizes="16x16">
+
+    <!-- @viteReactRefresh
+    @vite('resources/js/app.js') -->
 </head>
 <body>
 @php
     $userRole = auth()->user()->role;
 @endphp
     <x-side-nav />
+    <div id="fake"></div>
+    <main class="main"> 
     <x-main-nav :title="'chapitre'" :user-role="$userRole"/>
     <div class="main-content">
 
@@ -60,7 +64,8 @@
                 </li>
             @endforeach
         @endif
+        </div>
     </div>
-
+    </main>
 </body>
 </html>

@@ -7,6 +7,7 @@
     <title>Quiz</title>
     <link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>  
     <link rel="stylesheet" type="text/css" href="{{ asset('css/pending.css') }}" >
+    <link rel="icon" href="logo\quiz.svg" type="image/png" sizes="16x16">
 
   
 

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/dashboard.css') }}" >
     <link rel="stylesheet" type="text/css" href="{{ asset('css/table.css') }}" >
+    <link rel="icon" href="logo\quiz.svg" type="image/png" sizes="16x16">
 
     <title>Dashboard</title>
     @viteReactRefresh
@@ -53,4 +54,4 @@
 </div>
 
 </body>
-</html>
+</html> -->

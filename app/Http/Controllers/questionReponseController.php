@@ -21,7 +21,7 @@ class questionReponseController extends Controller
     {
         $modules = Module::all();
         $chapitres = Chapitre::all();
-        $questions = Question::paginate(9);
+        $questions = Question::paginate(8);
 
         foreach ($questions as $question) {
             $reponses = Reponse::where('question_id', $question->id)->get()->toArray();
@@ -33,7 +33,6 @@ class questionReponseController extends Controller
     }
     public function getChapitres($module_id)
     {
-
         $chapitres = Chapitre::where('module_id', $module_id)->get();
         return response()->json($chapitres);
     }
@@ -48,26 +47,11 @@ class questionReponseController extends Controller
 
     public function searchByChap(Request $request){
 
-        // $modules = Module::all();
-        // $chapitres = Chapitre::all();
-
-        // if($request->chapitre == null){
-        //     $questions = Question::paginate(9);
-        // }else{
-        //     $questions = Question::where('chapitre_id', $request->chapitre)->paginate(9);
-        // }
-
-        // foreach ($questions as $question) {
-        //     $reponses = Reponse::where('question_id', $question->id)->get()->toArray();
-        //     $question->reponses = $reponses;
-        // }
-
-        // return view('QuestionReponse\index', compact('questions', 'modules', 'chapitres'));
 
     $modules = Module::all();
     $chapitres = Chapitre::all();
 
-    $approvalStatus = $request->input('approval_status', 'all'); // Get the selected approval status from the form
+    $approvalStatus = $request->input('approval_status', 'all'); 
 
     $module = $request->input('module');
     $chapitre = $request->input('chapitre');
@@ -96,19 +80,14 @@ class questionReponseController extends Controller
         });
     }    
 
-    $questions = $query->paginate(9);
+    $questions = $query->paginate(8);
 
     foreach ($questions as $question) {
         $reponses = Reponse::where('question_id', $question->id)->get()->toArray();
         $question->reponses = $reponses;
     }
 
-    // if($request->pageName == 'confirmation'){
-    //     return view('QuestionReponse\confirmation', compact('questions', 'modules', 'chapitres'));
-    // }
-    // else{
-        return view('QuestionReponse\index', compact('questions', 'modules', 'chapitres'));
-    // }
+    return view('QuestionReponse\index', compact('questions', 'modules', 'chapitres'));
     
     }
 
@@ -136,7 +115,7 @@ class questionReponseController extends Controller
                 });
         });
 
-        $questions = $query->paginate(9);
+        $questions = $query->paginate(8);
     
         foreach ($questions as $question) {
             $reponses = Reponse::where('question_id', $question->id)->get()->toArray();
@@ -181,7 +160,7 @@ class questionReponseController extends Controller
                         $query->where('status', 'pending');
                     });
             })
-            ->paginate(9);
+            ->paginate(8);
         
         foreach ($questions as $question) {
             $reponses = Reponse::where('question_id', $question->id)

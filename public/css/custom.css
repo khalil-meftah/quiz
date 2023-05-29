@@ -1,147 +1,122 @@
+@import url('assets.css');
+*{
+  margin: 0;
+  padding: 0;
+}
 body, html {
-  background-color: #EDEFFE;
-  margin-top: 0;
-  padding-left: 18.1%;
+  /* background-color: #EDEFFE; */
+  background-color: var(--secondary);
+  font-family: 'Roboto', sans-serif;
 }
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.logo {
+  height: 8em;
+  width: 21em;
+  justify-self: flex-start;
 
-img {
-  height: 6.5rem;
-  width: 21rem;
-  position: static;
-  top: 0px;
-  margin-left:2rem;
 }
-a.nav-link {
-  color: #373B61;
-  font-family: 'Nunito', sans-serif;
-  font-weight: bolder;
-  text-decoration: none;
-}
-
-.btn {
-  width: 100%;
-  height: 50px;
-  border: #373B61 1px solid;
-  border-radius: 25px;
-  font-size: 18px;
-  color: #EDEFFE;
-  font-weight: 700;
-  cursor: pointer;
-  outline: none;
-  background: linear-gradient(120deg, #373B61, #EDEFFE);
-}
-
-.btn:nth-child(2) {
-  right: 210px;
-  top: 580px;
-  text-decoration: none;
-  color: #EDEFFE;
-  font-family: 'Nunito', sans-serif;
-  border: none;
-  background-color: none;
-}
-
-.card-header {
-  color: #373B61;
-  font-size: larger;
-  font-family: 'Nunito';
-  font-weight: bold;
-}
-
-.gradient-bg {
-  text-align: center;
-  width: 400px;
+.form {
+  background-color: white;
+  width: 25em;
+  padding: 2em 3em;
   border-radius: 10px;
 }
-
-form .col-md-6 {
-  position: relative;
-  border-bottom: 1.5px #373B61 inset;
-  margin-top: 30px 0;
+.form span, .form input, .form button, .form select{
+  display: block;
+}
+.form input[type="checkbox"]{
+  display: inline-block;
 }
 
-.col-md-6 input {
-  width: 100%;
-  padding: 05px;
-  height: 40px;
-  font-size: 16px;
-  border: none;
-  background: none;
+.form span{
+  font-size: 1.2em;
+  font-weight: 700;
+  color: var(--main);
+  margin-bottom: 1em;
+}
+.form input{
+  width: 95%;
+  padding: 1em 0.7em;
+  border: 1px solid var(--tertiary);
+  border-radius: 5px;
+  margin-bottom: 1em;
+  font-size: 1em;
+  font-weight: 500;
+  color: var(--main);
   outline: none;
 }
-
-::placeholder {
-  position: relative;
-  color: #373B61;
-  opacity: 0.5;
-  left: 1px;
-  padding-left: 2rem;
-  font-family: 'Nunito', sans-serif;
-  font-weight: medium;
-  font-size: 16px;
-  pointer-events: none;
-}
-.input-wrapper select {
+.form select{
   width: 100%;
-  background-color: #EDEFFE;
-  height: 50px;
+  padding: 0.5em;
+  border: 1px solid var(--tertiary);
+  border-radius: 5px;
+  margin-bottom: 1em;
+  font-size: 1em;
+  font-weight: 500;
+  color: var(--main);
+  outline: none;
+  background-color: var(--secondary);
+}
+.form button, .button a{
+  width: 100%;
+  padding: 1em 0.7em;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 1em;
+  font-size: 1em;
+  font-weight: 700;
+  color: var(--secondary);
+  background-color: var(--main);
+  cursor: pointer;
+  outline: none;
+}
+.form button:hover{
+  background-color: var(--quaternary);
+}
+.form button:active{
+  background-color: var(--quaternary);
+}
+.form input[type="checkbox"]{
+  width: auto;
+  margin-right: 0.5em;
+}
+.form label{
+  font-size: 0.9em;
+  font-weight: 500;
+  color: var(--main);
+}
+.form label a{
+  color: var(--quaternary);
+}
+.form label a:hover{
+  color: var(--main);
 }
 
-.row.mb-0 {
-  margin-top: 2rem;
-  
-}
-.form-group{
+.button{
   display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.col-md-6{
-  margin-left: 2rem;
-}
-span{
-  color: #373B61;
-  font-family: "Nunito";
-}
-.form-select{
-  margin:1rem 0rem 1rem 0rem;
-  
-  }
-.input-wrapper {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 50px;
-    background-color: #EDEFFE;
-  }
-  
-.input-wrapper select {
-    flex: 1;
-    background-color: #EDEFFE;
-    height: 100%;
-    border: none;
-    outline: none;
-    color: #373B61;
-    opacity: 0.5;
-    left: 1px;
-    padding-left: 2rem;
-    font-family: 'Nunito', sans-serif;
-    font-weight: medium;
-    font-size: 16px;
-    /* pointer-events: none; */
-  }
-.reset{
- margin-top: 2rem;
- margin-bottom:2rem ;
-}
-.btn.btn-link{
-  background:none;
-  color: #373B61;
-  border: none;
+
+.button a {
+  margin-top: 1em;
+  text-align: center;
+  width: 50%;
   text-decoration: none;
-  font-family: 'Nunito', sans-serif;
+  background-color: white;
+  color: var(--quinary);
+  border: 1px solid var(--quinary);
+
+  font-weight: 700;
 }
-.form-check{
-  font-weight: 500;
-  font-family: 'Nunito', sans-serif;
-  color: #373B61;
-  margin-top: 1rem;
+.button a:hover{
+  background-color: var(--quinary);
+  color: var(--secondary);
+
 }
+
