@@ -4,155 +4,117 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" type="text/css" href="{{ asset('css/dashboard.css') }}" >
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/table.css') }}" >
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/reponse.css') }}" >
+  
     <link rel="icon" href="{{asset('logo\quiz.svg')}}" type="image/png" sizes="16x16">
 
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-
     <title>Générer un questionnaire</title>
-    <!-- @viteReactRefresh
-    @vite('resources/js/app.js') -->
+
 </head>
 <body>
+<x-loader/>
 @php
     $userRole = auth()->user()->role;
 @endphp
 <x-side-nav />
 <div id="fake"></div>
 <main class="main">
-<x-main-nav :title="'quiz-generator'" :user-role="$userRole"/>
-<div class="main-content">
+<!-- <x-main-nav :title="'quiz-generator'" :user-role="$userRole"/> -->
+<div class="main-content create">
+<div id="quiz-generator-div"></div>
 
-<form action="/quiz-generator/generate" method="POST">
-    @csrf
+  <h1 class="h1 mb-4">Générer un questionnaire</h1>
+  <form action="{{ route('quiz-generator.generate') }}" method="POST">
+      @csrf
+      <div id="generate-quiz"></div>
+      <select name="module" id="mod">
+          <option value="">Sélectionner le Module</option>
+          @foreach($modules as $module)
+              <option value="{{ $module->id }}">{{ $module->nomModule }}</option>
+          @endforeach
+      </select>
 
-    <label for="module">Sélectionner le Module : </label>
-    <select name="module" id="module">
-        <option value="">--Sélectionner le Module--</option>
-        @foreach($modules as $module)
-            <option value="{{ $module->id }}">{{ $module->nomModule }}</option>
-        @endforeach
-    </select>
-    <br>
-    <label for="chapitre">Sélectionner le chapitre : </label>
-    <select name="chapitre" id="chapitre" disabled>
-        <option value="">--Sélectionner le chapitre--</option>
-    </select>
-    <br>
-    <label for="type">Type : </label>
-    <select name="type" id="type" onchange="toggleNControle()">
-        <option value="">--Sélectionner le type--</option>
-        <option value="Examen de fin de module">Examen de fin de module</option>
-        <option value="Contrôle">Contrôle</option>
-    </select>
-    <br>
-    <div id="nControleFields">
-    <label for="nControle">N° du Contrôle : </label>
-    <input type="number" name="nControle" id="nControle">
-    </div>
-    <label for="titreDanne">Titre de L'année : </label>
-    <input type="number" name="titreDanne1" min="1900" max="2099" id="titreDanne">
-    <input type="number" name="titreDanne2" min="1900" max="2099" id="titreDanne">
-    <br>
-    <label for="filiere">Filière : </label>
-    <input type="text" name="filiere" id="filiere">
-    <br>
-    <label for="niveau">Niveau</label>
-    <select name="niveau" id="niveau">
-      <option value="">--Sélectionner le niveau--</option>
-      <option value="TS">TS</option>
-      <option value="T">T</option>
-      <option value="Q">Q</option>
-      <option value="S">S</option>
-    </select>
-    <br>
-    <label for="numModule">Numéro de module : </label>
-    <input type="text" name="numModule" id="numModule">
-    <br>
-    <label for="intituleModule">Intitulé du module : </label>
-    <input type="text" name="intituleModule" id="intituleModule">
-    <br>
-    <label for="dateEvaluation">Date d'évaluation : </label>
-    <input type="date" name="dateEvaluation" id="dateEvaluation">
-    <br>
-    <label for="anneDeFormation">Année de formation : </label>
-    <input type="number" name="anneDeFormation" id="anneDeFormation">
-    <br>
-    <!-- <label for="epreuve">epreuve</label>
-    <input type="text" name="epreuve" id="epreuve">
-    <br> -->
-    <label for="duree">Durée : </label>
-    <input type="number" name="duree" id="duree" step="1">
-    <br>
-    <label for="variante">Variante : </label>
-    <input type="number" name="variante" id="variante">
-    <br>
-    <label for="bareme">Bareme : </label>
-    <input type="number" name="bareme" id="bareme">
-    <br>
-    <button type="submit">Générer un questionnaire</button>
-</form>
+      <select name="chapitre" id="chap" disabled>
+          <option value="">Sélectionner le chapitre</option>
+      </select>
 
-@isset( $questions )
-<div class="selection-section">
-  @foreach( $questions as $question)
-    <h3> Quzstion: {{ $question->descriptionQuestion }}</h3>
-      <table class="main-table">
-        <tr>
-          <th>descriptionReponse</th>
-          <th>valeurReponse</th>
-        </tr>
-        @foreach( $question->reponses as $reponse )
-          <tr>
-            <td>{{ $reponse['descriptionReponse'] }}</td>
-            @if($reponse['valeurReponse'] == "1")
-            <td class="green">Vrai</td>
-            @elseif($reponse['valeurReponse'] == "0")
-            <td class="red">Faux</td>
-            @endif
-          </tr>
-        @endforeach
-      </table>
-    @endforeach
+      <select name="type" id="type" onchange="toggleNControle()">
+          <option value="">Sélectionner le type</option>
+          <option value="Examen de fin de module">Examen de fin de module</option>
+          <option value="Contrôle">Contrôle</option>
+      </select>
+
+      <div id="nControleFields">
+      <input type="number" name="nControle" id="nControle" placeholder="N° du Contrôle">
+      </div>
+      <label for="titreDanne" class="label">Titre de L'année</label>
+      <div class="double-input">
+          <input type="number" name="titreDanne1" min="1900" max="2099" id="titreDanne" placeholder="Année 1">
+          <input type="number" name="titreDanne2" min="1900" max="2099" id="titreDanne" placeholder="Année 2">
+      </div>
+
+      <input type="text" name="filiere" id="filiere" placeholder="Filière">
+
+      <select name="niveau" id="niveau">
+        <option value="">Sélectionner le niveau</option>
+        <option value="TS">TS</option>
+        <option value="T">T</option>
+        <option value="Q">Q</option>
+        <option value="S">S</option>
+      </select>
+
+      <input type="text" name="numModule" id="numModule" placeholder="Numéro de module">
+
+      <input type="text" name="intituleModule" id="intituleModule" placeholder="Intitulé du module">
+      
+      <label for="dateEvaluation" class="label">Date d'évaluation</label>
+      <input type="date" name="dateEvaluation" id="dateEvaluation" placeholder="Date d'évaluation">
+
+      <input type="number" name="anneDeFormation" id="anneDeFormation" placeholder="Année de formation">
+
+      <input type="number" name="duree" id="duree" step="1" placeholder="Durée">
+
+      <input type="number" name="variante" id="variante" placeholder="Variante">
+
+      <input type="number" name="bareme" id="bareme" placeholder="Barème">
+
+      <button type="submit" class="standard-btn generate-btn">
+        <img src="{{asset('logo\generateQuiz.svg')}}" alt="quiz" class="btn-icon">
+        <span>Générer un questionnaire</span>
+      </button>
+  </form>
+
 </div>
-@endisset
-
-  </div>
 </main>
 
-
-
-
-
   <script>
-  var moduleSelect = document.getElementById('module');
-  var chapitreSelect = document.getElementById('chapitre');
 
-  moduleSelect.addEventListener('change', function() {
-      let module = this.value;
-      if (module) {
+  let modSelect = document.getElementById('mod');
+  let chapSelect = document.getElementById('chap');
+
+  modSelect.addEventListener('change', function() {
+      let mod = this.value;
+      if (mod) {
           let xhr = new XMLHttpRequest();
           xhr.onreadystatechange = function() {
               if (xhr.readyState === 4 && xhr.status === 200) {
-                  document.getElementById("chapitre").disabled = false;
-                  let chapitres = JSON.parse(xhr.responseText);
-                  chapitreSelect.innerHTML = '<option value="">--Select a chapitre--</option>';
-                  chapitres.forEach(function(chapitre) {
+                  document.getElementById("chap").disabled = false;
+                  let chap = JSON.parse(xhr.responseText);
+                  chapSelect.innerHTML = '<option value="">Sélectionner le chapitre</option>';
+                  chap.forEach(function(chapitre) {
                       let option = document.createElement('option');
                       option.value = chapitre.id;
                       option.text = chapitre.nomChapitre;
-                      chapitreSelect.add(option);
+                      chapSelect.add(option);
                   });
               }
           };
-          xhr.open('GET', '/quiz-generator/' + module + '/chapitres', true);
+          xhr.open('GET', '/quiz-generator/' + mod + '/chapitres', true);
           xhr.send();
       } else {
-          chapitreSelect.innerHTML = '';
+          chapSelect.innerHTML = '<option value="">Sélectionner le chapitre</option>';
+          chapSelect.disabled = true;
       }
   });
 
@@ -169,6 +131,6 @@
 }
   </script>
 
-
+<x-links/>
 </body>
 </html>

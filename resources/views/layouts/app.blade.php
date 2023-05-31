@@ -7,11 +7,11 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'QUIZ') }}</title>
+    <title>{{ config('app.name', 'Quiz') }}</title>
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <!-- <link rel="dns-prefetch" href="//fonts.gstatic.com"> -->
+    <!-- <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet"> -->
 
     <link rel="stylesheet" type="text/css" href="{{ asset('css/custom.css') }}">
     @if (Route::has('register'))
@@ -24,8 +24,9 @@
 </head>
 <body>
 
-        <img src="{{ asset('logo/logo.svg') }}" alt="Logo" class="logo">
- 
+        <a href="{{ url('/') }}">
+            <img src="{{ asset('logo/logo.svg') }}" alt="Logo" class="logo">
+        </a> 
                         {{-- @guest
                             @if (Route::has('login'))
                                

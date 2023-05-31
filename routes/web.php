@@ -24,7 +24,9 @@ use Illuminate\Support\Facades\Auth;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+Route::fallback(function () {
+    return view('404');
+});
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/', function () {
     return view('welcome');
@@ -38,6 +40,9 @@ Route::prefix('admin')->middleware('auth')->group(function() {
 // -----------------------------------------USER SETTINGS---------------------------------------------------
 Route::prefix('profile')->middleware('auth')->group(function() {
     Route::get('/membre', [userController::class, 'index'])->name('profile.index');
+
+    Route::put('/membre/{user}', [ProfileController::class, 'update'])->name('membre.update');
+
 });
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -74,6 +79,7 @@ Route::resources([
 // Route::get('/question-reponse/confirmation', [questionReponseController::class, 'confirmation'])->name('question-reponse.confirm');
 
 Route::get('/question-reponse/validation', [questionReponseController::class, 'validation'])->name('question-reponse.validation');
+Route::post('/question-reponse/validateAll', [QuestionReponseController::class, 'validateAll'])->name('question-reponse.validateAll');
 Route::post('/question-reponse/searchByChapForConfirmation', [questionReponseController::class, 'searchByChapForConfirmation'])->name('question-reponse.searchByChapForConfirmation');
 
 Route::patch('/reponse/{reponse}/validate', [ReponseController::class, 'validateReponse'])->name('reponse.validate');

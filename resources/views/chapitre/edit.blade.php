@@ -4,58 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>page de modification</title>
-
+    
     <link rel="stylesheet" type="text/css" href="{{ asset('css/dashboard.css') }}" >
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/table.css') }}" >
+
     <link rel="icon" href="{{asset('logo\quiz.svg')}}" type="image/png" sizes="16x16">
 
-    <!-- @viteReactRefresh
-    @vite('resources/js/app.js') -->
+    <title>Ajouter un chapitre</title>
 </head>
 <body>
-@php
-    $userRole = auth()->user()->role;
-@endphp
+    <x-loader/>
+    @php
+        $userRole = auth()->user()->role;
+    @endphp
     <x-side-nav />
     <div id="fake"></div>
-    <main class="main"> 
+    <main class="main">
     <x-main-nav :title="'chapitre'" :user-role="$userRole"/>
-    <div class="main-content">
+    <div class="main-content create">
+    <div id="chapitre-div"></div>
 
-        <form  method="POST" action="{{route('chapitre.update',$chapitre->id)}}">
+        <h1 class="h1 mb-4">Modifier chapitre</h1>
+        <form  method="post" action="{{route('chapitre.update', $chapitre->id)}}"  class="create-form create-question-form">
             @csrf
-            @method('patch')
-            <label for="nomChapitre">nom du Chapitre</label>
-            <input type="text" name="nomChapitre" id="nomChapitre" value='{{$chapitre->nomChapitre}}'><br>
+            @method('PUT')
+            <input type="text" name="nomChapitre" id="nomChapitre" placeholder="Nom" value='{{$chapitre->nomChapitre}}'>
 
-            <label for="descriptionChapitre">description Chapitre</label>
-            <input type="text" name="descriptionChapitre"  value ="{{$chapitre->descriptionChapitre}}" id="descriptionChapitre"><br>
+            <input type="text" name="descriptionChapitre" id="descriptionChapitre" placeholder="Description" value ="{{$chapitre->descriptionChapitre}}">
 
-            <label for="nbh">nombre Heures Chapitre</label>
-            <input type="integer" name="nombreHeuresChapitre"  value ="{{$chapitre->nombreHeuresChapitre}}" id="nombreHeuresChapitre"><br>
+            <input type="integer" name="nombreHeuresChapitre" id="nombreHeuresChapitre" placeholder="Nombre d'heures"  value ="{{$chapitre->nombreHeuresChapitre}}" >
 
-            <label for="dateCreationChapitre">date Creation Chapitre</label>
-            <input type="date" name="dateCreationChapitre"  value ="{{$chapitre->dateCreationChapitre}}" id="dateCreationChapitre"><br>
+            <label for="dateCreationChapitre" class="label">Date de création</label>
+            <input type="date" name="dateCreationChapitre" id="dateCreationChapitre" placeholder="Date de création" value ="{{$chapitre->dateCreationChapitre}}">
 
-            <label for="dateDebutChapitre">date Debut Chapitre</label>
-            <input type="date" name="dateDebutChapitre" value ="{{$chapitre->dateDebutChapitre}}" id="dateDebutChapitre"><br>
-            
-            <label for="module_id">Module ID</label>
+            <label for="dateDebutChapitre" class="label">Date de début</label>
+            <input type="date" name="dateDebutChapitre"id="dateDebutChapitre" placeholder="Date de début" value ="{{$chapitre->dateDebutChapitre}}">
+
+            <label for="module_id" class="label">Module</label>
             <select name="module_id" id="module_id">
-                <option>-- Selectionner Module --</option>
+                <option>Séléctionner le module</option>
                 @foreach($modules as $module)
-                <option value="{{$module->id}}">{{$module->nomModule}}</option>
+                    <option value="{{$module->id}}" @if($module->id == $chapitre->module_id) selected @endif>{{$module->nomModule}}</option>
                 @endforeach
-            </select><br>
+            </select>
 
-            <button type="submit">enregistrer modifications</button>
-            <button type="reset">annuler</button>
-
+            <div class="submit-reset">
+                <button type="submit" value="submit">
+                    <img src="{{asset('logo\enregistrer.svg')}}" alt="" />
+                    <span>Enregistrer</span>
+                </button>
+                <button type="reset" value="reset">
+                    <img src="{{asset('logo\annuler.svg')}}" alt="" />
+                    <span>Annuler</span>
+                </button>
+            </div>
         </form>
 
         @if ($errors->any() )
-        <div >
+        <div class="errors">
             @foreach(
                 $errors->all() as $error
                 )
@@ -63,9 +68,11 @@
                     {{$error}}
                 </li>
             @endforeach
-        @endif
         </div>
+            
+        @endif
     </div>
     </main>
+    <x-links/>
 </body>
 </html>

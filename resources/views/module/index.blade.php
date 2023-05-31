@@ -6,16 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/dashboard.css') }}" >
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/table.css') }}" >
+
     <link rel="icon" href="{{asset('logo\quiz.svg')}}" type="image/png" sizes="16x16">
 
-
-
     <title>Modules</title>
-    <!-- @viteReactRefresh
-    @vite('resources/js/app.js') -->
+    
 </head>
 <body>
+<x-loader/>
 @php
     $userRole = auth()->user()->role;
 @endphp
@@ -23,50 +21,72 @@
 <div id="fake"></div>
 <main class="main"> 
 <x-main-nav :title="'module'" :user-role="$userRole" />
- 
   <div class="main-content">
+  <div id="module-div"></div>
 
-  <table class="main-table">
-
-    <tr>
-        <th>nom du module</th>
-        <th>description du module</th>
-        <th>nombre d'heures du module</th>
-        <th>date de début du module </th>
-        <th>date de céation du module</th>
-    </tr>
-
-    @foreach ($modules as $module)
-    <tr>
-        <td> {{$module->nomModule}}</td>
-        <td> {{$module->descriptionModule}}</td>
-        <td> {{$module->nombreHeuresModule}}</td>
-        <td> {{$module->dateDebutModule}}</td>
-        <td> {{$module->dateCreationModule}}</td>
-        <td> 
-            <form action="{{route('module.edit', $module->id)}}">
+  @isset( $modules )
+    <div class="selection-section">
+      <div class="selection-header">
+        <h1>Modules</h1>
+        <div>
+        <button id="visibility-btn" class="visibility-btn standard-btn" value="on">
+          <img src="{{asset('logo\show.svg')}}" alt="" id="show-eye"/>
+          <img src="{{asset('logo\hide.svg')}}" alt="" id="hide-eye"/>
+          <span id="visibility-btn-span">Afficher tous</span>
+        </button>
+        <a id="add-module-btn" class="add-module-btn standard-btn" href="{{ route('module.create') }}">
+          <img src="{{asset('logo\add.svg')}}" alt="" id="add"/> 
+          <span id="add-module-btn-span">Ajouter un module</span>
+        </a>
+        </div>
+      </div> 
+      @foreach( $modules as $module)
+        <div id="parent" class="module section">
+          <div class="module-content section-content">
+            <img src="{{asset('logo/module.svg')}}" alt="" class="module-icon section-icon"/>
+            <span>{{ $module->nomModule }}</span>
+            <img src="{{asset('logo/expand.svg')}}" alt="" class="down"/>
+          </div>
+          <div class="forms">
+            <form action="{{route('module.edit',$module->id )}}" method="get" >
                 @csrf
-                @method('PUT')
-                <button type="submit">modifier</button>
+                <button class="btn-edit" type="submit"><img src="{{asset('logo/edit.svg')}}"/></button>
             </form>
-        </td>
-
-        <td>
-            <form action="{{route('module.destroy', $module->id)}}" method ="post">   
-                @csrf
+            <form action="{{route('module.destroy',$module->id )}}" method="post" >
+                @csrf    
                 @method('delete')
-                <button type="submit">supprimer</button>
+                <button class="btn-delete" type="submit"><img src="{{asset('logo/delete.svg')}}"/></button>
             </form>
-        </td>  
-    </tr> 
-    @endforeach
-    </table>
+          </div>
+      </div>
+      <div id="child">
+        <div class="module-info section-info">
+            <div>
+                <p>Nom : </p>
+                <p>Description : </p>
+                <p>Nombres d'heures : </p>
+                <p>Date de début : </p>
+                <p>Date de création : </p>
+            </div>
+            <div>
+                <p>{{$module->nomModule}}</p>
+                <p>{{$module->descriptionModule}}</p>
+                <p>{{$module->nombreHeuresModule}}</p>
+                <p>{{$module->dateDebutModule}}</p>
+                <p>{{$module->dateCreationModule}}</p>
+            </div>
 
+        </div>
+      </div>
+        @endforeach
+    </div>
+    @endisset
+  
     <div class="pagination-links">{{ $modules->onEachSide(1)->links() }}</div>
 
   </div>
 </main>
 
-
+<x-links/>
 </body>
 </html>

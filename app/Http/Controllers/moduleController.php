@@ -14,9 +14,8 @@ class moduleController extends Controller
     }
     public function index()
     {
-        $modules = Module::paginate(10);
-        //module is the view module.blade
-        //compact is the auto table that contains the variables of modules
+        $modules = Module::paginate(8);
+
         return view('module/index' , compact('modules'));
     }
 

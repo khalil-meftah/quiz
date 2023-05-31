@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <link rel="stylesheet" type="text/css" href="{{ asset('css/dashboard.css') }}" >
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/table.css') }}" >
+
     <link rel="icon" href="{{asset('logo\quiz.svg')}}" type="image/png" sizes="16x16">
 
-    <title>Modufier module</title>
+    <title>Modifier module</title>
 
-    <!-- @viteReactRefresh
-    @vite('resources/js/app.js') -->
+
 </head>
 <body>
+    <x-loader/>
 @php
     $userRole = auth()->user()->role;
 @endphp
@@ -22,31 +22,36 @@
     <div id="fake"></div>
     <main class="main"> 
     <x-main-nav :title="'module'" :user-role="$userRole"/>
-    <div class="main-content">
-        <form  method="POST" action="{{route('module.update',$mod ->id)}}">
+    <div class="main-content create">
+    <div id="module-div"></div>
+        <h1 class="h1 mb-4">Modifier module</h1>
+        <form  method="POST" action="{{route('module.store', $mod ->id)}}"class="create-form create-module-form">
             @csrf
-            @method('patch')
-        
-        <label for="nomModule">nom du Module</label>
-        <input type="text" name="nomModule" id="nomModule" value="{{$mod->nomModule}}"> <br>
 
-        <label for="descriptionModule">description Module</label>
-        <input type="text" name="descriptionModule"  value ="{{$mod ->descriptionModule}}" id="descriptionModule"><br>
+            <input type="text" name="nomModule" id="nomModule" placeholder="Nom" value="{{$mod->nomModule}}">
 
-        <label for="nbh">nombre Heures Module</label>
-        <input type="integer" name="nombreHeuresModule"  value ="{{$mod ->nombreHeuresModule}}" id="nombreHeuresModule"><br>
+            <input type="text" name="descriptionModule" id="descriptionModule" placeholder="Description" value ="{{$mod->descriptionModule}}">
 
-        <label for="dateCreationModule">date Creation Module</label>
-        <input type="date" name="dateCreationModule"  value ="{{$mod ->dateCreationModule}}" id="dateCreationModule"><br>
+            <input type="integer" name="nombreHeuresModule" id="nombreHeuresModule" placeholder="Nombre d'heures"  value ="{{$mod->nombreHeuresModule}}" value ="{{$mod ->nombreHeuresModule}}">
 
-        <label for="dateDebutModule">date Debut Module</label>
-        <input type="date" name="dateDebutModule" value ="{{$mod ->dateDebutModule}}" id="dateDebutModule"><br>
+            <label for="dateCreationModule" class="label">Date de creation</label>
+            <input type="date" name="dateCreationModule" id="dateCreationModule" value ="{{$mod ->dateCreationModule}}">
 
-        <button type="submit">enregistrer modifications</button>
+            <label for="dateDebutModule" class="label">Date de début</label>
+            <input type="date" name="dateDebutModule" id="dateDebutModule" value ="{{$mod ->dateDebutModule}}">
 
-        <button type="reset">annuler</button>
+            <div class="submit-reset">
+                <button type="submit" value="submit">
+                    <img src="{{asset('logo\enregistrer.svg')}}" alt="" />
+                    <span>Enregistrer</span>
+                </button>
+                <button type="reset" value="reset">
+                    <img src="{{asset('logo\annuler.svg')}}" alt="" />
+                    <span>Annuler</span>
+                </button>
+            </div>
         </form>
-        
+
         @if ($errors->any() )
         <div class="errors">
             @foreach(
@@ -60,5 +65,6 @@
         @endif
     </div>
     </main>
+    <x-links/>
 </body>
 </html>

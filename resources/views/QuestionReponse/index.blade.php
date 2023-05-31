@@ -6,18 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" type="text/css" href="{{ asset('css/dashboard.css') }}" >
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/table.css') }}" >
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/reponse.css') }}" >
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/question-reponse.css') }}" >
+
     <link rel="icon" href="{{asset('logo\quiz.svg')}}" type="image/png" sizes="16x16">
 
+    <title>Questions</title>
 
-    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
-    <title>Question</title>
-    <!-- @viteReactRefresh
-    @vite('resources/js/app.js') -->
 </head>
 <body>
+<x-loader/>
 @php
     $userRole = auth()->user()->role;
 @endphp
@@ -26,6 +22,7 @@
 <main class="main">
   <x-main-nav :title="'question-reponse'" :user-role="$userRole"/>
   <div class="main-content">
+    <div id="question-reponse-div"></div>
     @isset( $modules , $chapitres )
     <form action="{{route('question-reponse.searchByChap')}}" method="POST" class="search-form">
         @csrf
@@ -60,21 +57,21 @@
       <div class="selection-header">
         <h1>Questions</h1>
         <div>
-        <button id="visibility-btn" class="visibility-btn" value="on">
+        <button id="visibility-btn" class="visibility-btn standard-btn" value="on">
           <img src="{{asset('logo\show.svg')}}" alt="" id="show-eye"/>
           <img src="{{asset('logo\hide.svg')}}" alt="" id="hide-eye"/>
           <span id="visibility-btn-span">Afficher tous</span>
         </button>
-        <a id="add-question-btn" class="add-question-btn" href="{{ route('question.create') }}">
+        <a id="add-question-btn" class="add-question-btn standard-btn" href="{{ route('question.create') }}">
           <img src="{{asset('logo\add.svg')}}" alt="" id="add"/> 
           <span id="add-question-btn-span">Ajouter une question</span>
         </a>
         </div>
       </div> 
       @foreach( $questions as $question)
-        <div id="question" class="question">
-          <div class="question-content">
-            <img src="{{asset('logo/question2.svg')}}" alt="" class="question-icon"/>
+        <div id="parent" class="question section">
+          <div class="question-content section-content">
+            <img src="{{asset('logo/question2.svg')}}" alt="" class="question-icon section-icon"/>
             <span>{{ $question->descriptionQuestion }}</span>
             <img src="{{asset('logo/expand.svg')}}" alt="" class="down"/>
           </div>
@@ -91,7 +88,7 @@
           </div>
       </div>
         
-          <table class="main-table reponse" id="reponse">
+          <table class="main-table reponse" id="child">
             <!-- <tr>
               <th>descriptionReponse</th>
               <th>valeurReponse</th>
@@ -125,7 +122,7 @@
                     <form action="{{ route('reponse.create') }}" method="get">
                         @csrf
                         <input type="hidden" name="question_id" value="{{ $question->id }}">
-                        <button class="add-reponse-btn" type="submit">
+                        <button class="add-reponse-btn standard-btn" type="submit">
                           <img src="{{asset('logo/add.svg')}}"/>
                           <span>Ajouter une réponse</span>
                         </button>
@@ -141,6 +138,7 @@
     <div class="pagination-links">{{ $questions->onEachSide(1)->links() }}</div>
   </div>
 </main>
+<x-links/>
 
 </body>
 </html>

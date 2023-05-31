@@ -1,5 +1,8 @@
 @import url('assets.css');
 @import url('create-form.css');
+@import url('question-reponse.css');
+@import url('reponse.css');
+@import url('table.css');
 
 ::-webkit-scrollbar-track
 {
@@ -35,10 +38,11 @@ body{
 }
 
 .sidenav {
-    transition:width .3s ease-in-out;
+    
 
     position: fixed;
     background-color: var(--main);
+    /* background-color: var(--quinary); testing */
     width: 200px;
     height: 100vh;
 }
@@ -74,9 +78,7 @@ body{
     width: 100%;
     padding: .5em .7em;
 }
-.sidenav-menu ul li:hover{
-    background-color: var(--secondary-op);
-}
+
 .sidenav-menu ul li a{
     text-decoration: none;
     color: white;
@@ -87,16 +89,23 @@ body{
     align-items: center;
     gap: 15px;
 }
-.sidenav-menu ul li:hover a{
-    color: var(--main);
+/* hover effect */
+.sidenav-menu ul li:hover, .chosen-section{
+    background-color: var(--secondary-op);
+}
+.sidenav-menu ul li:hover a, .chosen-section a{
+    color: var(--main) !important;
 }
 
-.sidenav-menu ul li:hover a img{
+.sidenav-menu ul li:hover a img, .chosen-section a img{
     filter: var(--icon-main);
 }
 
-.logout{
+.profile{
     margin-top: 5em
+}
+.logout{
+margin-top: 1em;
 }
 .logout a img{
     width: 1.3em;
@@ -118,7 +127,6 @@ body{
     position: absolute;
     width: 100%;
     left: 0;
-    transition: all .3s ease-in-out;
 }
 
 .burger-btn span:nth-child(1){
@@ -140,7 +148,6 @@ body{
 
 .small-nav {
     width: 70px;
-    transition:width .3s ease-in-out;
 }
 .logo1-hidden {
     display: none;
@@ -219,10 +226,20 @@ gap: 5px;
 
 /* usual components */
 
-    /* search button  */
+    /* .errors  */
+    .errors {
+        margin: 1em 0;
+        align-self: flex-start;
+    }
+    .errors li{
+        color: var(--red);
+        font-size: .8em;
+        list-style: none;
+
+    }
 
     /* standard buttons */
-    .visibility-btn, .add-question-btn, .add-reponse-btn, .validation-btn{
+    .standard-btn{
         display: flex;
         align-items: center;
         gap: 5px;
@@ -232,23 +249,25 @@ gap: 5px;
         padding: 5px 15px;
 
         font-size: .7em;
-        
+        text-decoration: none;
         border: none;
         border-radius: 5px;
         outline: none;
         cursor: pointer;
     }
-    .visibility-btn img, .add-question-btn img, .add-reponse-btn img, .validation-btn img{
+
+    .standard-btn img{
         filter: var(--icon-white);
         width: 1.7em;
         height: 1.7em;
     }
-    .visibility-btn:hover, .add-question-btn:hover, .add-reponse-btn:hover{
+
+    .standard-btn:hover{
         background-color: var(--quinary);
+        /* testing color: var(--main); */
     }
-    .add-question-btn{
-        text-decoration: none;
-    }   
+    
+
         /* validation button */
 
     .validation-btn{

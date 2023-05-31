@@ -35,17 +35,6 @@ class quizController extends Controller
 
     public function generate(Request $request)
     {
-        // $questions = Question::where('chapitre_id', $request->chapitre)->inRandomOrder()->limit(20)->get();
-
-        // foreach ($questions as $question) {
-        //     $reponses = Reponse::where('question_id', $question->id)->get()->toArray();
-        //     $question->reponses = $reponses;
-        // }
-        // $pdf = PDF::loadView('GenerateQuiz\quizPdf', compact('questions'));
-        // return $pdf->download('quiz.pdf');
-        
-        // return quizController::index()->with('questions', $questions);
-        // return $questions;
         $data = $request;
         $module = $request->input('module');
         $chapitre = $request->input('chapitre');
@@ -98,13 +87,11 @@ class quizController extends Controller
         }
         
         $pdf = PDF::loadView('GenerateQuiz\quizPdf', compact('questions', 'data'));
+        
         // return $pdf->download($fileName);
         return $pdf->stream($fileName);
         // return $data;
         // return view('GenerateQuiz\quizPdf', compact('questions', 'data'));
-
-
-
 
     }
 }

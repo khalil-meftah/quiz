@@ -38,6 +38,11 @@ class reponseController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'descriptionReponse' => 'required',
+            'valeurReponse' => 'required',
+            'question_id' => 'required',
+        ]);
         $reponse = new Reponse();
         $reponse->descriptionReponse = $request->descriptionReponse;
         $reponse->valeurReponse = $request->valeurReponse;
@@ -71,6 +76,11 @@ class reponseController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $request->validate([
+            'descriptionReponse' => 'required',
+            'valeurReponse' => 'required',
+            'question_id' => 'required',
+        ]);
         $reponse = Reponse::find($id);
         $reponse->descriptionReponse = $request->descriptionReponse;
         $reponse->valeurReponse = $request->valeurReponse;

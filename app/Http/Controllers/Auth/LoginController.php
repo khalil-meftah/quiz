@@ -35,26 +35,26 @@ class LoginController extends Controller
     }
 
     public function login(Request $request)
-{
-    
-    $input = $request->all();
-    $this->validate($request, [
-        'email' => 'required|email',
-        'password' => 'required',
-    ]);
-    if (auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))) {
-        $user = auth()->user();
+    {
         
-        if ($user->status == 0) {
-            return redirect('/pending');
+        $input = $request->all();
+        $this->validate($request, [
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+        if (auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))) {
+            $user = auth()->user();
+            
+            if ($user->status == 0) {
+                return redirect('/pending');
+            } else {
+                return redirect('/question-reponse');
+            }
         } else {
-            return redirect('/question-reponse');
+            return redirect('/login')
+                ->with('error', 'Email ou mot de passe incorrect');
         }
-    } else {
-        return redirect('/login')
-            ->with('error', 'Email ou mot de passe incorrect');
     }
-}
 
     
 }

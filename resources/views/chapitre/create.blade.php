@@ -4,16 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Ajouter un chapitre</title>
-
+    
     <link rel="stylesheet" type="text/css" href="{{ asset('css/dashboard.css') }}" >
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/table.css') }}" >
+
     <link rel="icon" href="{{asset('logo\quiz.svg')}}" type="image/png" sizes="16x16">
 
-    <!-- @viteReactRefresh
-    @vite('resources/js/app.js')  -->
+    <title>Ajouter un chapitre</title>
 </head>
 <body>
+    <x-loader/>
     @php
         $userRole = auth()->user()->role;
     @endphp
@@ -21,39 +20,47 @@
     <div id="fake"></div>
     <main class="main">
     <x-main-nav :title="'chapitre'" :user-role="$userRole"/>
-    <div class="main-content">
-        <form  method="POST" action="{{route('chapitre.store')}}">
+    <div class="main-content create">
+    <div id="chapitre-div"></div>
+
+        <h1 class="h1 mb-4">Ajouter un chapitre</h1>
+        <form  method="POST" action="{{route('chapitre.store')}}"  class="create-form create-chapitre-form">
             @csrf
 
-            <label for="nomChapitre">nom du Chapitre</label>
-            <input type="text" name="nomChapitre" id="nomChapitre"><br>
+            <input type="text" name="nomChapitre" id="nomChapitre" placeholder="Nom">
 
-            <label for="descriptionChapitre">description Chapitre</label>
-            <input type="text" name="descriptionChapitre" id="descriptionChapitre"><br>
+            <input type="text" name="descriptionChapitre" id="descriptionChapitre" placeholder="Description">
 
-            <label for="nbh">nombre Heures Chapitre</label>
-            <input type="integer" name="nombreHeuresChapitre" id="nombreHeuresChapitre"><br>
+            <input type="integer" name="nombreHeuresChapitre" id="nombreHeuresChapitre" placeholder="Nombre d'heures">
 
-            <label for="dateCreationChapitre">date Creation Chapitre</label>
-            <input type="date" name="dateCreationChapitre" id="dateCreationChapitre"><br>
+            <label for="dateCreationChapitre" class="label">Date de création</label>
+            <input type="date" name="dateCreationChapitre" id="dateCreationChapitre" placeholder="Date de création">
 
-            <label for="dateDebutChapitre">date Debut Chapitre</label>
-            <input type="date" name="dateDebutChapitre"id="dateDebutChapitre"><br>
+            <label for="dateDebutChapitre" class="label">Date de début</label>
+            <input type="date" name="dateDebutChapitre"id="dateDebutChapitre" placeholder="Date de début">
 
-            <label for="module_id">Module ID</label>
+            <label for="module_id" class="label">Module</label>
             <select name="module_id" id="module_id">
-                <option>-- Selectionner Module --</option>
+                <option value="">Séléctionner le module</option>
                 @foreach($modules as $module)
                 <option value="{{$module->id}}">{{$module->nomModule}}</option>
                 @endforeach
-            </select><br>
+            </select>
 
-            <button type="submit">envoyer</button>
-            <button type="reset">annuler</button>
+            <div class="submit-reset">
+                <button type="submit" value="submit">
+                    <img src="{{asset('logo\ajouter.svg')}}" alt="" />
+                    <span>Ajouter</span>
+                </button>
+                <button type="reset" value="reset">
+                    <img src="{{asset('logo\annuler.svg')}}" alt="" />
+                    <span>Annuler</span>
+                </button>
+            </div>
         </form>
 
         @if ($errors->any() )
-        <div >
+        <div class="errors">
             @foreach(
                 $errors->all() as $error
                 )
@@ -66,5 +73,6 @@
         @endif
     </div>
     </main>
+    <x-links/>
 </body>
 </html>

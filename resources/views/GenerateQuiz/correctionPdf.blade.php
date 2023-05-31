@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="logo\quiz.svg" type="image/png" sizes="16x16">
 
-    <title>Quiz</title>
+    <title>Correction Quiz</title>
 </head>
 <body>
     <style>
@@ -47,6 +47,15 @@
         .reponse{
             padding-left: 2em;
         }
+        .answer{
+            margin-left: .5em;
+        }
+        .answer-green{
+            color: green;
+        }
+        .answer-red{
+            color: red;
+        }
 
     </style>
     <div class="ofppt">
@@ -58,6 +67,7 @@
         <tr>
             <td class="header-title" colspan="2">
                 <h1>{{$data->type}}@if($data->type == 'Contrôle') n°{{$data->nControle}}@endif</h1>
+                <h2>Fiche De Correction</h2>
                 <h2>AU TITRE DE L'ANNEE : {{$data->titreDanne1}}/{{$data->titreDanne2}}</h2>
             </td>
         </tr>
@@ -83,7 +93,7 @@
         </tr>
     </table>
     <div class="qcm">
-    <h3>QCM {{$data['bareme']/20}} point par question ({{$data['bareme']}}pts)</h3>
+    <h3>QCM {{$data['bareme']/20}} point par question ({{$data['bareme']}}pts) - Correction</h3>
     @foreach ($questions as $question)
         <table class="question">
             <tr>
@@ -94,7 +104,14 @@
             @foreach ($question->reponses as $reponse)
             <tr>
                 <td class="reponse">
-                    <span>{{$loop->index + 1}} - {{ $reponse['descriptionReponse'] }}</span>
+                    <span>{{$loop->index + 1}} - {{ $reponse['descriptionReponse'] }} <span>
+                    @if($reponse['valeurReponse'] == 1)
+                    <span class="answer answer-green">Vrai</span>
+                    @endif
+                    @if($reponse['valeurReponse'] == 0)
+                    <span class="answer answer-red">Faux</span>
+                    @endif
+                </span>
                 </td>
             </tr>
             @endforeach

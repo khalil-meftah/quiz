@@ -8,6 +8,9 @@ use App\Models\Reponse;
 use App\Models\Chapitre;
 use App\Models\Module;
 
+use App\Http\Controllers\QuestionController;
+
+
 class questionReponseController extends Controller
 {
     
@@ -195,6 +198,31 @@ class questionReponseController extends Controller
     {
         return redirect()->route('question.destroy', $id);
     }
+
+    public function validateAll()
+    {
+        $questions = Question::where('status', 'pending')->get();
+    
+        foreach ($questions as $question) {
+    
+            if ($question) {
+                $reponses = Reponse::where('question_id', $question->id)
+                    ->where('status', 'pending')
+                    ->get();
+    
+                foreach ($reponses as $reponse) {
+                    $reponse->status = 'validated';
+                    $reponse->save();
+                }
+    
+                $question->status = 'validated';
+                $question->save();
+            }
+        }
+    
+        return redirect()->route('question-reponse.validation');
+    }
+    
 
 
 

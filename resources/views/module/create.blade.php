@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ajoutez Module</title>
+
 
     <link rel="stylesheet" type="text/css" href="{{ asset('css/dashboard.css') }}" >
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/table.css') }}" >
+
     <link rel="icon" href="{{asset('logo\quiz.svg')}}" type="image/png" sizes="16x16">
 
-    <!-- @viteReactRefresh
-    @vite('resources/js/app.js') -->
-    
+    <title>Ajouter un module</title>
+  
 </head>
 <body>
+    <x-loader/>
 @php
     $userRole = auth()->user()->role;
 @endphp
@@ -23,32 +23,39 @@
     <div id="fake"></div>
     <main class="main">  
     <x-main-nav :title="'module'" :user-role="$userRole"/>
-    <div class="main-content">
-        <form  method="POST" action="{{route('module.store')}}">
+    <div class="main-content create">
+    <div id="module-div"></div>
+
+        <h1 class="h1 mb-4">Ajouter un module</h1>
+        <form  method="POST" action="{{route('module.store')}}"class="create-form create-module-form">
             @csrf
 
-            <label for="nomModule">nom du Module</label>
-            <input type="text" name="nomModule" id="nomModule"><br>
+            <input type="text" name="nomModule" id="nomModule" placeholder="Nom" >
 
-            <label for="descriptionModule">description Module</label>
-            <input type="text" name="descriptionModule" id="descriptionModule"><br>
+            <input type="text" name="descriptionModule" id="descriptionModule" placeholder="Description">
 
-            <label for="nbh">nombre Heures Module</label>
-            <input type="integer" name="nombreHeuresModule" id="nombreHeuresModule"><br>
+            <input type="integer" name="nombreHeuresModule" id="nombreHeuresModule" placeholder="Nombre d'heures">
 
-            <label for="dateCreationModule">date Creation Module</label>
-            <input type="date" name="dateCreationModule" id="dateCreationModule"><br>
+            <label for="dateCreationModule" class="label">Date de creation</label>
+            <input type="date" name="dateCreationModule" id="dateCreationModule">
 
-            <label for="dateDebutModule">date Debut Module</label>
-            <input type="date" name="dateDebutModule"id="dateDebutModule"><br>
+            <label for="dateDebutModule" class="label">Date de début</label>
+            <input type="date" name="dateDebutModule"id="dateDebutModule">
 
-            <button type="submit">envoyer</button>
-            <button type="reset">annuler</button>
-
+            <div class="submit-reset">
+                <button type="submit" value="submit">
+                    <img src="{{asset('logo\ajouter.svg')}}" alt="" />
+                    <span>Ajouter</span>
+                </button>
+                <button type="reset" value="reset">
+                    <img src="{{asset('logo\annuler.svg')}}" alt="" />
+                    <span>Annuler</span>
+                </button>
+            </div>
         </form>
 
         @if ($errors->any() )
-        <div >
+        <div class="errors">
             @foreach(
                 $errors->all() as $error
                 )
@@ -59,7 +66,7 @@
         </div>
         @endif
     </div>
-   
     </main>
+    <x-links/>
 </body>
 </html>

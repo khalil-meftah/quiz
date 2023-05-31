@@ -4,7 +4,6 @@
   padding: 0;
 }
 body, html {
-  /* background-color: #EDEFFE; */
   background-color: var(--secondary);
   font-family: 'Roboto', sans-serif;
 }
@@ -25,6 +24,12 @@ body{
   width: 25em;
   padding: 2em 3em;
   border-radius: 10px;
+}
+.form h1{
+  font-size: 1.5em;
+  font-weight: 700;
+  color: var(--main);
+  margin-bottom: 1em;
 }
 .form span, .form input, .form button, .form select{
   display: block;
@@ -120,3 +125,14 @@ body{
 
 }
 
+/* speific to alert message*/
+.alert{
+  margin: .7em 0;
+  font-size: 1em;
+  font-weight: 500;
+}
+.invalid-feedback{
+  color: red;
+  font-size: 0.9em;
+  font-weight: 500;
+}

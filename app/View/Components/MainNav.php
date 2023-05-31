@@ -69,6 +69,13 @@ class MainNav extends Component
                     'create' => null,
                 ];
                 break;
+            case "profile":
+                $this->r = (object) [
+                    'title' => 'profile',
+                    'index' => 'profile.index',
+                    'create' => null,
+                ];
+                break;
             default:
                 $this->r = (object) [
                     'title' => null,

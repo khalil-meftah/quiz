@@ -42,7 +42,7 @@ class ProfileController extends Controller
                 'dateDeNaissance' => ['required'],
                 'numeroDeTelephone' => ['required', 'string', ' max:10'],
                 'adresse'=>['required'],
-                'password' => ['required', 'confirmed'],
+                'password' => ['confirmed'],
                 
             ]);
             $user->name=$request->name;
@@ -52,7 +52,10 @@ class ProfileController extends Controller
             $user->dateDeNaissance=$request->dateDeNaissance;
             $user->numeroDeTelephone=$request->numeroDeTelephone;
             $user->adresse=$request->adresse;
-            $user->password = Hash::make($request->input('password')) ;
+
+            if ($request->input('password')){
+                $user->password = Hash::make($request->input('password')) ;
+            }
             $user->save();
             $user = User::find($id);
             if ($request->user()->isDirty('email')) {

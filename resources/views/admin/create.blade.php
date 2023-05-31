@@ -4,20 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <link rel="stylesheet" type="text/css" href="{{ asset('css/dashboard.css') }}" >
-    <script src="{{ asset('js/app.js') }}"></script>
-   
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/dashboard.css') }}" >
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/table.css') }}" >
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/reponse.css') }}" >
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/question-reponse.css') }}" >
+
     <link rel="icon" href="{{asset('logo\quiz.svg')}}" type="image/png" sizes="16x16">
 
     <title>Ajouter un utilisateur</title>
-    <!-- @viteReactRefresh
-    @vite('resources/js/app.js') -->
+
 </head>
 <body>
+<x-loader/>
 @php
     $userRole = auth()->user()->role;
 @endphp
@@ -26,55 +22,64 @@
 <main class="main"> 
 <x-main-nav :title="'user'" :user-role="$userRole"/>
 
-<div class="main-content">
+<div class="main-content create">
+<div id="user-div"></div>
 
-    <h1 style="text-align: center">Ajouter un utilisateur</h1>
+    <h1 class="h1 mb-4">Ajouter un utilisateur</h1>
 
-    <form action="{{ route('user.store')}}" method="POST">
+    <form action="{{ route('user.store')}}" method="POST" class="create-form create-user-form">
         @csrf
-        <label for="name">Nom:</label>
-        <input type="text" name="name" id="name" required><br>
+        <input type="text" name="name" id="name" placeholder="Nom" required>
     
-        <label for="prenom">Prenom:</label>
-        <input type="text" name="prenom" id="prenom" required><br>
+        <input type="text" name="prenom" id="prenom" placeholder="Prenom" required>
     
-        <label for="email">Email:</label>
-        <input type="email" name="email" id="email" required><br>
+        <input type="email" name="email" id="email" placeholder="Email" required>
         
-        <label for="role">Role:</label>
+        <label for="role" class="label">Role</label>
         <select id="role" name="role" value='role'>
             <option value="professeur">Professeur</option>
             <option value="mainteneur">Mainteneur</option>
             <option value="administrateur">Administrateur</option>
-        </select><br>
-   
-        <label for="dateDeNaissance">Date De Naissance:</label>
-        <input type="date" name="dateDeNaissance" id="dateDeNaissance" required><br>
-    
-        <label for="numeroDeTelephone">Numero De Telephone:</label>
-        <input type="text" name="numeroDeTelephone" id="numeroDeTelephone" required><br>
-    
-        <label for="adresse">Adresse:</label>
-        <input type="text" name="adresse" id="adresse" required><br>
+        </select>
         
-        <input type="hidden" name="status" id="status" value="0">
-        <label for="status">Status:</label>
-        <button type="button" onclick="updateStatus(1)">Actif</button>
-        <button type="button" onclick="updateStatus(0)">Inactif</button><br>      
+        <label for="dateDeNaissance" class="label">Date de naissance</label>
+        <input type="date" name="dateDeNaissance" id="dateDeNaissance" placeholder="Date de naissance" required>
+    
+        <input type="text" name="numeroDeTelephone" id="numeroDeTelephone" placeholder="Numero de téléphone" required>
+    
+        <input type="text" name="adresse" id="adresse" placeholder="Adresse" required>
+        
+        <label for="status" class="label">Status:</label>
+        <div class="double-input">
+            <div>           
+                <input type="radio" name="status" id="status" value="0">
+                <label for="status">Inactif</label>
+            </div>
+            <div>
+                <input type="radio" name="status" id="status" value="1">
+                <label for="status">Actif</label>
+            </div>
+        </div>
 
-        <label for="password">Mot De Passe:</label>
-        <input type="password" name="password" id="password" required><br>
+        <input type="password" name="password" id="password" placeholder="Mot de passe" required>
          
-        <label for="password-confirm">confirmer mot de passe</label>
-        <input id="password-confirm" type="password"  name="password_confirmation" ><br>
+        <input id="password-confirm" type="password"  name="password_confirmation" placeholder="Confirmer mot de passe">
 
-        <button type="submit">enregistrer modifications</button>
-        <button type="reset">annuler</button>
+        <div class="submit-reset">
+                <button type="submit" value="submit">
+                    <img src="{{asset('logo\ajouter.svg')}}" alt="" />
+                    <span>Ajouter</span>
+                </button>
+                <button type="reset" value="reset">
+                    <img src="{{asset('logo\annuler.svg')}}" alt="" />
+                    <span>Annuler</span>
+                </button>
+        </div>
 
     </form>
 
     @if ($errors->any() )
-    <div >
+    <div class="errors">
         @foreach(
             $errors->all() as $error
             )
@@ -86,5 +91,6 @@
     </div>
 </div>
 </main>
+<x-links/>
 </body>
 </html>

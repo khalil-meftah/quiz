@@ -15,8 +15,9 @@ class manageUser extends Controller
     
     public function index()
     {
-        $user = User::all();
-        return view('admin/index', compact('user'));
+        $users = User::paginate(8);
+        return view('admin/index', compact('users'));
+        // return $users;
     }
     
     public function create()
@@ -34,7 +35,7 @@ class manageUser extends Controller
             'dateDeNaissance' => ['required'],
             'numeroDeTelephone' => ['required', 'string', 'max:10'],
             'adresse'=>['required'],
-            'password' => ['required', 'confirmed'],
+            'password' => ['confirmed'],
             'status'=>'required'
         ]);
         $user->name=$request->name;
@@ -45,8 +46,11 @@ class manageUser extends Controller
         $user->numeroDeTelephone=$request->numeroDeTelephone;
         $user->adresse=$request->adresse;
         $user->status=$request->status;
-        $user->password = Hash::make($request->input('password')) ;
-           $user->save();
+
+        if ($request->input('password')){
+            $user->password = Hash::make($request->input('password')) ;
+        }
+        $user->save();
     return redirect('admin/user');
 
     }
@@ -62,18 +66,27 @@ class manageUser extends Controller
     {
         $user=User::find($id);
         $request->validate([
-        
+            'name' => ['required', 'string', 'max:255'],
+            'prenom' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class.',email,'.$user->id],
-            'role' => ['required'],
-            'password' => ['required', 'confirmed'],
-            'status' => ['required']
+            'dateDeNaissance' => ['required'],
+            'numeroDeTelephone' => ['required', 'string', 'max:10'],
+            'adresse'=>['required'],
+            'password' => ['confirmed'],
+            'status'=>'required'
         ]);
-      
+        $user->name=$request->name;
+        $user->prenom=$request->prenom;
         $user->email=$request->email;
         $user->role=$request->role;
-        $user->password=$request->password;
+        $user->dateDeNaissance=$request->dateDeNaissance;
+        $user->numeroDeTelephone=$request->numeroDeTelephone;
+        $user->adresse=$request->adresse;
         $user->status=$request->status;
-        
+
+        if ($request->input('password')){
+            $user->password = Hash::make($request->input('password')) ;
+        }
         $user->save();
         $user = User::findOrFail($id);
         return redirect('admin/user');
@@ -90,9 +103,8 @@ class manageUser extends Controller
         return $this->confirmationPage();
     }
     public function confirmationPage(){
-        $user=User::where('status',0)->get();
-        return view('admin.confirmation',compact('user'));
-
+        $users=User::where('status',0)->paginate(8);
+        return view('admin.confirmation',compact('users'));
     }
 
     public function validateUser($id)

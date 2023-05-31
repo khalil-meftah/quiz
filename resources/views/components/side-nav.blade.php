@@ -3,46 +3,53 @@
   <img src="{{asset('logo/quizW.svg')}}" alt="logo" class="logo logo2" id="logo2">
   <div class="sidenav-menu">
     <ul>
-      <li>
+      <li id="section-question-reponse">
         <a href="{{route('question-reponse.index')}}">
           <img src="{{asset('logo/question.svg')}}" alt="logo" class="sidenav-icon">
-          <span>Question</span>
+          <span>Questions</span>
         </a>
       </li>
 
       @if(Auth::user()->role == 'mainteneur' || Auth::user()->role == 'administrateur')
-      <li>
+      <li id="section-chapitre">
         <a href="{{route('chapitre.index')}}">
-          <img src="{{asset('logo/chapter.svg')}}" alt="logo" class="sidenav-icon">
-          <span>Chapitre</span>
+          <img src="{{asset('logo/chapitres.svg')}}" alt="logo" class="sidenav-icon">
+          <span>Chapitres</span>
         </a>
         </li>
-      <li>
+      <li id="section-module">
         <a href="{{route('module.index')}}">
           <img src="{{asset('logo/module.svg')}}" alt="logo" class="sidenav-icon">
-        <span>Module</span>
+        <span>Modules</span>
         </a>
       </li>
       @endif
 
       @if(Auth::user()->role == 'administrateur')
-      <li>
+      <li id="section-user">
         <a href="{{route('user.index')}}">
           <img src="{{asset('logo/users.svg')}}" alt="logo" class="sidenav-icon">
-          <span>Users</span>
+          <span>Utilisateurs</span>
         </a>
       </li>
       @endif
 
-      <li>
+      <li id="section-quiz-generator">
         <a href="{{route('quiz-generator')}}">
           <img src="{{asset('logo/generateQuiz.svg')}}" alt="logo" class="sidenav-icon">
-          <span>Generate Quiz</span>
+          <span>Générer un questionnaire</span>
         </a>
       </li>
 
+      <li class="profile" id="section-profile">
+        <a href="{{route('profile.index')}}">
+          <img src="{{asset('logo/profile.svg')}}" alt="logo" class="sidenav-icon"><span>Profile</span>
+        </a>
+      </li>
       <li class="logout">
-        <a href="{{route('logout')}}"><img src="{{asset('logo/logout.svg')}}" alt="logo" class="sidenav-icon"><span>Logout</span></a>
+        <a href="{{route('logout')}}">
+          <img src="{{asset('logo/logout.svg')}}" alt="logo" class="sidenav-icon"><span>Se déconnecter</span>
+        </a>
       </li>
     </ul>
   </div>
@@ -51,11 +58,5 @@
     <span></span>
     <span></span>
   </div>
-
-
-
-
-
-  <script src="{{ asset('js/dashboard.js') }}"></script>
-
+  
 </aside>

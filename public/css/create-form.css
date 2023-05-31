@@ -5,6 +5,8 @@
     align-items: center;
     margin-top: 2em;
 
+    width: 470px;
+
     background-color: white;
     padding: 2em 3em;
     border-radius: 10px;
@@ -40,6 +42,7 @@
     align-items: center;
     gap: 5px;
     width: 100%;
+    margin-top: .5em;
 }
 .create form .submit-reset button{
     width: 100%;
@@ -80,20 +83,38 @@
 
 .label{
     align-self: flex-start;
-    font-weight: 600;
-    font-size: 1.2em;
+    font-weight: 500;
+    font-size: 1.1em;
 }
 
-/* specific to reponse */
-.valeur-reponse{
+/* two inputs placed next to each other */
+ .double-input{
     display: flex;
-    justify-content: center;
-    gap: 2em;
+    justify-content: space-evenly;
+
     width: 100%;
 
     margin-bottom: .5em;
 }
-.valeur-reponse div{
+.double-input div{
     display: flex;
+    gap: 5px;
+}
+
+/* specific to generate quiz */
+
+.generate-btn{
+    width: 100%;
+    padding: .7em !important;
+    border: none;
+    border-radius: 5px;
+    font-size: .85em !important;
+    font-weight: 500;
+    color: var(--main);
+    outline: none;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 5px;
 }

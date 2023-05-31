@@ -3,11 +3,14 @@
 
 :root{
   --main: #373B61;
+  /* --main: #567fcc; testing */
   --secondary: #EDEFFE;
   --secondary-op: #edeffec2;
   --tertiary: #e0e1ee;
   --quaternary: #2e3250;
   --quinary: #0CC0DF;
+  /* --quinary: #2f4774; testing */
+
   --senary: #0bb3d1;
   --green: #00b894;
   --red: #b81c00;
@@ -18,6 +21,9 @@
   --icon-quinary: brightness(0) saturate(100%) invert(60%) sepia(84%) saturate(2824%) hue-rotate(149deg) brightness(103%) contrast(91%);
   --icon-white: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(101%);
   --icon-red: brightness(0) saturate(100%) invert(28%) sepia(91%) saturate(7485%) hue-rotate(356deg) brightness(105%) contrast(124%);
-  --icon-green: brightness(0) invert(47%) sepia(75%) saturate(2554%) hue-rotate(138deg) brightness(99%) contrast(101%);;
+  --icon-green: brightness(0) invert(47%) sepia(75%) saturate(2554%) hue-rotate(138deg) brightness(99%) contrast(101%);
+
+  /* #5669cc
+  #e8e8e8 */
 
 }

@@ -64,10 +64,8 @@ class questionController extends Controller
     {
         $question = Question::find($id);
         $chapitres = Chapitre::all();
-        // $modules = Module::all();
 
         $oldChapitre = Chapitre::find($question->chapitre_id);
-        // $oldModule = Module::find($oldChapitre->module_id);
         return view('Question\edit',compact('question', 'chapitres', 'oldChapitre'));
     }
 
@@ -76,6 +74,10 @@ class questionController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $request->validate([
+            'descriptionQuestion' => 'required',
+            'chapitre' => 'required',
+        ]);
         $question = Question::find($id);
         $question->descriptionQuestion = $request->descriptionQuestion;
         $question->chapitre_id = $request->chapitre_id;
@@ -94,23 +96,26 @@ class questionController extends Controller
 
     public function validateQuestion(Request $request)
     {
-        
-        $question = Question::find($request->question_id);
+        $user = Auth::user();
+        if ($user->role === 'administrateur' || $user->role === 'mainteneur') {
+            $question = Question::find($request->question_id);
 
-        $question->status = 'validated';
-        // $question->validated_by = Auth::user()->id;
+            $question->status = 'validated';
+            $question->save();
+            
+            foreach ($question->reponses as $reponse) {
+                $reponse->status = 'validated';
+                $reponse->validated_by = Auth::user()->id;
+                $reponse->save();
+        }
+
         $question->save();
-        
-        // foreach ($question->reponses as $reponse) {
-        //     $reponse->status = 'validated';
-        //     $reponse->validated_by = Auth::user()->id;
-        //     $reponse->save();
-        // }
-
-        // $question->isApproved();
-        // $question->save();
-            // return $request;
     
         return redirect()->route('question-reponse.validation');
+        
+        } else {
+            return redirect()->back()->with('error', 'You are not authorized to perform this action.');
+        }
     }
+
 }

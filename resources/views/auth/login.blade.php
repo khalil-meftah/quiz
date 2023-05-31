@@ -1,11 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container gradient-bg">
 
 <div class="form">
-
-
+        <h1>Se connecter</h1>
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
@@ -14,9 +12,9 @@
             <input placeholder="Email" id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
             @error('email')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
+                <p class="invalid-feedback alert" role="alert">
+                    {{ $message }}  
+                </p>
             @enderror
             </div>
             <!-- mot de pass -->
@@ -24,11 +22,18 @@
             <input placeholder="Mot de passe" id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
             @error('password')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
+                <p class="invalid-feedback alert" role="alert">
+                    {{ $message }}  
+                </p>
             @enderror
             </div>
+
+            @if(session('error'))
+                <p class="invalid-feedback alert" role="alert">
+                    {{ session('error') }}
+                </p>
+            @endif
+
 
             <!-- remember me -->
             <div class="remember-me">
@@ -37,15 +42,15 @@
                 <label class="" for="remember" >Se souvenir de moi</label>
             </div>
 
-            <button type="submit" class="">Se connecter</button>
+            <button type="submit" >Se connecter</button>
             
             @if (Route::has('password.request'))
-            <a class="btn btn-link" href="{{ route('password.request') }}">{{ __('Mot de passe oublié ?') }}</a>
+                <a class="btn btn-link" href="{{ route('password.request') }}">{{ __('Mot de passe oublié ?') }}</a>
             @endif
             <div class="button">
-            @if (Route::has('register'))
-            <a class="nav-link" href="{{ route('register') }}">{{ __('S\'inscrire') }}</a>
-            @endif
+                @if (Route::has('register'))
+                <a class="nav-link" href="{{ route('register') }}">{{ __('S\'inscrire') }}</a>
+                @endif
             </div>
 
     </form>
