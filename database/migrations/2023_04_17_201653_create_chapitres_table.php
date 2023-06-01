@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('chapitres', function (Blueprint $table) {
             $table->id();
-            $table->text('nomChapitre')->nullable();
+            $table->text('nomChapitre');
             $table->text('descriptionChapitre')->nullable();
-            $table->integer('nombreHeuresChapitre');
-            $table->date('dateDebutChapitre');
-            $table->date('dateCreationChapitre');
+            $table->integer('nombreHeuresChapitre')->nullable();
+            $table->date('dateDebutChapitre')->nullable();
+            $table->date('dateCreationChapitre')->nullable();
             $table->timestamps();
             $table->unsignedBigInteger('module_id');
             $table->foreign('module_id')->references('id')->on('modules')->onDelete('cascade');

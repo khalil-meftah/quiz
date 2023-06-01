@@ -8,6 +8,8 @@ use App\Models\Question;
 use App\Models\Reponse;
 
 use PDF;
+// use ZipStream\ZipStream;
+// use ZipStreamResponse\ZipStreamResponse;
 
 use Illuminate\Http\Request;
 
@@ -40,6 +42,8 @@ class quizController extends Controller
         $chapitre = $request->input('chapitre');
         
         $query = Question::query();
+
+        $query->where('status', 'validated');
         
         if (!empty($chapitre)) {
             $query->where('chapitre_id', $chapitre);
@@ -49,7 +53,7 @@ class quizController extends Controller
             });
         }
         
-        $questions = $query->where('status', 'validated')->inRandomOrder()->limit(20)->get();
+        $questions = $query->inRandomOrder()->limit(20)->get();
         
         if ($questions->isEmpty() && !empty($module)) {
             $moduleQuestions = Question::whereHas('chapitre', function ($query) use ($module) {
@@ -62,6 +66,7 @@ class quizController extends Controller
         foreach ($questions as $question) {
             $reponses = Reponse::where('question_id', $question->id)
                 ->where('status', 'validated')
+                ->inRandomOrder()
                 ->get()
                 ->toArray();
             $question->reponses = $reponses;
@@ -83,19 +88,28 @@ class quizController extends Controller
         
         if (!empty($moduleTitle) && !empty($chapitreTitle)) {
             $fileName = $moduleTitle . '_' . $chapitreTitle . '.pdf';
+            // $zipFileName = $moduleTitle . '_' . $chapitreTitle . '.zip';
         } elseif (!empty($moduleTitle)) {
             $fileName = $moduleTitle . '.pdf';
+            // $zipFileName = $moduleTitle . '.zip';
         } else {
             $fileName = 'quiz.pdf';
+            // $zipFileName = 'quiz.zip';
         }
         
+        $fileNameCorrection = $fileName . ' - Correction';
+    
         $pdf = PDF::loadView('GenerateQuiz\quizPdf', compact('questions', 'data'));
-        // $pdf = PDF::loadView('GenerateQuiz\correctionPdf', compact('questions', 'data'));
+        return $pdf->download($fileName);
+
+        // $pdf2 = PDF::loadView('GenerateQuiz\correctionPDF', compact('questions', 'data'));
+        // $zip = new ZipStream($zipFileName);
+        // $zip->addFile($fileName, $pdf->output());
+        // $zip->addFile($fileNameCorrection, $pdf2->output());
+        // $zip->finish();
         
-        // return $pdf->download($fileName);
-        return $pdf->stream($fileName);
-        // return $data;
-        // return view('GenerateQuiz\quizPdf', compact('questions', 'data'));
+        // return new ZipStreamResponse($zip);
+
 
     }
 }

@@ -58,6 +58,15 @@
         .reponse{
             padding-left: 2em;
         }
+        .answer{
+            margin-left: .5em;
+        }
+        .answer-green{
+            color: green;
+        }
+        .answer-red{
+            color: red;
+        }
 
     </style>
     <table class="ofppt">
@@ -100,7 +109,7 @@
             <td>Groupe : ............................................</td>
         </tr>
     </table>
-    <div class="qcm">
+    <div class="qcm qcm1">
     <h3>QCM</h3>
     @foreach ($questions as $question)
         <table class="question">
@@ -113,6 +122,33 @@
             <tr>
                 <td class="reponse">
                     <span>{{$loop->index + 1}} - {{ $reponse['descriptionReponse'] }}</span>
+                </td>
+            </tr>
+            @endforeach
+
+        </table>
+    @endforeach
+    </div>
+    <div class="qcm correction">
+    <h3>QCM - Correction</h3>
+    @foreach ($questions as $question)
+        <table class="question">
+            <tr>
+                <td>
+                    <p class="question">{{ $question->descriptionQuestion}}</p>
+                </td>
+            </tr>
+            @foreach ($question->reponses as $reponse)
+            <tr>
+                <td class="reponse">
+                    <span>{{$loop->index + 1}} - {{ $reponse['descriptionReponse'] }} <span>
+                    @if($reponse['valeurReponse'] == 1)
+                    <span class="answer answer-green">Vrai</span>
+                    @endif
+                    @if($reponse['valeurReponse'] == 0)
+                    <span class="answer answer-red">Faux</span>
+                    @endif
+                </span>
                 </td>
             </tr>
             @endforeach

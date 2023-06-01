@@ -44,22 +44,22 @@ class chapitreController extends Controller
 
         $request->validate([
             'nomChapitre'=>['filled','min:3'],
-            'descriptionChapitre'=>['min:08'],
-            'nombreHeuresChapitre' => ['filled',],
-            'dateDebutChapitre' =>['required_with:dateCreationChapitre'],
-             'dateCreationChapitre' => ['before:dateDebutChapitre']
+            'nombreHeuresChapitre' => ['filled'],
+            // 'dateDebutChapitre' =>['required_with:dateCreationChapitre'],
+            //  'dateCreationChapitre' => ['before:dateDebutChapitre'],
+            'module_id' => ['filled']
         ],[
             //
-            // desription const
-            'descriptionChapitre'=>'Le champ description chapitre doit comporter au moins 08 caractères.',
+
             // nombre heures const 
             'nombreHeuresChapitre.filled'=>'Le champ nombre heures chapitre doit avoir une valeur.',
             
             // date creation const
-            'dateCreationChapitre'=>'Le champ date creation chapitre doit être une date avant date debut chapitre.',
+            // 'dateCreationChapitre'=>'Le champ date creation chapitre doit être une date avant date debut chapitre.',
             
             //date debut const
-            'dateDebutChap.required_with' =>'Le champ date debut chapitre est obligatoire lorsque date creation chapitre est présent.'
+            // 'dateDebutChap.required_with' =>'Le champ date debut chapitre est obligatoire lorsque date creation chapitre est présent.'
+            'module_id.filled' => 'Le champ module est obligatoire.'
         ]);
        $chapitre->nomChapitre = $request->nomChapitre;
        $chapitre->descriptionChapitre = $request->descriptionChapitre;
@@ -96,19 +96,19 @@ class chapitreController extends Controller
         $chapitre = Chapitre::find($id);
         $request->validate([
             'nomChapitre'=>['filled','min:3'],
-            'descriptionChapitre'=>['min:08'],
-            'nombreHeuresChapitre' => ['filled',],
-            'dateDebutChapitre' =>['required_with:dateCreationChapitre'],
-            'dateCreationChapitre' => ['before:dateDebutChapitre']
+            'nombreHeuresChapitre' => ['filled'],
+            // 'dateDebutChapitre' =>['required_with:dateCreationChapitre'],
+            // 'dateCreationChapitre' => ['before:dateDebutChapitre'],
+            'module_id' => ['filled']
+
         ],[
-            // desription const
-            'descriptionChapitre'=>'Le champ description chapitre doit comporter au moins 08 caractères.',
             // nombre heures const 
             'nombreHeuresChapitre.filled'=>'Le champ nombre heures chapitre doit avoir une valeur.',
             // date creation const
-            'dateCreationChapitre'=>'Le champ date creation chapitre doit être une date avant date debut chapitre.',
+            // 'dateCreationChapitre'=>'Le champ date creation chapitre doit être une date avant date debut chapitre.',
             //date debut const
-            'dateDebutChap.required_with' =>'Le champ date debut chapitre est obligatoire lorsque date creation chapitre est présent.'
+            // 'dateDebutChap.required_with' =>'Le champ date debut chapitre est obligatoire lorsque date creation chapitre est présent.'
+            'module_id.filled' => 'Le champ module est obligatoire.'
         ]);
         $chapitre->nomChapitre = $request->nomChapitre;
         $chapitre->descriptionChapitre = $request->descriptionChapitre;

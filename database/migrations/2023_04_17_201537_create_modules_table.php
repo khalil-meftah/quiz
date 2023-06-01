@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('modules', function (Blueprint $table) {
              $table->id();
-            $table->text('nomModule')->nullable();
+            $table->text('nomModule');
             $table->text('descriptionModule')->nullable();
-            $table->integer('nombreHeuresModule');
-            $table->date('dateDebutModule');
-            $table->date('dateCreationModule');
+            $table->integer('nombreHeuresModule')->nullable();
+            $table->date('dateDebutModule')->nullable();
+            $table->date('dateCreationModule')->nullable();
             $table->timestamps();
         });
     }
