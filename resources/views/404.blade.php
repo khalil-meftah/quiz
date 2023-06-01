@@ -20,13 +20,14 @@
             font-size: 1.5rem;
             margin-top: 2rem;
         }
-        p{
-            width: 70%;
-        }
+
         @media screen and (max-width: 700px) {
             .container{
             font-size: 1.2rem;
-        }
+            }
+            p{
+                width: 70%;
+            }
         }
     </style>
 

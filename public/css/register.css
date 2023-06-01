@@ -1,7 +1,7 @@
 @import url('assets.css');
-body {
+body , html{
     display: block;
-    height: 120vh;
+    height: 130vh;
 }
 
 .logo {
@@ -28,13 +28,11 @@ body {
     padding: 1em 0.7em;
   }
 
-.link{
-    margin: 1em;
-}
+
 .link span{
     font-size: 1em; 
     font-weight: 400;
-    color: var(--main);
+    color: var(--side-dash-main);
     display: inline;
 }
 .link a{

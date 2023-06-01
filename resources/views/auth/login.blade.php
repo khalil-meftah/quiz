@@ -36,22 +36,26 @@
 
 
             <!-- remember me -->
-            <div class="remember-me">
-                <input class="" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+            <div class="remember-forgot">
+                <div class="remember-me">
+                    <input class="" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
-                <label class="" for="remember" >Se souvenir de moi</label>
+                    <label class="" for="remember" >Se souvenir de moi</label>
+                </div>
+                <div class="forgot-password ">
+                    @if (Route::has('password.request'))
+                    <a class="btn btn-link" href="{{ route('password.request') }}">{{ __('Mot de passe oublié ?') }}</a>
+                    @endif
+                </div>
             </div>
 
             <button type="submit" >Se connecter</button>
             
-            @if (Route::has('password.request'))
-                <a class="btn btn-link" href="{{ route('password.request') }}">{{ __('Mot de passe oublié ?') }}</a>
-            @endif
-            <div class="button">
+                
                 @if (Route::has('register'))
-                <a class="nav-link" href="{{ route('register') }}">{{ __('S\'inscrire') }}</a>
+                <a class="nav-link register" href="{{ route('register') }}">{{ __('S\'inscrire') }}</a>
                 @endif
-            </div>
+                
 
     </form>
 </div>

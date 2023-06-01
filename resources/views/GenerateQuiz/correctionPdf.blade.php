@@ -88,12 +88,12 @@
             </td>
         </tr>
         <tr class="info">
-            <td>Nom & Prénom : .............................................</td>
+            <td>Nom et Prénom : .............................................</td>
             <td>Groupe : ............................................</td>
         </tr>
     </table>
     <div class="qcm">
-    <h3>QCM {{$data['bareme']/20}} point par question ({{$data['bareme']}}pts) - Correction</h3>
+    <h3>QCM - Correction</h3>
     @foreach ($questions as $question)
         <table class="question">
             <tr>

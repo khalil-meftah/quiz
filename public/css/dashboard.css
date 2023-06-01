@@ -18,7 +18,7 @@
 ::-webkit-scrollbar-thumb
 {
     border-radius: 50px;
-    background-color: var(--main);
+    background-color: var(--side-dash-main);
 }
 #face{
     background-color: #3b5998;
@@ -41,8 +41,8 @@ body{
     
 
     position: fixed;
-    background-color: var(--main);
-    /* background-color: var(--quinary); testing */
+    background-color: var(--side-dash-main);
+    /* background-color: var(--quinary);  */
     width: 200px;
     height: 100vh;
 }
@@ -94,18 +94,19 @@ body{
     background-color: var(--secondary-op);
 }
 .sidenav-menu ul li:hover a, .chosen-section a{
-    color: var(--main) !important;
+    color: var(--side-dash-main) !important;
 }
 
 .sidenav-menu ul li:hover a img, .chosen-section a img{
-    filter: var(--icon-main);
+    filter: var(--icon-side-dash-main) !important;
 }
 
 .profile{
     margin-top: 5em
 }
-.logout{
-margin-top: 1em;
+.logout a{
+    font-size: .9em;
+    height: 30px;
 }
 .logout a img{
     width: 1.3em;
@@ -161,10 +162,13 @@ margin-top: 1em;
 }
 .small-nav .sidenav-menu ul li a {
     margin: 0 0 0 1.1em;
+    font-size: 1em;
 }
+
 .small-nav .sidenav-menu ul li {
     padding: 0.5em 0em;
 }
+
 
 .main{
     width: 100%;
@@ -194,7 +198,7 @@ padding: 6px 8px 6px 16px;
 text-decoration: none;
 font-weight: 600;
 /* font-size: 1.1em; */
-color: var(--main);
+color: var(--dark-font);
 
 display: flex;
 gap: 5px;
@@ -204,14 +208,14 @@ gap: 5px;
 .main-nav a img{
     width: 1.3em;
     height: 1.3em;
-    filter: var(--icon-main);
+    filter: var(--icon-dark);
 }
 
 .main-nav a:hover {
-    color: var(--quinary);
+    color: var(--senary);
 }
 .main-nav a:hover img{
-    filter: var(--icon-quinary);
+    filter: var(--icon-senary);
 } 
 
 /* page content */
@@ -221,7 +225,7 @@ gap: 5px;
     flex-direction: column;
     align-items: center;
 
-    color: var(--main);
+    color: var(--dark-font);
 }
 
 /* usual components */
@@ -244,7 +248,7 @@ gap: 5px;
         align-items: center;
         gap: 5px;
 
-        background-color: var(--main);
+        background-color: var(--senary);
         color: #fff;
         padding: 5px 15px;
 
@@ -294,7 +298,7 @@ gap: 5px;
         cursor: pointer;
     }
     .btn-edit  img, .btn-delete  img{
-        filter: var(--icon-main);
+        filter: var(--icon-dark);
         width: 1.7em;
         height: 1.7em;
     }
@@ -327,12 +331,26 @@ gap: 5px;
 
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
+.pagination li:hover{
+    list-style: none;
+    padding: .45em .65em;
+    border-radius: 5px;
+    background-color: rgb(240, 240, 240);
+    cursor: pointer;
+    font-weight: 500;
+
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
 .pagination li a{
     text-decoration: none;
     color: black;
 }
 .pagination .active{
-    background-color: var(--quinary);
+    background-color: var(--senary);
+    color: white;
+}
+.pagination .active:hover{
+    background-color: var(--senary);
     color: white;
 }
 .pagination .disabled{

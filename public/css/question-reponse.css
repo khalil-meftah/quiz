@@ -16,17 +16,16 @@
     margin: 4px 0;
     padding: 8px 20px;
     border-radius: 5px;
+    cursor: pointer;
 }
-.select-form select option:hover{
-    background-color: var(--quinary);
-}
+/* .select-form select option:hover{
+    background-color: var(--dark-font);
+} */
 .search-form button{
     display: flex;
     align-items: center;
     gap: 5px;
 
-    background-color: var(--main);
-    color: #fff;
     padding: 5px 15px;
 
     font-size: .7em;
@@ -69,7 +68,8 @@
 }
 
 .section {
-    margin: 10px 0;
+
+    margin-top: 10px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -79,9 +79,11 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    cursor: pointer;
 }
 .section:hover{
-    box-shadow: 2px 2px 3px var(--quinary);
+    border-left: 5px solid var(--senary);
+    /* box-shadow: 2px 2px 3px var(--quinary); */
 }
 .section form, .section svg, .section span{
     display: inline-block;
@@ -98,7 +100,7 @@
     height: 1em;
 }
 .section-content .section-icon{
-    filter: var(--icon-main);
+    filter: var(--icon-dark);
     width: 1.85em;
     height: 1.85em;
 }
@@ -117,6 +119,21 @@
 }
 .section-info div:nth-child(1) {
     font-weight: 700;
+}
+.child {
+    width: 90%;
+    margin: auto;
+    background-color: white;
+    padding: 1em;
+    border-radius: 0 0 5px 5px;
+    box-shadow: 1px 1px 3px #ccc;
+}
+.child .ajouter-reponse {
+    margin-top: 1em;
+}
+.child form button {
+    margin: auto;
+    font-size: .75em;
 }
 /* .reponses{
     display: flex;

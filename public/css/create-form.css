@@ -14,7 +14,7 @@
 }
 .create h1{
     font-size: 1.5em;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--main);
 }
 .create form{
@@ -23,7 +23,7 @@
     justify-content: center;
     align-items: center;
     gap : 1em;
-    margin-top: 2em;
+    margin-top: 1.4em;
     width: 100%;
 }
 .create form textarea,.create form select,.create form input{
@@ -33,7 +33,7 @@
     border-radius: 5px;
     font-size: 1em;
     font-weight: 500;
-    color: var(--main);
+    color: var(--dark-font);
     outline: none;
 }
 .create form .submit-reset{
@@ -51,7 +51,7 @@
     border-radius: 5px;
     font-size: 1em;
     font-weight: 500;
-    color: var(--main);
+    color: var(--dark);
     outline: none;
 
     display: flex;
@@ -62,7 +62,7 @@
 .create form .submit-reset button img{
     width: 1.3em;
     height: 1.3em;
-    filter: var(--icon-main);
+    filter: var(--icon-dark);
 }
 .create form .submit-reset button:hover img{
     filter: var(--icon-white);

@@ -14,7 +14,17 @@ body, html {
 
 
 }
+.style-index{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 200px;
+  height: 200px;
+  background-color: var(--quinaty);
+  border-radius: 50%;
+  z-index: 1;
 
+}
 .container {
   display: flex;
   justify-content: center;
@@ -52,26 +62,26 @@ body, html {
 
 .header ul li a {
   text-decoration: none;
-  color: var(--main);
+  color: var(--side-dash-main);
   font-weight: bold;
   font-size: 1.1em;
   padding: 0.5625em  0.75em;
 }
 .header ul li:nth-child(1) a{
   background-color: var(--secondary);
-  color: var(--main);
+  color: var(--side-dash-main);
   margin: 0;
   border-radius: 10px;
   transition: border-color 0.3s ease;
-  border: 2px var(--main) solid;
+  border: 2px var(--side-dash-main) solid;
 }
 .header ul li:nth-child(1) a:hover{
   background-color: var(--tertiary);
-  color: var(--main);
-  border: 2px var(--main) solid;
+  color: var(--side-dash-main);
+  border: 2px var(--side-dash-main) solid;
 }
 .header ul li:nth-child(2) a , .inscription{
-  background-color: var(--main);
+  background-color: var(--side-dash-main);
   color: var(--secondary);
   margin: 0;
   font-weight: bold;
@@ -85,7 +95,7 @@ body, html {
 
 }
 .content {
-  margin-top: 3em;
+  margin-top: 2.5em;
 
   display: flex;
   justify-content: space-evenly;
@@ -99,13 +109,13 @@ body, html {
 
   width: 32.5rem;
   height: fit-content;
-  letter-spacing: 2px;
-  line-height: 1.5;
+  letter-spacing: 1.5px;
+  line-height: 1.4;
 
   margin-bottom: 1.5em;
 }
 .content p span {
-  color: var(--main);
+  color: var(--side-dash-main);
   font-weight: 900;
 }
 .inscription {
@@ -116,8 +126,29 @@ body, html {
 .content img {
   width: 30rem;
 }
-
 @media screen and (max-width: 1000px) {
+  html, body{
+    height: 120vh;
+  }
+  .header{
+      width: 70%;
+  }
+  .content{
+      flex-wrap: wrap-reverse;
+      
+  }
+  .content img {
+      width: 25rem;
+    }
+  .content p {
+      font-size: 2.2em;
+  }
+
+}
+@media screen and (max-width: 1000px) {
+    html, body{
+      height: 120vh;
+    }
     .header{
         width: 70%;
     }
@@ -133,95 +164,43 @@ body, html {
     }
 
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
 
     .content{
         flex-wrap: wrap-reverse;
     }
+    
 }
-@media screen and (max-width: 500px) {
-    html, body{
-        width: 100%;
-        /* height: 120vh; */
-        /* font-size: 12px; */
-    }
-    .container{
-        width: 100%;
-    }
-    .header {
-        flex-direction: column;
-        align-items: center;
-    }
-    .header img {
-        width: 8em;
-        height: 5em;
-        margin-top: 1em;
-        margin: 0 auto;
-    }
-    .header ul {
-        width: 100%;
-        justify-content: center;
-        gap: 2em;
-        margin-top: .3em;
-    }
-    .header li ul{
-        font-size: .4em;
-    }
-    .header ul li a{
-        font-size: .7em;
-    }
-    .content{
-        flex-direction: column-reverse;
-    }
-    .content img{
-        width: 15em;
-    }
-    .content div{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-    }
-    .content p {
-        font-size: 1.2em;
-        font-weight: 500;
-      
-        width: 14em;
-        padding: 1em;
-        letter-spacing: 1px;
-        line-height: 1.1;
-      
-        margin: 0 ;
-      }
-      .content p span {
-        color: var(--main);
-        font-weight: 900;
-      }
-      .inscription {
-        letter-spacing: 1.5px;
-        padding: .7em 2em;
-        font-size: .8em;
-      }
-    /* body{
-        width: 100%;
-    }
-  .header ul li:nth-child(2){
-    margin-right: 2em;
+@media screen and (max-width: 600px) {
+  html, body{
+    font-size: 14px;
+    width: 100%;
   }
-  .header ul li:nth-child(1) a{
-    margin-right: 2em;
+  .container{
+    width: 100%;
   }
-  .header ul li:nth-child(2) a , .inscription{
-    margin-right: 2em;
-  }
-  .content {
-    flex-wrap: wrap;
-  }
-  .content p {
-    font-size: 1.5em;
-    text-align: center;
-  }
-  .content img {
+  .header{
 
-  } */
+    justify-content: space-evenly;
+    gap: 1em;
+    width: 100%;
+    margin: auto;
+  }
+  .header img{
+    width: 120px;
+  }
+  .header ul{
+    width: fit-content;
+    justify-content: center;
+    gap: .2em;
+    margin-top: .3em;
+  }
+  .content{
+    font-size: .8em;
+  }
+  .content p{
+    margin-top: 1em;
+    width: 25rem;
+  }
+  
 }

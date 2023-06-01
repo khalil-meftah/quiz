@@ -16,8 +16,9 @@
 </head>
 <body>
 
-
     <div class="container">
+        <div class="style-index"></div>
+
             <nav class="header">
                 <img src="/logo/logo.svg" alt="Logo" class="first-image">
                 

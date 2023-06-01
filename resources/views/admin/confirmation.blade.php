@@ -72,35 +72,48 @@
             </form>
           </div>
       </div>
-      <div id="child">
-        <div class="user-info section-info">
-            <div>
-                <p>Nom</p>
-                <p>Prénom</p>
-                <p>Email Address</p>
-                <p>Role</p>
-                <p>Date De Naissance</p>
-                <p>Téléphone</p>
-                <p>Addresse</p>
-                <p>status</p>
-            </div>
-            <div>
-                <p>{{ $user->name }}</p>
-                <p>{{ $user->prenom }}</p>
-                <p>{{ $user->email }}</p>
-                <p>{{ $user->role }}</p>
-                <p>{{ $user->dateDeNaissance }}</p>
-                <p>{{ $user->numeroDeTelephone }}</p>
-                <p>{{ $user->adresse }}</p>
-                @if($user->status == 1)
-                <p>actif</p>
-                @elseif($user->status == 0)
-                <p>inactif</p>
-                @endif
-            </div>
-
+      <div class="child" id="child">
+          <table class="main-table">
+              <tr>
+                  <td>Nom</td>
+                  <td>{{$user->name}}</td>
+              </tr>
+              <tr>
+                  <td>Prénom</td>
+                  <td>{{$user->prenom}}</td>
+              </tr>
+              <tr>
+                  <td>Email Address</td>
+                  <td>{{$user->email}}</td>
+              </tr>
+              <tr>
+                  <td>Role</td>
+                  <td>{{$user->role}}</td>
+              </tr>
+              <tr>
+                  <td>Date De Naissance</td>
+                  <td>{{$user->dateDeNaissance}}</td>
+              </tr>
+              <tr>
+                  <td>Téléphone</td>
+                  <td>{{$user->numeroDeTelephone}}</td>
+              </tr>
+              <tr>
+                  <td>Addresse</td>
+                  <td>{{$user->adresse}}</td>
+              </tr>
+              <tr>
+                  <td>status</td>
+                  <td>
+                      @if($user->status == 1)
+                          actif
+                      @elseif($user->status == 0)
+                          inactif
+                      @endif
+                  </td>
+              </tr>
+          </table>
         </div>
-      </div>
         @endforeach
     </div>
     @endisset

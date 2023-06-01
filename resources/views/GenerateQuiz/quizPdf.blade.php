@@ -18,10 +18,21 @@
         }
         body{
             font-size: 14px;
-            margin: 3em 5em;
+            margin: 4em 5em;
         }
         div{
             margin: .5em 0;
+        }
+        /* .ofppt{
+            width: fit-content;
+            margin: 0 auto;
+        } */
+        .ofppt{
+            text-align: center;
+            width: 100%;
+        }
+        .ofppt img{
+            height: 80px;
         }
         .header{
             width: 100%;
@@ -49,9 +60,16 @@
         }
 
     </style>
-    <div class="ofppt">
-        <img src="logo/ofpptLogo.png" alt="ofppt logo" width="65px">
-    </div>
+    <table class="ofppt">
+        <tr>
+            <td>
+                <img src="logo/ofpptLogo.png" alt="ofppt logo">
+                <img src="logo/ofpptBanner.png" alt="ofppt logo">
+            </td>
+        </tr>
+
+        
+    </table> 
     
     
     <table class="header">
@@ -78,12 +96,12 @@
             </td>
         </tr>
         <tr class="info">
-            <td>Nom & Prénom : .............................................</td>
+            <td>Nom et Prénom : .............................................</td>
             <td>Groupe : ............................................</td>
         </tr>
     </table>
     <div class="qcm">
-    <h3>QCM {{$data['bareme']/20}} point par question ({{$data['bareme']}}pts)</h3>
+    <h3>QCM</h3>
     @foreach ($questions as $question)
         <table class="question">
             <tr>

@@ -15,7 +15,7 @@
 
     .loader {
       border: 7px solid var(--main);
-      border-top: 7px solid var(--quinary);
+      border-top: 7px solid var(--quinary-light);
       border-radius: 50%;
       width: 65px;
       height: 65px;

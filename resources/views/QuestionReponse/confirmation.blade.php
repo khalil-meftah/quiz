@@ -109,11 +109,8 @@
                     
       </div>
         
-          <table class="main-table reponse" id="child">
-            <!-- <tr>
-              <th>descriptionReponse</th>
-              <th>valeurReponse</th>
-            </tr> -->
+      <div class="child" id="child">
+          <table class="main-table reponse" >
             @foreach( $question->reponses as $reponse )
               <tr>
                 <td>{{ $reponse['descriptionReponse'] }}</td>
@@ -139,20 +136,16 @@
                 </td>
               </tr>
             @endforeach
-            <tr>
-                <td>
-                    <form action="{{ route('reponse.create') }}" method="get">
-                        @csrf
-                        <input type="hidden" name="question_id" value="{{ $question->id }}">
-                        <button class="add-reponse-btn standard-btn" type="submit">
-                          <img src="{{asset('logo/add.svg')}}"/>
-                          <span>Ajouter une réponse</span>
-                        </button>
-                    </form>
-                </td>
-            </tr>
           </table>
-
+          <form action="{{ route('reponse.create') }}" method="get" class="ajouter-reponse">
+              @csrf
+              <input type="hidden" name="question_id" value="{{ $question->id }}">
+              <button class="add-reponse-btn standard-btn" type="submit">
+                <img src="{{asset('logo/add.svg')}}"/>
+                <span>Ajouter une réponse</span>
+              </button>
+          </form>
+      </div>
         @endforeach
     </div>
     @endisset

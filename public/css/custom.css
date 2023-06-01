@@ -21,38 +21,35 @@ body{
 }
 .form {
   background-color: white;
-  width: 25em;
-  padding: 2em 3em;
+  width: 22em;
+  padding: 3em;
   border-radius: 10px;
 }
 .form h1{
   font-size: 1.5em;
   font-weight: 700;
-  color: var(--main);
+  color: var(--side-dash-main);
   margin-bottom: 1em;
 }
 .form span, .form input, .form button, .form select{
   display: block;
 }
-.form input[type="checkbox"]{
-  display: inline-block;
-}
 
 .form span{
   font-size: 1.2em;
   font-weight: 700;
-  color: var(--main);
+  color: var(--dark-font);
   margin-bottom: 1em;
 }
 .form input{
   width: 95%;
-  padding: 1em 0.7em;
+  padding: 1em 1em;
   border: 1px solid var(--tertiary);
   border-radius: 5px;
   margin-bottom: 1em;
   font-size: 1em;
   font-weight: 500;
-  color: var(--main);
+  color: var(--dark-font);
   outline: none;
 }
 .form select{
@@ -63,9 +60,9 @@ body{
   margin-bottom: 1em;
   font-size: 1em;
   font-weight: 500;
-  color: var(--main);
+  color: var(--dark-font);
   outline: none;
-  background-color: var(--secondary);
+  /* background-color: var(--secondary); */
 }
 .form button, .button a{
   width: 100%;
@@ -76,55 +73,55 @@ body{
   font-size: 1em;
   font-weight: 700;
   color: var(--secondary);
-  background-color: var(--main);
+  background-color: var(--side-dash-main);
   cursor: pointer;
   outline: none;
 }
 .form button:hover{
-  background-color: var(--quaternary);
+  background-color: var(--quinary);
 }
 .form button:active{
-  background-color: var(--quaternary);
+  background-color: var(--quinary);
 }
 .form input[type="checkbox"]{
   width: auto;
   margin-right: 0.5em;
 }
 .form label{
-  font-size: 0.9em;
+  font-size: 1em;
   font-weight: 500;
-  color: var(--main);
+  color: var(--dark-font);
 }
 .form label a{
   color: var(--quaternary);
 }
 .form label a:hover{
-  color: var(--main);
+  color: var(--dark-font);
 }
-
-.button{
+.remember-forgot{
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 1em;
+
+  font-size: .9em;
+}
+.remember-me{
+  display: flex;
   align-items: center;
+  gap: 0.5em;
+}
+.remember-me input{
+  margin: 0 !important;
+}
+.forgot-password a{
+  color: var(--quaternary);
 }
 
-.button a {
-  margin-top: 1em;
-  text-align: center;
-  width: 50%;
-  text-decoration: none;
-  background-color: white;
-  color: var(--quinary);
-  border: 1px solid var(--quinary);
-
-  font-weight: 700;
+.register {
+  display: block;
+  margin: auto;
+  color: var(--side-dash-main);
 }
-.button a:hover{
-  background-color: var(--quinary);
-  color: var(--secondary);
-
-}
-
 /* speific to alert message*/
 .alert{
   margin: .7em 0;

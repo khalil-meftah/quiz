@@ -49,7 +49,7 @@ class quizController extends Controller
             });
         }
         
-        $questions = $query->inRandomOrder()->limit(20)->get();
+        $questions = $query->where('status', 'validated')->inRandomOrder()->limit(20)->get();
         
         if ($questions->isEmpty() && !empty($module)) {
             $moduleQuestions = Question::whereHas('chapitre', function ($query) use ($module) {
@@ -60,7 +60,10 @@ class quizController extends Controller
         }
         
         foreach ($questions as $question) {
-            $reponses = Reponse::where('question_id', $question->id)->get()->toArray();
+            $reponses = Reponse::where('question_id', $question->id)
+                ->where('status', 'validated')
+                ->get()
+                ->toArray();
             $question->reponses = $reponses;
         }
         
@@ -87,6 +90,7 @@ class quizController extends Controller
         }
         
         $pdf = PDF::loadView('GenerateQuiz\quizPdf', compact('questions', 'data'));
+        // $pdf = PDF::loadView('GenerateQuiz\correctionPdf', compact('questions', 'data'));
         
         // return $pdf->download($fileName);
         return $pdf->stream($fileName);

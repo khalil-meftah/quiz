@@ -59,26 +59,33 @@
             </form>
           </div>
       </div>
-      <div id="child">
-        <div class="chapitre-info section-info">
-            <div>
-                <p>Nom : </p>
-                <p>Description : </p>
-                <p>Nombres d'heures : </p>
-                <p>Date de début : </p>
-                <p>Date de création : </p>
-                <p>Module : </p>
-            </div>
-            <div>
-                <p>{{$chapitre->nomChapitre}}</p>
-                <p>{{$chapitre->descriptionChapitre}}</p>
-                <p>{{$chapitre->nombreHeuresChapitre}}</p>
-                <p>{{$chapitre->dateDebutChapitre}}</p>
-                <p>{{$chapitre->dateCreationChapitre}}</p>
-                <p>{{$chapitre->module->nomModule}}</p> 
-            </div>
-
-        </div>
+      <div class="child" id="child">
+          <table class="main-table" >
+            <tr>
+                <td>Nom</td>
+                <td>{{$chapitre->nomChapitre}}</td>
+             </tr>
+              <tr>
+                  <td>Description</td>
+                  <td>{{$chapitre->descriptionChapitre}}</td>
+              </tr>
+              <tr>
+                  <td>Nombres d'heures</td>
+                  <td>{{$chapitre->nombreHeuresChapitre}}</td>
+              </tr>
+              <tr>
+                  <td>Date de début</td>
+                  <td>{{$chapitre->dateDebutChapitre}}</td>
+              </tr>
+              <tr>
+                  <td>Date de création</td>
+                  <td>{{$chapitre->dateCreationChapitre}}</td>
+              </tr>
+              <tr>
+                  <td>Module</td>
+                  <td>{{$chapitre->module->nomModule}}</td>
+              </tr>
+          </table>
       </div>
         @endforeach
     </div>

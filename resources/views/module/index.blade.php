@@ -59,25 +59,31 @@
             </form>
           </div>
       </div>
-      <div id="child">
-        <div class="module-info section-info">
-            <div>
-                <p>Nom : </p>
-                <p>Description : </p>
-                <p>Nombres d'heures : </p>
-                <p>Date de début : </p>
-                <p>Date de création : </p>
-            </div>
-            <div>
-                <p>{{$module->nomModule}}</p>
-                <p>{{$module->descriptionModule}}</p>
-                <p>{{$module->nombreHeuresModule}}</p>
-                <p>{{$module->dateDebutModule}}</p>
-                <p>{{$module->dateCreationModule}}</p>
-            </div>
-
-        </div>
+      <div class="child" id="child">
+        <table class="main-table">
+            <tr>
+                <td>Nom</td>
+                <td>{{$module->nomModule}}</td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td>{{$module->descriptionModule}}</td>
+            </tr>
+            <tr>
+                <td>Nombres d'heures</td>
+                <td>{{$module->nombreHeuresModule}}</td>
+            </tr>
+            <tr>
+                <td>Date de début</td>
+                <td>{{$module->dateDebutModule}}</td>
+            </tr>
+            <tr>
+                <td>Date de création</td>
+                <td>{{$module->dateCreationModule}}</td>
+            </tr>
+        </table>
       </div>
+
         @endforeach
     </div>
     @endisset

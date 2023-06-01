@@ -3,25 +3,44 @@
 
 :root{
   --main: #373B61;
-  /* --main: #567fcc; testing */
+  /* --main:  #567fcc; */
   --secondary: #EDEFFE;
   --secondary-op: #edeffec2;
   --tertiary: #e0e1ee;
   --quaternary: #2e3250;
-  --quinary: #0CC0DF;
-  /* --quinary: #2f4774; testing */
+  /* --quinary: #0CC0DF; */
+  /* --quinary: #2f4774; */
+  --quinary: #2f4774;
+  --senary: #567fcc;
+  --quinary-light: #0CC0DF; 
 
-  --senary: #0bb3d1;
+
+  --dark-font: #000;
+  --light-font: #fff;
+
+  /* --senary: #0bb3d1; */
   --green: #00b894;
+  --green-strong: #00b86b;
   --red: #b81c00;
 
   --font: 'Inter', sans-serif;
 
   --icon-main: brightness(0) saturate(100%) invert(23%) sepia(21%) saturate(1042%) hue-rotate(195deg) brightness(95%) contrast(94%);
-  --icon-quinary: brightness(0) saturate(100%) invert(60%) sepia(84%) saturate(2824%) hue-rotate(149deg) brightness(103%) contrast(91%);
+  /* --icon-quinary: brightness(0) saturate(100%) invert(60%) sepia(84%) saturate(2824%) hue-rotate(149deg) brightness(103%) contrast(91%); */
+  --icon-quinary: brightness(0) saturate(100%) invert(25%) sepia(14%) saturate(2310%) hue-rotate(181deg) brightness(94%) contrast(87%);
+  --icon-senary: brightness(0) saturate(100%) invert(52%) sepia(17%) saturate(2925%) hue-rotate(191deg) brightness(88%) contrast(78%);
+
+
   --icon-white: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(101%);
   --icon-red: brightness(0) saturate(100%) invert(28%) sepia(91%) saturate(7485%) hue-rotate(356deg) brightness(105%) contrast(124%);
   --icon-green: brightness(0) invert(47%) sepia(75%) saturate(2554%) hue-rotate(138deg) brightness(99%) contrast(101%);
+  --icon-dark: brightness(0) saturate(100%);
+
+  /* side dash */
+  /* --side-dash-main: #2f4774; */
+  --side-dash-main: #253e6b;
+
+  --icon-side-dash-main: brightness(0) saturate(100%) invert(23%) sepia(21%) saturate(1042%) hue-rotate(195deg) brightness(95%) contrast(94%);
 
   /* #5669cc
   #e8e8e8 */
