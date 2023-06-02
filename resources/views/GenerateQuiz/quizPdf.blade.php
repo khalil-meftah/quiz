@@ -99,7 +99,7 @@
             <td>
                 <p>Année de formation: {{ $data['anneDeFormation'] }}A</p>
                 <p>Épreuve: Théorique</p>
-                <p>Durée: {{ $data['duree'] }} Heures</p>
+                <p>Durée: {{ $data['duree'] }} H</p>
                 <p>Variante: V{{ $data['variante'] }}</p>
                 <p>Bareme: /{{ $data['bareme'] }}</p>
             </td>
@@ -129,7 +129,7 @@
         </table>
     @endforeach
     </div>
-    <div class="qcm correction">
+    <!-- <div class="qcm correction">
     <h3>QCM - Correction</h3>
     @foreach ($questions as $question)
         <table class="question">
@@ -155,6 +155,6 @@
 
         </table>
     @endforeach
-    </div>
+    </div> -->
 </body>
 </html>

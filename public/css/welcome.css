@@ -1,5 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import url('assets.css');
+::-webkit-scrollbar-track
+{
+	background-color: #F5F5F5;
+    border-radius: 50px;
+}
+::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #F5F5F5;
+    border-radius: 50px;
+}
+::-webkit-scrollbar-thumb
+{
+    border-radius: 50px;
+    background-color: var(--side-dash-main);
+}
 *{
   margin: 0;
   padding: 0;
@@ -11,8 +27,6 @@ body, html {
   height: 100vh;
   width: 100%;
   font-family: 'Roboto', sans-serif;
-
-
 }
 .style-index{
   position: absolute;
