@@ -6,11 +6,12 @@ use Illuminate\Http\Request;
 use App\Models\Reponse;
 use App\Models\Question;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\DB;
 
 
 class reponseController extends Controller
 {
+    
     public function __construct(Request  $request)
     {
         $this->middleware('auth');
@@ -81,14 +82,16 @@ class reponseController extends Controller
             'valeurReponse' => 'required',
             'question_id' => 'required',
         ]);
+    
         $reponse = Reponse::find($id);
         $reponse->descriptionReponse = $request->descriptionReponse;
         $reponse->valeurReponse = $request->valeurReponse;
         $reponse->question_id = $request->question_id;
+    
         $reponse->save();
         return redirect()->route('question-reponse.index');
     }
-
+    
     /**
      * Remove the specified resource from storage.
      */

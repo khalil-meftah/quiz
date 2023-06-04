@@ -100,7 +100,7 @@ class quizController extends Controller
         $fileNameCorrection = $fileName . ' - Correction';
     
         $pdf = PDF::loadView('GenerateQuiz\quizPdf', compact('questions', 'data'));
-        return $pdf->download($fileName);
+        return $pdf->stream($fileName);
 
         // $pdf2 = PDF::loadView('GenerateQuiz\correctionPDF', compact('questions', 'data'));
         // $zip = new ZipStream($zipFileName);
