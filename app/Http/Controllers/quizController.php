@@ -8,8 +8,6 @@ use App\Models\Question;
 use App\Models\Reponse;
 
 use PDF;
-// use ZipStream\ZipStream;
-// use ZipStreamResponse\ZipStreamResponse;
 
 use Illuminate\Http\Request;
 
@@ -101,7 +99,7 @@ class quizController extends Controller
         $pdf = PDF::loadView('GenerateQuiz\quizPdf', compact('questions', 'data', 'moduleData'));
         return $pdf->download($fileName);
 
-        // $pdf2 = PDF::loadView('GenerateQuiz\correctionPDF', compact('questions', 'data'));
 
     }
+
 }
