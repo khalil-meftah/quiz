@@ -7,6 +7,8 @@ use App\Models\Question;
 use App\Models\Chapitre;
 use App\Models\Module;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
+
 
 class questionController extends Controller
 {
@@ -37,25 +39,28 @@ class questionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'descriptionQuestion' => 'required',
-            'chapitre' => 'required',
+            'descriptionQuestion' => ['required'],
+            'chapitre' => ['required', 'exists:chapitres,id'],
+        ], [
+            'descriptionQuestion.required' => 'Le champ description de la question est requis.',
+            'chapitre.required' => 'Le champ chapitre est requis.',
+            'chapitre.exists' => 'Le chapitre sélectionné est invalide.',
         ]);
         $question = new Question();
         $question->descriptionQuestion = $request->descriptionQuestion;
         $question->chapitre_id = $request->chapitre;
         $question->status = 'pending';
         $question->save();
-        return redirect()->route('question-reponse.index');
+        return redirect()->route('reponse.create')->with('question_id', $question->id);
     }
 
     /**
      * Display the specified resource.
      */
-    // public function show(string $id)
-    // {
-    //     $questionWithResponses = Question::with('reponses')->find($id);
-    //     return view('Question\show', compact('questionWithResponses'));
-    // }
+    public function show(string $id)
+    {
+        return redirect()->route('question-reponse.index');
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -75,8 +80,12 @@ class questionController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'descriptionQuestion' => 'required',
-            'chapitre' => 'required',
+            'descriptionQuestion' => ['required'],
+            'chapitre' => ['required', 'exists:chapitres,id'],
+        ], [
+            'descriptionQuestion.required' => 'Le champ description de la question est requis.',
+            'chapitre.required' => 'Le champ chapitre est requis.',
+            'chapitre.exists' => 'Le chapitre sélectionné est invalide.',
         ]);
         $question = Question::find($id);
         $question->descriptionQuestion = $request->descriptionQuestion;
@@ -114,7 +123,7 @@ class questionController extends Controller
         return redirect()->route('question-reponse.validation');
         
         } else {
-            return redirect()->back()->with('error', 'You are not authorized to perform this action.');
+            return redirect()->back()->with('error', 'Vous n\'êtes pas autorisé à effectuer cette action.');
         }
     }
 

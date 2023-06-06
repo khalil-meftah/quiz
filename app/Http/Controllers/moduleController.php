@@ -33,22 +33,20 @@ class moduleController extends Controller
         $request->validate([
             'nomModule'=>['filled','min:3','unique:modules'],
             'nombreHeuresModule' => ['filled'],
-            // 'dateDebutModule' =>['required_with:dateCreationModule'],
-            // 'dateCreationModule' => ['before:dateDebutModule']
+            'dateDebutModule' =>['required'],
         ],[
-        //nom module
-        // 'nomModule.unique'=>'le nom de module a déja été pris',
-        'nomModule.filled'=>'Le champ nom module doit avoir une valeur.',
-        // 'nombreHeuresModule.filled'=>'Le champ nombre heures Module doit avoir une valeur.',
+            'nomModule.unique'=>'le nom de module a déja été pris',
+            'nomModule.filled'=>'Le champ nom module doit avoir une valeur.',
+            'nombreHeuresModule.filled'=>'Le champ nombre heures Module doit avoir une valeur.',
+            'dateDebutModule' =>'Le champ date debut Module est obligatoire.'
         ]
     ); 
         $mod->nomModule = $request->nomModule;
         $mod->descriptionModule = $request->descriptionModule;
         $mod->nombreHeuresModule = $request->nombreHeuresModule;
         $mod->dateDebutModule = $request->dateDebutModule;
-        $mod->dateCreationModule = $request->dateCreationModule;
-    $mod->save();
-return redirect('module');}
+        $mod->save();
+        return redirect('module');}
 
     /**
      * Display the specified resource.
@@ -75,27 +73,20 @@ return redirect('module');}
         $mod=Module::find($id);
         
         $request->validate([
-            'nomModule'=>['filled','min:3'],
+            'nomModule'=>['filled','min:3','unique:modules'],
             'nombreHeuresModule' => ['filled'],
-            // 'dateDebutModule' =>['required_with:dateCreationModule'],
-            // 'dateCreationModule' => ['before:dateDebutModule']
+            'dateDebutModule' =>['required'],
         ],[
-            //unicité du nom 
-         'nomModule.filled'=>'le nom du module doit être avoir une valeur.',
-        // desription const
-        // nombre heures const 
-        'nombreHeuresModule.filled'=>'Le champ nombre heures Module doit avoir une valeur.',
-        // date creation const
-        // 'dateCreationModule'=>'Le champ date creation Module doit être une date avant date debut Module.',
-        //date debut const
-        // 'dateDebutMod.required_with' =>'Le champ date debut Module est obligatoire lorsque date creation Module est présent.'
-    ]);
+            'nomModule.unique'=>'le nom de module a déja été pris',
+            'nomModule.filled'=>'le nom du module doit être avoir une valeur.',
+            'nombreHeuresModule.filled'=>'Le champ nombre heures Module doit avoir une valeur.',
+            'dateDebutModule' =>'Le champ date debut Module est obligatoire.'
+        ]);
 
         $mod->nomModule = $request->nomModule;
         $mod->descriptionModule = $request->descriptionModule;
         $mod->nombreHeuresModule = $request->nombreHeuresModule;
         $mod->dateDebutModule = $request->dateDebutModule;
-        $mod->dateCreationModule = $request->dateCreationModule;
         $mod -> save();
         return redirect ('module');
         }

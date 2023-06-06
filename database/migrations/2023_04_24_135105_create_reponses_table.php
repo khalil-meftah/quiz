@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->text('descriptionReponse');
             $table->boolean('valeurReponse');
-            $table->timestamps();
             $table->string('status')->default('pending');
             $table->unsignedBigInteger('validated_by')->nullable();
             $table->bigInteger('question_id')->unsigned();
             $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

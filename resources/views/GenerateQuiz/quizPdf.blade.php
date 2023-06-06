@@ -91,9 +91,9 @@
         <tr>
             <td>
                 <p>Filière: {{ $data['filiere'] }}</p>
-                <p>Niveau: {{ $data['niveau'] }}</p>
+                <p>Niveau: TS</p>
                 <p>Numéro de module: {{ $data['numModule'] }}</p>
-                <p>Intitulé du module: {{ $data['intituleModule'] }}</p>
+                <p>Intitulé du module: {{ $moduleData->nomModule }}</p>
                 <p>Date d'évaluation: {{ $data['dateEvaluation'] }}</p>
             </td>
             <td>

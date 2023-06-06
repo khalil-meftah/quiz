@@ -77,10 +77,6 @@
                 <td>Date de début</td>
                 <td>{{$module->dateDebutModule}}</td>
             </tr>
-            <tr>
-                <td>Date de création</td>
-                <td>{{$module->dateCreationModule}}</td>
-            </tr>
         </table>
       </div>
 

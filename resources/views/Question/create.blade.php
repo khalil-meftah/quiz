@@ -29,10 +29,10 @@
         <form action="{{route('question.store')}}" method="post" class="create-form create-question-form">
             @csrf
             
-            <textarea name="descriptionQuestion" id="question-input" placeholder="Question ..."></textarea>
+            <textarea name="descriptionQuestion" id="question-input" placeholder="Question ..." required></textarea>
 
             @isset( $modules , $chapitres )
-                <select name="module" id="module">
+                <select name="module" id="module" required>
                     <option value="">Sélectionnez le module</option>
                     @foreach($modules as $module)
                         <option value="{{ $module->id }}">{{ $module->nomModule }}</option>

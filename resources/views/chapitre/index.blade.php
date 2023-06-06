@@ -78,10 +78,6 @@
                   <td>{{$chapitre->dateDebutChapitre}}</td>
               </tr>
               <tr>
-                  <td>Date de création</td>
-                  <td>{{$chapitre->dateCreationChapitre}}</td>
-              </tr>
-              <tr>
                   <td>Module</td>
                   <td>{{$chapitre->module->nomModule}}</td>
               </tr>

@@ -28,7 +28,7 @@
         <form action="{{ route('reponse.update', $reponse->id) }}" method="post">
             @csrf
             @method('PUT')
-            <textarea name="descriptionReponse" placeholder="Réponse ...">{{ $reponse->descriptionReponse }}</textarea>
+            <textarea name="descriptionReponse" placeholder="Réponse ..." required>{{ $reponse->descriptionReponse }}</textarea>
 
             <label for="valeurReponse" class="label">Valeur</label>
 
@@ -44,14 +44,14 @@
             </div>
             
             <label class="label">Question id</label>
-            <select name="question_id" id="question_id">
-            @foreach($questions as $question)
-                        @if($question->id == $reponse->question_id)
-                            <option value="{{ $question->id }}" selected>{{ $question->descriptionQuestion }}</option>
-                        @else
-                            <option value="{{ $question->id }}">{{ $question->descriptionQuestion }}</option>
-                        @endif
-            @endforeach
+            <select name="question_id" id="question_id" required>
+                @foreach($questions as $question)
+                    @if($question->id == $reponse->question_id)
+                        <option value="{{ $question->id }}" selected>{{ $question->descriptionQuestion }}</option>
+                    @else
+                        <option value="{{ $question->id }}">{{ $question->descriptionQuestion }}</option>
+                    @endif
+                @endforeach
             </select>
 
             <div class="submit-reset">

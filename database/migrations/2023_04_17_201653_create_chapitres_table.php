@@ -17,11 +17,9 @@ return new class extends Migration
             $table->text('descriptionChapitre')->nullable();
             $table->integer('nombreHeuresChapitre')->nullable();
             $table->date('dateDebutChapitre')->nullable();
-            $table->date('dateCreationChapitre')->nullable();
-            $table->timestamps();
             $table->unsignedBigInteger('module_id');
             $table->foreign('module_id')->references('id')->on('modules')->onDelete('cascade');
-            
+            $table->timestamps();
         });
     }
 

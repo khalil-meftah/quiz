@@ -40,6 +40,8 @@ class quizController extends Controller
         $data = $request;
         $module = $request->input('module');
         $chapitre = $request->input('chapitre');
+
+        $moduleData = Module::find($module);
         
         $query = Question::query();
 
@@ -88,28 +90,18 @@ class quizController extends Controller
         
         if (!empty($moduleTitle) && !empty($chapitreTitle)) {
             $fileName = $moduleTitle . '_' . $chapitreTitle . '.pdf';
-            // $zipFileName = $moduleTitle . '_' . $chapitreTitle . '.zip';
         } elseif (!empty($moduleTitle)) {
             $fileName = $moduleTitle . '.pdf';
-            // $zipFileName = $moduleTitle . '.zip';
         } else {
             $fileName = 'quiz.pdf';
-            // $zipFileName = 'quiz.zip';
         }
         
         $fileNameCorrection = $fileName . ' - Correction';
     
-        $pdf = PDF::loadView('GenerateQuiz\quizPdf', compact('questions', 'data'));
+        $pdf = PDF::loadView('GenerateQuiz\quizPdf', compact('questions', 'data', 'moduleData'));
         return $pdf->download($fileName);
 
         // $pdf2 = PDF::loadView('GenerateQuiz\correctionPDF', compact('questions', 'data'));
-        // $zip = new ZipStream($zipFileName);
-        // $zip->addFile($fileName, $pdf->output());
-        // $zip->addFile($fileNameCorrection, $pdf2->output());
-        // $zip->finish();
-        
-        // return new ZipStreamResponse($zip);
-
 
     }
 }
