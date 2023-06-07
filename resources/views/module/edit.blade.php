@@ -34,9 +34,6 @@
 
             <input type="integer" name="nombreHeuresModule" id="nombreHeuresModule" placeholder="Nombre d'heures"  value ="{{$mod->nombreHeuresModule}}" value ="{{$mod ->nombreHeuresModule}}">
 
-            <label for="dateCreationModule" class="label">Date de creation</label>
-            <input type="date" name="dateCreationModule" id="dateCreationModule" value ="{{$mod ->dateCreationModule}}">
-
             <label for="dateDebutModule" class="label">Date de début</label>
             <input type="date" name="dateDebutModule" id="dateDebutModule" value ="{{$mod ->dateDebutModule}}">
 

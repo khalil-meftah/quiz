@@ -36,9 +36,6 @@
 
             <input type="integer" name="nombreHeuresModule" id="nombreHeuresModule" placeholder="Nombre d'heures">
 
-            <label for="dateCreationModule" class="label">Date de creation</label>
-            <input type="date" name="dateCreationModule" id="dateCreationModule">
-
             <label for="dateDebutModule" class="label">Date de début</label>
             <input type="date" name="dateDebutModule"id="dateDebutModule">
 

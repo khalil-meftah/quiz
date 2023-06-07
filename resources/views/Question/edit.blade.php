@@ -29,10 +29,10 @@
         <form action="{{ route('question.update', $question->id) }}" method="post" class="create-form"> 
             @csrf
             @method('PUT')
-            <textarea name="descriptionQuestion" id="question-input-update" placeholder="Question">{{ $question->descriptionQuestion }}</textarea>
+            <textarea name="descriptionQuestion" id="question-input-update" placeholder="Question" required>{{ $question->descriptionQuestion }}</textarea>
 
             @isset( $chapitres )
-                <select name="chapitre_id" id="chapitre_id">
+                <select name="chapitre_id" id="chapitre_id" required>
                     <option value="">Sélectionnez le chapitre</option>
 
                     @foreach($chapitres as $chapitre)

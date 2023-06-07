@@ -6,10 +6,8 @@
 
     <link rel="icon" href="logo\quiz.svg" type="image/svg" sizes="16x16">
     <title>Quiz</title>
-    <!-- <link rel="stylesheet" href="\css\app.css"> -->
     <link rel="stylesheet" href="{{ asset('css/welcome.css') }}">
-    <!-- @viteReactRefresh
-    @vite('resources/js/app.jsx') -->
+
     @auth
         <script>window.location = "{{ route('question-reponse.index') }}";</script>
     @endauth

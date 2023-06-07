@@ -14,9 +14,9 @@
     
     <input placeholder="Nom" id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
     @error('name')
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-        </span>
+        <p class="invalid-feedback" role="alert">
+            {{ $message }}
+        </p>
     @enderror
 
 {{--------------PRENOM--------------------}}
@@ -24,9 +24,9 @@
         <input placeholder="Prénom" id="prenom" type="text" class="form-control @error('prenom') is-invalid @enderror" name="prenom" value="{{ old('prenom') }}" required autocomplete="prenom" autofocus>
 
         @error('prenom')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
+            <p class="invalid-feedback" role="alert">
+                {{ $message }}
+            </p>
         @enderror
     </div>
 {{--------------------EMAIL----------------------}}
@@ -36,9 +36,9 @@
         <input placeholder="Email" id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
         @error('email')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
+            <p class="invalid-feedback" role="alert">
+                {{ $message }}
+            </p>
         @enderror
     
 
@@ -53,9 +53,9 @@
         </select>
     
     @error('role')
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-        </span>
+        <p class="invalid-feedback" role="alert">
+            {{ $message }}
+        </p>
     @enderror
     
 
@@ -67,9 +67,9 @@
     <input placeholder="Date de naissance" value="" id="dateDeNaissance" type="text" class="form-control @error('dateDeNaissance') is-invalid @enderror" name="dateDeNaissance" value="{{ old('dateDeNaissance') }}" required autocomplete="dateDeNaissance" autofocus onfocus="(this.type='date')" onblur="if(this.value)" this.type='text'>
 
     @error('dateDeNaissance')
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-        </span>
+        <p class="invalid-feedback" role="alert">
+            {{ $message }}
+        </p>
     @enderror
     
 
@@ -78,9 +78,9 @@
 <input placeholder="Téléphone" id="numeroDeTelephone" type="tel" class="form-control @error('numeroDeTelephone') is-invalid @enderror" name="numeroDeTelephone" value="{{ old('numeroDeTelephone') }}" required autocomplete="numeroDeTelephone" autofocus>
 
 @error('numeroDeTelephone')
-    <span class="invalid-feedback" role="alert">
-        <strong>{{ $message }}</strong>
-    </span>
+    <p class="invalid-feedback" role="alert">
+        {{ $message }}
+    </p>
 @enderror
     
 
@@ -91,9 +91,9 @@
 <input placeholder="Adresse" id="adresse" type="text" class="form-control @error('adresse') is-invalid @enderror" name="adresse" value="{{ old('adresse') }}" required autocomplete="adresse" autofocus>
 
 @error('adresse')
-    <span class="invalid-feedback" role="alert">
-        <strong>{{ $message }}</strong>
-    </span>
+    <p class="invalid-feedback" role="alert">
+        {{ $message }}
+    </p>
 @enderror
     
 
@@ -102,9 +102,9 @@
     <input placeholder="Mot de passe" id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
     @error('password')
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-        </span>
+        <p class="invalid-feedback" role="alert">
+            {{ $message }}
+        </p>
     @enderror
                             
                         

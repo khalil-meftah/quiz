@@ -33,9 +33,6 @@
 
             <input type="integer" name="nombreHeuresChapitre" id="nombreHeuresChapitre" placeholder="Nombre d'heures"  value ="{{$chapitre->nombreHeuresChapitre}}" >
 
-            <label for="dateCreationChapitre" class="label">Date de création</label>
-            <input type="date" name="dateCreationChapitre" id="dateCreationChapitre" placeholder="Date de création" value ="{{$chapitre->dateCreationChapitre}}">
-
             <label for="dateDebutChapitre" class="label">Date de début</label>
             <input type="date" name="dateDebutChapitre"id="dateDebutChapitre" placeholder="Date de début" value ="{{$chapitre->dateDebutChapitre}}">
 

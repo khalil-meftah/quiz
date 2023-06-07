@@ -33,9 +33,6 @@
 
             <input type="integer" name="nombreHeuresChapitre" id="nombreHeuresChapitre" placeholder="Nombre d'heures">
 
-            <label for="dateCreationChapitre" class="label">Date de création</label>
-            <input type="date" name="dateCreationChapitre" id="dateCreationChapitre" placeholder="Date de création">
-
             <label for="dateDebutChapitre" class="label">Date de début</label>
             <input type="date" name="dateDebutChapitre"id="dateDebutChapitre" placeholder="Date de début">
 

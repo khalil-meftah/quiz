@@ -27,7 +27,7 @@
         <h1 class="h1 mb-4">Ajouter une réponse</h1>
         <form action="{{route('reponse.store')}}" method="post">
             @csrf
-            <textarea name="descriptionReponse" placeholder="Réponse ..."></textarea>
+            <textarea name="descriptionReponse" placeholder="Réponse ..." required></textarea>
 
             <label for="valeurReponse" class="label">Valeur</label>
 

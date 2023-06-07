@@ -91,9 +91,9 @@
         <tr>
             <td>
                 <p>Filière: {{ $data['filiere'] }}</p>
-                <p>Niveau: {{ $data['niveau'] }}</p>
+                <p>Niveau: TS</p>
                 <p>Numéro de module: {{ $data['numModule'] }}</p>
-                <p>Intitulé du module: {{ $data['intituleModule'] }}</p>
+                <p>Intitulé du module: {{ $moduleData->nomModule }}</p>
                 <p>Date d'évaluation: {{ $data['dateEvaluation'] }}</p>
             </td>
             <td>
@@ -129,32 +129,6 @@
         </table>
     @endforeach
     </div>
-    <!-- <div class="qcm correction">
-    <h3>QCM - Correction</h3>
-    @foreach ($questions as $question)
-        <table class="question">
-            <tr>
-                <td>
-                    <p class="question">{{ $question->descriptionQuestion}}</p>
-                </td>
-            </tr>
-            @foreach ($question->reponses as $reponse)
-            <tr>
-                <td class="reponse">
-                    <span>{{$loop->index + 1}} - {{ $reponse['descriptionReponse'] }} <span>
-                    @if($reponse['valeurReponse'] == 1)
-                    <span class="answer answer-green">Vrai</span>
-                    @endif
-                    @if($reponse['valeurReponse'] == 0)
-                    <span class="answer answer-red">Faux</span>
-                    @endif
-                </span>
-                </td>
-            </tr>
-            @endforeach
 
-        </table>
-    @endforeach
-    </div> -->
 </body>
 </html>

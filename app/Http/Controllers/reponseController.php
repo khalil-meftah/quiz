@@ -25,12 +25,18 @@ class reponseController extends Controller
 
     public function create(Request $request)
     {
-        $question_id = $request->query('question_id');
-        // Retrieve the question using the question ID
-        // $question = Question::find($question_id);
-    
-        // Pass the question to the create view
+        // if($request){
+        //     $id = $request->query('question_id');
+        // }
+        // if($question_id){
+        //     $id = $question_id;
+        // }
+
+        // $question = Question::find($id);
+        $question_id = session('question_id');
+
         return view('reponse.create', compact('question_id'));
+        // return $question_id;
         // return $request;
     }
 
@@ -40,9 +46,14 @@ class reponseController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'descriptionReponse' => 'required',
+            'descriptionReponse' => ['required'],
             'valeurReponse' => 'required',
-            'question_id' => 'required',
+            'question_id' => ['required', 'exists:questions,id'],
+        ], [
+            'descriptionReponse.required' => 'Le champ de réponse de la description est obligatoire.',
+            'valeurReponse.required' => 'Le champ valeur réponse est obligatoire.',
+            'question_id.required' => 'Le champ d\'identification de la question est obligatoire.',
+            'question_id.exists' => 'La question sélectionnée est invalide.',
         ]);
         $reponse = new Reponse();
         $reponse->descriptionReponse = $request->descriptionReponse;
@@ -51,7 +62,7 @@ class reponseController extends Controller
         $reponse->status = 'pending';
         $reponse->save();
 
-        return redirect()->route('question-reponse.index');
+        return redirect()->route('reponse.create')->with('question_id', $request->question_id);
     }
 
     /**
@@ -59,7 +70,7 @@ class reponseController extends Controller
      */
     public function show(string $id)
     {
-     
+        return redirect()->route('question-reponse.index');
     }
 
     /**
@@ -78,9 +89,14 @@ class reponseController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'descriptionReponse' => 'required',
+            'descriptionReponse' => ['required'],
             'valeurReponse' => 'required',
-            'question_id' => 'required',
+            'question_id' => ['required', 'exists:questions,id'],
+        ], [
+            'descriptionReponse.required' => 'Le champ de réponse de la description est obligatoire.',
+            'valeurReponse.required' => 'Le champ valeur réponse est obligatoire.',
+            'question_id.required' => 'Le champ d\'identification de la question est obligatoire.',
+            'question_id.exists' => 'La question sélectionnée est invalide.',
         ]);
     
         $reponse = Reponse::find($id);
@@ -105,10 +121,10 @@ class reponseController extends Controller
     {
         
         // $this->authorize('validate-reponse');
-        
+        // $reponse->validated_by = Auth::user()->id;
+
         $reponse = Reponse::find($request->reponse_id);
         $reponse->status = 'validated';
-        // $reponse->validated_by = Auth::user()->id;
         $reponse->save();
     
         return redirect()->route('question-reponse.validation');

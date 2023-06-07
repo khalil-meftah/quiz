@@ -28,7 +28,7 @@
   <form action="{{ route('quiz-generator.generate') }}" method="POST">
       @csrf
       <div id="generate-quiz"></div>
-      <select name="module" id="mod">
+      <select name="module" id="mod" required>
           <option value="">Sélectionner le Module</option>
           @foreach($modules as $module)
               <option value="{{ $module->id }}">{{ $module->nomModule }}</option>
@@ -39,7 +39,7 @@
           <option value="">Sélectionner le chapitre</option>
       </select>
 
-      <select name="type" id="type" onchange="toggleNControle()">
+      <select name="type" id="type" onchange="toggleNControle()" required>
           <option value="">Sélectionner le type</option>
           <option value="Examen de fin de module">Examen de fin de module</option>
           <option value="Contrôle">Contrôle</option>
@@ -48,36 +48,31 @@
       <div id="nControleFields">
       <input type="number" name="nControle" id="nControle" placeholder="N° du Contrôle">
       </div>
+
       <label for="titreDanne" class="label">Titre de L'année</label>
       <div class="double-input">
-          <input type="number" name="titreDanne1" min="1900" max="2099" id="titreDanne" placeholder="Année 1">
-          <input type="number" name="titreDanne2" min="1900" max="2099" id="titreDanne" placeholder="Année 2">
+          <input type="number" name="titreDanne1" min="1974" max="2099" id="titreDanne" placeholder="Année 1" required>
+          <input type="number" name="titreDanne2" min="1974" max="2099" id="titreDanne" placeholder="Année 2" required>
       </div>
 
       <input type="text" name="filiere" id="filiere" placeholder="Filière">
 
-      <select name="niveau" id="niveau">
-        <option value="">Sélectionner le niveau</option>
-        <option value="TS">TS</option>
-        <option value="T">T</option>
-        <option value="Q">Q</option>
-        <option value="S">S</option>
-      </select>
-
       <input type="text" name="numModule" id="numModule" placeholder="Numéro de module">
-
-      <input type="text" name="intituleModule" id="intituleModule" placeholder="Intitulé du module">
       
       <label for="dateEvaluation" class="label">Date d'évaluation</label>
-      <input type="date" name="dateEvaluation" id="dateEvaluation" placeholder="Date d'évaluation">
+      <input type="date" name="dateEvaluation" id="dateEvaluation" placeholder="Date d'évaluation" required>
 
-      <input type="number" name="anneDeFormation" id="anneDeFormation" placeholder="Année de formation">
+    <select name="anneDeFormation" id="anneDeFormation" placeholder="Année de formation" required>
+        <option value="">Sélectionner l'année de formation</option>
+        <option value="1">1er année</option>
+        <option value="2">2ème année</option>
+      </select>
 
-      <input type="number" name="duree" id="duree" step="1" placeholder="Durée">
+      <input type="number" name="duree" id="duree" step="1" placeholder="Durée d'évaluation" required>
 
-      <input type="number" name="variante" id="variante" placeholder="Variante">
+      <input type="number" name="variante" id="variante" placeholder="Variante" required>
 
-      <input type="number" name="bareme" id="bareme" placeholder="Barème">
+      <input type="number" name="bareme" id="bareme" placeholder="Barème" required>
 
       <button type="submit" class="standard-btn generate-btn">
         <img src="{{asset('logo\generateQuiz.svg')}}" alt="quiz" class="btn-icon">
@@ -92,6 +87,8 @@
 
   let modSelect = document.getElementById('mod');
   let chapSelect = document.getElementById('chap');
+  let intituleModule = document.getElementById('intituleModule');
+
 
   modSelect.addEventListener('change', function() {
       let mod = this.value;

@@ -72,7 +72,7 @@
         <div id="parent" class="question section">
           <div class="question-content section-content">
             <img src="{{asset('logo/question2.svg')}}" alt="" class="question-icon section-icon"/>
-            <span>{{ $question->descriptionQuestion }}</span>
+            <span class="question-text">{{ $question->descriptionQuestion }}</span>
             <img src="{{asset('logo/expand.svg')}}" alt="" class="down"/>
           </div>
           <div class="forms">
