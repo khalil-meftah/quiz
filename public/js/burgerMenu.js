@@ -5,12 +5,10 @@ document.addEventListener("DOMContentLoaded", function() {
   const button = document.getElementById('burger-btn');
   const fake = document.getElementById('fake');
 
-  // Retrieve the side nav state from localStorage
   const isSideNavSmall = localStorage.getItem('isSideNavSmall') === 'true';
 
 
   fake.style.width = "220px";
-  // Set the initial state of the side nav based on the stored value
   if (isSideNavSmall) {
     button.classList.add('open');
     sidenav.classList.add('small-nav');
@@ -31,7 +29,6 @@ document.addEventListener("DOMContentLoaded", function() {
       } else {
         fake.style.width = "80px";
       }
-      // Store the current state of the side nav in localStorage
       const isSideNavSmall = sidenav.classList.contains('small-nav');
       localStorage.setItem('isSideNavSmall', isSideNavSmall.toString());
     });

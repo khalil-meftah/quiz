@@ -1,7 +1,5 @@
 
 
-// make fake have the same width as sidenav
-
   document.addEventListener("DOMContentLoaded", function() {
 
     let moduleSelect = document.getElementById('module');
