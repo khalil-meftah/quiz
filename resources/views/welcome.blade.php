@@ -24,7 +24,7 @@
                 
         
                 <ul id="authLinks">
-                    <li><a href="{{ route('login') }}">Connection</a></li>
+                    <li><a href="{{ route('login') }}">Connexion</a></li>
                     <li><a href="{{ route('register') }}" >Inscription</a></li>
                 </ul>
             </nav>

@@ -39,6 +39,7 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+
     }
 
     /**
@@ -54,6 +55,7 @@ class RegisterController extends Controller
             'prenom' => ['required', 'string', 'max:255'],
             'dateDeNaissance' => ['required'],
             'numeroDeTelephone' => ['required', 'string', 'max:20'],
+            'role' => ['required'],
             'adresse'=>['required'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed'],
