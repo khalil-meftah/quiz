@@ -14,6 +14,8 @@ use App\Http\Controllers\quizController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\questionReponseController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Procedure;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -71,6 +73,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
 ->middleware('Activite')
 ->name('home');
 
+
 // admin and maintainer only 
 Route::resources([
     'chapitre' => chapitreController::class,
@@ -89,7 +92,7 @@ Route::patch('/question/{question}/validate', [QuestionController::class, 'valid
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified','bday'])->name('dashboard');
 
 
 
@@ -117,4 +120,5 @@ Route::middleware(['auth', 'Activite','UserAccess:administrateur'])->group(funct
 Route::get('/pending', function () {
     return view('pending');
 })->middleware('PendingRest')->name('pending');
-// // ----------------------------------------AUTHENTICATION RESTRICTION----------------------------------------
+// ----------------------------------------STORED PROCEDURE----------------------------------------
+Route::get('/bday',[Procedure::class,'callProcedure']);

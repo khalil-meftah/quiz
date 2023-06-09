@@ -65,6 +65,8 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'UserAccess' => \App\Http\Middleware\UserAccess::class,
         'Activite' => \App\Http\Middleware\Activite::class,
-         'PendingRest' => \App\Http\Middleware\PendingRestriction::class,
+        'PendingRest' => \App\Http\Middleware\PendingRestriction::class,
+        'bday' => \App\Http\Middleware\bday::class,
+
     ];
 }
