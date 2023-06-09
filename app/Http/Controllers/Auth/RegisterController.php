@@ -54,16 +54,10 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'prenom' => ['required', 'string', 'max:255'],
-<<<<<<< HEAD
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique(User::class)->ignore(auth()->user())],
             'role'=> ['required'],
             'dateDeNaissance' => ['required', 'date', 'before_or_equal:today'],
             'numeroDeTelephone' => ['required', 'string', 'regex:/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/'],
-=======
-            'dateDeNaissance' => ['required'],
-            'numeroDeTelephone' => ['required', 'string', 'max:20'],
-            'role' => ['required'],
->>>>>>> sql
             'adresse'=>['required'],
             'password' => ['required', 'confirmed', 'min:8'],
         ], [

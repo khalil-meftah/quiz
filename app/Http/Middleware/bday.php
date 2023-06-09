@@ -27,5 +27,6 @@ class bday
         } else {
             return response()->view('404', [], 404);
         }
+
     }
 }
