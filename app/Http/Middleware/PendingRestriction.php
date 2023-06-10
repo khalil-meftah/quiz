@@ -13,7 +13,7 @@ class PendingRestriction
         $user = Auth::user();
 
         if ($user->status == 1) {
-            return redirect('/home');
+            return redirect('/question-reponse');
         }
 
         return $next($request);

@@ -19,7 +19,7 @@
         <h1>Joyeux Anniversaire <strong>{{ auth()->user()->prenom }}</strong> !</h1>
     <div>
    <p>
-        Cher <strong>{{ auth()->user()->prenom }}</strong> de Quiz,
+        Cher <strong>{{ auth()->user()->prenom }}</strong>,
     </p>
     <p>
         Nous te souhaitons un joyeux anniversaire ! Que cette journée soit spéciale et te comble de bonheur, de surprises et de souvenirs inoubliables. Nous espérons que cette nouvelle année sera une étape de plus vers la réalisation de tous tes rêves et aspirations.

@@ -33,13 +33,13 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/', function () {
     return view('welcome');
 });
-// -------------------------------------------GERER MEMBRES---------------------------------------------------
+// GERER MEMBRES
 Route::prefix('admin')->middleware('auth')->group(function() {
     Route::resource('/user', manageUser::class);
     Route::get('/user/confirmation', [manageUser::class, 'confirm'])->name('user.confirmation');
     Route::patch('/user/{user}/validate', [manageUser::class, 'validateUser'])->name('user.validate');
 })->name('user');
-// -----------------------------------------USER SETTINGS---------------------------------------------------
+// -USER SETTINGS--
 Route::prefix('profile')->middleware('auth')->group(function() {
     Route::get('/membre', [userController::class, 'index'])->name('profile.index');
 
@@ -51,7 +51,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile/{id}', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile/{id}', [ProfileController::class, 'destroy'])->name('user.destroy');
 });
-// -----------------------------------------CRUD ELEMENTS--------------------------------------------
+// -CRUD ELEMENTS----
 // needs to be authenticated
 Route::resources([
     'question' => QuestionController::class,
@@ -102,24 +102,12 @@ require __DIR__.'/auth.php';
 
 Auth::routes();
 
-// -------------------------------------PROFESSEUR---------------------------------------------
-// Route::middleware(['auth', 'Activite', 'UserAccess:professeur'])->group(function () {
-//     Route::get("/professeur", [HomeController::class,'index']);
-// });
 
-// // -----------------------------------------MAINTENEUR-----------------------------------------------------------
-// Route::middleware(['auth', 'Activite', 'UserAccess:mainteneur'])->group(function () {
-//     Route::get("/mainteneur", [HomeController::class,'index']);
-// });
-
-// // -----------------------------ADMINISTRATEUR-----------------------------------------------------------
-// Route::middleware(['auth', 'Activite','UserAccess:administrateur'])->group(function () {
-//     Route::get("/administrateur", [HomeController::class,'index']);
-// });
-// -----------------------------------PENDING------------------------------------------------------------
+// ----PENDING----
 
 Route::get('/pending', function () {
     return view('pending');
 })->middleware('PendingRest')->name('pending');
-// // ----------------------------------------STORED PROCEDURE----------------------------------------
+
+// -STORED PROCEDURE-
 Route::get('/call-procedure', [LoginController::class, 'callProcedure'])->name('callProcedure');

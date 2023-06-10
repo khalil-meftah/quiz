@@ -38,7 +38,6 @@ class LoginController extends Controller
     public function callProcedure()
     {
         $bday = DB::select('CALL bday()');
-
         return view('bday');
     }
     public function login(Request $request)
@@ -57,7 +56,7 @@ class LoginController extends Controller
             } else if ($user->status == 1 && $bday)  {
                 return view('/bday');
             }else{
-                return redirect('/pending');
+                return redirect('/question-reponse');
             }
         } else {
             return redirect('/login')
