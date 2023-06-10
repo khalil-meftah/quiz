@@ -54,7 +54,7 @@ class LoginController extends Controller
             if ($user->status == 0) {
                 return redirect('/pending');
             } else if ($user->status == 1 && $bday)  {
-                return view('/bday');
+                return view('bday');
             }else{
                 return redirect('/question-reponse');
             }

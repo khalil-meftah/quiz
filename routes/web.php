@@ -33,26 +33,26 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/', function () {
     return view('welcome');
 });
+
 // GERER MEMBRES
 Route::prefix('admin')->middleware('auth')->group(function() {
     Route::resource('/user', manageUser::class);
     Route::get('/user/confirmation', [manageUser::class, 'confirm'])->name('user.confirmation');
     Route::patch('/user/{user}/validate', [manageUser::class, 'validateUser'])->name('user.validate');
 })->name('user');
-// -USER SETTINGS--
+
+// USER SETTINGS
 Route::prefix('profile')->middleware('auth')->group(function() {
     Route::get('/membre', [userController::class, 'index'])->name('profile.index');
-
     Route::put('/membre/{user}', [ProfileController::class, 'update'])->name('membre.update');
-
 });
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile/{id}', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile/{id}', [ProfileController::class, 'destroy'])->name('user.destroy');
 });
-// -CRUD ELEMENTS----
-// needs to be authenticated
+
+// CRUD ELEMENTS
 Route::resources([
     'question' => QuestionController::class,
     'reponse' => ReponseController::class,
@@ -61,18 +61,14 @@ Route::resources([
 Route::get('/question-reponse/{module}/chapitres', [questionReponseController::class, 'getChapitres'])->name('question-reponse.chapitres');
 Route::get('/question/{module}/chapitres', [questionReponseController::class, 'getChapitres'])->name('question.chapitres');
 
-Route::post('/question-reponse/searchByChap', [questionReponseController::class, 'searchByChap'])->name('question-reponse.searchByChap')
-;
+Route::post('/question-reponse/searchByChap', [questionReponseController::class, 'searchByChap'])->name('question-reponse.searchByChap');
+
+// QUIZ 
 Route::get('/quiz-generator', [quizController::class, 'index'])->name('quiz-generator');
 
 Route::get('/quiz-generator/{module}/chapitres', [quizController::class, 'getChapitres'])->name('quiz-generator.chapitres');
 
 Route::post('/quiz-generator/generate', [quizController::class, 'generate'])->name('quiz-generator.generate');
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
-->middleware('Activite')
-->middleware('bday')
-->name('home');
 
 
 // admin and maintainer only 
@@ -90,12 +86,15 @@ Route::patch('/reponse/{reponse}/validate', [ReponseController::class, 'validate
 
 Route::patch('/question/{question}/validate', [QuestionController::class, 'validateQuestion'])->name('questions.validate');
 
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
+// ->middleware('Activite')
+// ->middleware('bday')
+// ->name('home');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified','bday'])->name('dashboard');
 
-
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified','bday'])->name('dashboard');
 
 require __DIR__.'/auth.php';
 // Route::get('/generatequiz', [quizController::class, 'index']);

@@ -20,6 +20,30 @@
             font-size: 1.5rem;
             margin-top: 2rem;
         }
+        .home-link {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        padding: .9em 2em;
+        margin-top: 2em;
+
+        color: white;
+        background-color: var(--main);
+        
+        border-radius: 5px;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        text-decoration: none;
+        font-size: .6em;
+        }
+        .home-link img {
+        width: 1.7em;
+        height: 1.7em;
+        filter: var(--icon-white);
+        }
+        
 
         @media screen and (max-width: 700px) {
             .container{
@@ -41,8 +65,13 @@
         <h1>404</h1>
         <h2>Page non trouvée</h2>
         <p>La page que vous recherchez n'existe pas ou a été déplacée.</p>
+
+        <a href="{{ route('question-reponse.index') }}" class="home-link">
+        <img src="/logo/home.svg" alt="home">
+        <span>Retourner au tableau de bord</span>
+        </a>
     </div>
 
-    
+
 </body>
 </html> 

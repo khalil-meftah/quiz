@@ -36,7 +36,7 @@
     </div>
      
 
-     <a href="{{ route('home') }}">
+     <a href="{{ route('question-reponse.index') }}">
      <img src="/logo/home.svg" alt="home">
      <span>Retourner au tableau de bord</span>
     </a>
