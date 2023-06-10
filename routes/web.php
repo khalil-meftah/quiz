@@ -54,9 +54,9 @@ Route::middleware('auth')->group(function () {
 // -----------------------------------------CRUD ELEMENTS--------------------------------------------
 // needs to be authenticated
 Route::resources([
-    'question' => questionController::class,
-    'reponse' => reponseController::class,
-    'question-reponse' => questionReponseController::class,
+    'question' => QuestionController::class,
+    'reponse' => ReponseController::class,
+    'question-reponse' => QuestionReponseController::class,
 ]);
 Route::get('/question-reponse/{module}/chapitres', [questionReponseController::class, 'getChapitres'])->name('question-reponse.chapitres');
 Route::get('/question/{module}/chapitres', [questionReponseController::class, 'getChapitres'])->name('question.chapitres');
@@ -71,6 +71,7 @@ Route::post('/quiz-generator/generate', [quizController::class, 'generate'])->na
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
 ->middleware('Activite')
+->middleware('bday')
 ->name('home');
 
 
@@ -102,23 +103,23 @@ require __DIR__.'/auth.php';
 Auth::routes();
 
 // -------------------------------------PROFESSEUR---------------------------------------------
-Route::middleware(['auth', 'Activite', 'UserAccess:professeur'])->group(function () {
-    Route::get("/professeur", [HomeController::class,'index']);
-});
+// Route::middleware(['auth', 'Activite', 'UserAccess:professeur'])->group(function () {
+//     Route::get("/professeur", [HomeController::class,'index']);
+// });
 
-// -----------------------------------------MAINTENEUR-----------------------------------------------------------
-Route::middleware(['auth', 'Activite', 'UserAccess:mainteneur'])->group(function () {
-    Route::get("/mainteneur", [HomeController::class,'index']);
-});
+// // -----------------------------------------MAINTENEUR-----------------------------------------------------------
+// Route::middleware(['auth', 'Activite', 'UserAccess:mainteneur'])->group(function () {
+//     Route::get("/mainteneur", [HomeController::class,'index']);
+// });
 
-// -----------------------------ADMINISTRATEUR-----------------------------------------------------------
-Route::middleware(['auth', 'Activite','UserAccess:administrateur'])->group(function () {
-    Route::get("/administrateur", [HomeController::class,'index']);
-});
+// // -----------------------------ADMINISTRATEUR-----------------------------------------------------------
+// Route::middleware(['auth', 'Activite','UserAccess:administrateur'])->group(function () {
+//     Route::get("/administrateur", [HomeController::class,'index']);
+// });
 // -----------------------------------PENDING------------------------------------------------------------
 
 Route::get('/pending', function () {
     return view('pending');
 })->middleware('PendingRest')->name('pending');
-// ----------------------------------------STORED PROCEDURE----------------------------------------
-Route::get('/bday',[Procedure::class,'callProcedure']);
+// // ----------------------------------------STORED PROCEDURE----------------------------------------
+Route::get('/call-procedure', [LoginController::class, 'callProcedure'])->name('callProcedure');

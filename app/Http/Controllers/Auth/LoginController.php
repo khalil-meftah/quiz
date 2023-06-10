@@ -8,8 +8,8 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\HomeController;
 use App\Models\User;
-
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 class LoginController extends Controller
 {
     
@@ -35,10 +35,15 @@ class LoginController extends Controller
        
 
     }
+    public function callProcedure()
+    {
+        $bday = DB::select('CALL bday()');
 
+        return view('bday');
+    }
     public function login(Request $request)
     {
-        
+        $bday = DB::select('CALL bday()');
         $input = $request->all();
         $this->validate($request, [
             'email' => 'required|email',
@@ -49,8 +54,10 @@ class LoginController extends Controller
             
             if ($user->status == 0) {
                 return redirect('/pending');
-            } else {
-                return redirect('/question-reponse');
+            } else if ($user->status == 1 && $bday)  {
+                return view('/bday');
+            }else{
+                return redirect('/pending');
             }
         } else {
             return redirect('/login')
