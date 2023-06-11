@@ -31,6 +31,7 @@ class moduleController extends Controller
     {
         $mod = new Module ();
         $request->validate([
+            'numModule' =>['required'],
             'nomModule'=>['filled','min:3','unique:modules'],
             'nombreHeuresModule' => ['filled'],
             'dateDebutModule' =>['required'],
@@ -41,6 +42,7 @@ class moduleController extends Controller
             'dateDebutModule' =>'Le champ date debut Module est obligatoire.'
         ]
     ); 
+        $mod->numModule = $request->numModule;
         $mod->nomModule = $request->nomModule;
         $mod->descriptionModule = $request->descriptionModule;
         $mod->nombreHeuresModule = $request->nombreHeuresModule;
@@ -73,6 +75,7 @@ class moduleController extends Controller
         $mod=Module::find($id);
         
         $request->validate([
+            'numModule' =>['required'],
             'nomModule'=>['filled','min:3','unique:modules'],
             'nombreHeuresModule' => ['filled'],
             'dateDebutModule' =>['required'],
@@ -82,7 +85,7 @@ class moduleController extends Controller
             'nombreHeuresModule.filled'=>'Le champ nombre heures Module doit avoir une valeur.',
             'dateDebutModule' =>'Le champ date debut Module est obligatoire.'
         ]);
-
+        $mod->numModule = $request->numModule;
         $mod->nomModule = $request->nomModule;
         $mod->descriptionModule = $request->descriptionModule;
         $mod->nombreHeuresModule = $request->nombreHeuresModule;

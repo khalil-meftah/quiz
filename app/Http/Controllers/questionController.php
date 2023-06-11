@@ -81,10 +81,9 @@ class questionController extends Controller
     {
         $request->validate([
             'descriptionQuestion' => ['required'],
-            'chapitre' => ['required', 'exists:chapitres,id'],
+            'chapitre' => ['exists:chapitres,id'],
         ], [
             'descriptionQuestion.required' => 'Le champ description de la question est requis.',
-            'chapitre.required' => 'Le champ chapitre est requis.',
             'chapitre.exists' => 'Le chapitre sélectionné est invalide.',
         ]);
         $question = Question::find($id);

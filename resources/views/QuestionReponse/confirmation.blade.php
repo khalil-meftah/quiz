@@ -43,7 +43,7 @@
 
         <input type="hidden" name="pageName" value="confirmation">
 
-        <button type="submit" class="search-btn">
+        <button type="submit" class="search-btn standard-btn">
           <img src="{{asset('logo\search.svg')}}" alt="" />
           <span>Filtrer</span>
         </button>

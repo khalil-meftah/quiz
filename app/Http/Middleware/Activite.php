@@ -14,6 +14,10 @@ class Activite
     {
         $user = Auth::user();
 
+        if(!$user){
+            return redirect()->route('login');
+        }
+
         if ($user->status) {
             return $next($request);
         } else {

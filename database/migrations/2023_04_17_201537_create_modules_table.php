@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('modules', function (Blueprint $table) {
             $table->id();
+            $table->text('numModule')->nullable();
             $table->text('nomModule');
             $table->text('descriptionModule')->nullable();
             $table->integer('nombreHeuresModule')->nullable();

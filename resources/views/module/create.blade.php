@@ -30,6 +30,8 @@
         <form  method="POST" action="{{route('module.store')}}"class="create-form create-module-form">
             @csrf
 
+            <input type="text" name="numModule" id="numModule" placeholder="Numéro" >
+
             <input type="text" name="nomModule" id="nomModule" placeholder="Nom" >
 
             <input type="text" name="descriptionModule" id="descriptionModule" placeholder="Description">

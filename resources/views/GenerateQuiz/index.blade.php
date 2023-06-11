@@ -57,7 +57,7 @@
 
       <input type="text" name="filiere" id="filiere" placeholder="Filière">
 
-      <input type="text" name="numModule" id="numModule" placeholder="Numéro de module">
+      <!-- <input type="text" name="numModule" id="numModule" placeholder="Numéro de module"> -->
       
       <label for="dateEvaluation" class="label">Date d'évaluation</label>
       <input type="date" name="dateEvaluation" id="dateEvaluation" placeholder="Date d'évaluation" required>

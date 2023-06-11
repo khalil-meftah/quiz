@@ -90,6 +90,12 @@ Route::patch('/question/{question}/validate', [QuestionController::class, 'valid
 // ->middleware('Activite')
 // ->middleware('bday')
 // ->name('home');
+Route::get('/home', function () {
+    return redirect()->route('question-reponse.index');
+})
+->middleware('Activite')
+->middleware('bday')
+->name('home');
 
 
 // Route::get('/dashboard', function () {

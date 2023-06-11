@@ -92,7 +92,7 @@
             <td>
                 <p>Filière: {{ $data['filiere'] }}</p>
                 <p>Niveau: TS</p>
-                <p>Numéro de module: {{ $data['numModule'] }}</p>
+                <p>Numéro de module: {{ $moduleData->numModule }}</p>
                 <p>Intitulé du module: {{ $moduleData->nomModule }}</p>
                 <p>Date d'évaluation: {{ $data['dateEvaluation'] }}</p>
             </td>

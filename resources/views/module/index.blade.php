@@ -62,6 +62,10 @@
       <div class="child" id="child">
         <table class="main-table">
             <tr>
+                <td>Numéro</td>
+                <td>{{$module->numModule}}</td>
+            </tr>
+            <tr>
                 <td>Nom</td>
                 <td>{{$module->nomModule}}</td>
             </tr>
