@@ -48,7 +48,7 @@ class reponseController extends Controller
         $request->validate([
             'descriptionReponse' => ['required'],
             'valeurReponse' => 'required',
-            'question_id' => ['required', 'exists:questions,id'],
+            'question_id' => ['exists:questions,id'],
         ], [
             'descriptionReponse.required' => 'Le champ de réponse de la description est obligatoire.',
             'valeurReponse.required' => 'Le champ valeur réponse est obligatoire.',
